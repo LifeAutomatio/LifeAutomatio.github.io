@@ -1,0 +1,724 @@
+{
+  "bank": "questions.v1",
+  "version": 1,
+  "_comment": "질문 은행. ID 는 절대 다시 쓰거나 바꾸지 않는다. 뜻이 바뀌면 새 ID 를 만든다. 규칙은 docs/START_HERE.md 와 계획서 부록 A-7.",
+  "values": {
+    "prompt": "지금의 나에게 더 중요한 쪽은?",
+    "wording_version": 1,
+    "items": [
+      {
+        "code": "sd",
+        "label": "자율",
+        "desc": "내 방식대로 정하고 스스로 선택하기"
+      },
+      {
+        "code": "st",
+        "label": "도전",
+        "desc": "새롭고 낯선 일에 뛰어들기"
+      },
+      {
+        "code": "he",
+        "label": "즐거움",
+        "desc": "지금 삶을 즐기고 기분 좋게 지내기"
+      },
+      {
+        "code": "ac",
+        "label": "성취",
+        "desc": "실력으로 성과를 내고 인정받기"
+      },
+      {
+        "code": "po",
+        "label": "영향력",
+        "desc": "돈·지위·결정권을 갖기"
+      },
+      {
+        "code": "se",
+        "label": "안정",
+        "desc": "안전하고 예측 가능한 생활"
+      },
+      {
+        "code": "co",
+        "label": "규범",
+        "desc": "규칙과 기대를 지키고 폐 끼치지 않기"
+      },
+      {
+        "code": "tr",
+        "label": "전통",
+        "desc": "가족·문화의 방식을 존중하기"
+      },
+      {
+        "code": "be",
+        "label": "배려",
+        "desc": "가까운 사람을 챙기고 돕기"
+      },
+      {
+        "code": "un",
+        "label": "공정",
+        "desc": "모든 사람과 자연을 공정하게 대하기"
+      }
+    ],
+    "pair_order": [
+      "v.pair.st-po",
+      "v.pair.ac-co",
+      "v.pair.st-he",
+      "v.pair.po-un",
+      "v.pair.se-be",
+      "v.pair.st-tr",
+      "v.pair.tr-un",
+      "v.pair.st-ac",
+      "v.pair.sd-co",
+      "v.pair.co-tr",
+      "v.pair.po-co",
+      "v.pair.ac-po",
+      "v.pair.ac-un",
+      "v.pair.po-be",
+      "v.pair.be-un",
+      "v.pair.he-ac",
+      "v.pair.se-tr",
+      "v.pair.he-un",
+      "v.pair.sd-be",
+      "v.pair.he-po",
+      "v.pair.st-se",
+      "v.pair.co-un",
+      "v.pair.po-tr",
+      "v.pair.sd-ac",
+      "v.pair.sd-se",
+      "v.pair.po-se",
+      "v.pair.co-be",
+      "v.pair.st-be",
+      "v.pair.st-co",
+      "v.pair.he-tr",
+      "v.pair.sd-st",
+      "v.pair.ac-se",
+      "v.pair.he-be",
+      "v.pair.sd-tr",
+      "v.pair.ac-tr",
+      "v.pair.he-co",
+      "v.pair.sd-po",
+      "v.pair.se-un",
+      "v.pair.he-se",
+      "v.pair.ac-be",
+      "v.pair.se-co",
+      "v.pair.sd-he",
+      "v.pair.sd-un",
+      "v.pair.tr-be",
+      "v.pair.st-un"
+    ],
+    "repeats": [
+      "v.pair.st-he",
+      "v.pair.sd-co",
+      "v.pair.be-un",
+      "v.pair.st-se",
+      "v.pair.co-be",
+      "v.pair.he-be",
+      "v.pair.he-se"
+    ]
+  },
+  "situational": [
+    {
+      "id": "s.work.001",
+      "group": "work",
+      "kind": "today",
+      "prompt": "오늘 가장 집중이 잘 된 때는?",
+      "options": [
+        {
+          "value": "am",
+          "label": "오전"
+        },
+        {
+          "value": "pm",
+          "label": "오후"
+        },
+        {
+          "value": "eve",
+          "label": "저녁"
+        },
+        {
+          "value": "none",
+          "label": "없었음"
+        }
+      ],
+      "wording_version": 1,
+      "status": "active"
+    },
+    {
+      "id": "s.work.002",
+      "group": "work",
+      "kind": "today",
+      "prompt": "오늘 일은 주로 어떻게 했나?",
+      "options": [
+        {
+          "value": "solo",
+          "label": "혼자 몰입"
+        },
+        {
+          "value": "collab",
+          "label": "사람들과 조율"
+        }
+      ],
+      "wording_version": 1,
+      "status": "active"
+    },
+    {
+      "id": "s.work.003",
+      "group": "work",
+      "kind": "general",
+      "prompt": "새 일을 받으면 먼저?",
+      "options": [
+        {
+          "value": "try",
+          "label": "일단 해보며 파악"
+        },
+        {
+          "value": "plan",
+          "label": "계획부터 세움"
+        }
+      ],
+      "wording_version": 1,
+      "status": "active"
+    },
+    {
+      "id": "s.work.004",
+      "group": "work",
+      "kind": "today",
+      "prompt": "오늘 마감 압박은?",
+      "options": [
+        {
+          "value": 1,
+          "label": "1 전혀 없음"
+        },
+        {
+          "value": 2,
+          "label": "2"
+        },
+        {
+          "value": 3,
+          "label": "3"
+        },
+        {
+          "value": 4,
+          "label": "4"
+        },
+        {
+          "value": 5,
+          "label": "5 매우 큼"
+        }
+      ],
+      "wording_version": 1,
+      "status": "active"
+    },
+    {
+      "id": "s.work.005",
+      "group": "work",
+      "kind": "general",
+      "prompt": "더 끌리는 일은?",
+      "options": [
+        {
+          "value": "familiar",
+          "label": "익숙한 일을 빠르고 정확하게"
+        },
+        {
+          "value": "novel",
+          "label": "처음 보는 문제 풀기"
+        }
+      ],
+      "wording_version": 1,
+      "status": "active"
+    },
+    {
+      "id": "s.energy.001",
+      "group": "energy",
+      "kind": "today",
+      "prompt": "오늘 에너지를 가장 채워준 것은?",
+      "options": [
+        {
+          "value": "alone",
+          "label": "혼자 시간"
+        },
+        {
+          "value": "people",
+          "label": "사람"
+        },
+        {
+          "value": "body",
+          "label": "몸 쓰기"
+        },
+        {
+          "value": "progress",
+          "label": "일의 진척"
+        },
+        {
+          "value": "none",
+          "label": "없음"
+        }
+      ],
+      "wording_version": 1,
+      "status": "active"
+    },
+    {
+      "id": "s.energy.002",
+      "group": "energy",
+      "kind": "today",
+      "prompt": "오늘 에너지를 가장 뺏은 것은?",
+      "options": [
+        {
+          "value": "meetings",
+          "label": "회의·사람"
+        },
+        {
+          "value": "chores",
+          "label": "잡무"
+        },
+        {
+          "value": "uncertainty",
+          "label": "불확실한 일"
+        },
+        {
+          "value": "sleep",
+          "label": "잠 부족"
+        },
+        {
+          "value": "none",
+          "label": "없음"
+        }
+      ],
+      "wording_version": 1,
+      "status": "active"
+    },
+    {
+      "id": "s.energy.003",
+      "group": "energy",
+      "kind": "general",
+      "prompt": "힘든 한 주 뒤 주말엔?",
+      "options": [
+        {
+          "value": "alone",
+          "label": "혼자 쉬기"
+        },
+        {
+          "value": "people",
+          "label": "사람 만나기"
+        }
+      ],
+      "wording_version": 1,
+      "status": "active"
+    },
+    {
+      "id": "s.energy.004",
+      "group": "energy",
+      "kind": "today",
+      "prompt": "오늘 사람들과 보낸 시간은?",
+      "options": [
+        {
+          "value": 1,
+          "label": "1 많이 소모"
+        },
+        {
+          "value": 2,
+          "label": "2"
+        },
+        {
+          "value": 3,
+          "label": "3"
+        },
+        {
+          "value": 4,
+          "label": "4"
+        },
+        {
+          "value": 5,
+          "label": "5 많이 충전"
+        }
+      ],
+      "wording_version": 1,
+      "status": "active"
+    },
+    {
+      "id": "s.energy.005",
+      "group": "energy",
+      "kind": "today",
+      "prompt": "오늘 몸을 움직인 뒤 기분은?",
+      "options": [
+        {
+          "value": "none",
+          "label": "안 움직임"
+        },
+        {
+          "value": "worse",
+          "label": "나빠짐"
+        },
+        {
+          "value": "same",
+          "label": "그대로"
+        },
+        {
+          "value": "better",
+          "label": "좋아짐"
+        }
+      ],
+      "wording_version": 1,
+      "status": "active"
+    },
+    {
+      "id": "s.stress.001",
+      "group": "stress",
+      "kind": "today",
+      "prompt": "오늘 가장 신경 쓰인 것은?",
+      "options": [
+        {
+          "value": "work",
+          "label": "일"
+        },
+        {
+          "value": "status",
+          "label": "비자·신분"
+        },
+        {
+          "value": "money",
+          "label": "돈"
+        },
+        {
+          "value": "relationship",
+          "label": "관계"
+        },
+        {
+          "value": "health",
+          "label": "건강"
+        },
+        {
+          "value": "none",
+          "label": "없음"
+        }
+      ],
+      "wording_version": 1,
+      "status": "active"
+    },
+    {
+      "id": "s.stress.002",
+      "group": "stress",
+      "kind": "today",
+      "prompt": "오늘 스트레스는?",
+      "options": [
+        {
+          "value": 1,
+          "label": "1 거의 없음"
+        },
+        {
+          "value": 2,
+          "label": "2"
+        },
+        {
+          "value": 3,
+          "label": "3"
+        },
+        {
+          "value": 4,
+          "label": "4"
+        },
+        {
+          "value": 5,
+          "label": "5 매우 큼"
+        }
+      ],
+      "wording_version": 1,
+      "status": "active"
+    },
+    {
+      "id": "s.stress.003",
+      "group": "stress",
+      "kind": "general",
+      "prompt": "더 힘든 쪽은?",
+      "options": [
+        {
+          "value": "overload",
+          "label": "일이 너무 많은 것"
+        },
+        {
+          "value": "uncertainty",
+          "label": "결과를 알 수 없는 것"
+        }
+      ],
+      "wording_version": 1,
+      "status": "active"
+    },
+    {
+      "id": "s.stress.004",
+      "group": "stress",
+      "kind": "today",
+      "prompt": "스트레스 받은 뒤 한 일은?",
+      "options": [
+        {
+          "value": "continue",
+          "label": "그냥 계속함"
+        },
+        {
+          "value": "rest",
+          "label": "쉬었음"
+        },
+        {
+          "value": "talk",
+          "label": "누군가와 얘기"
+        },
+        {
+          "value": "exercise",
+          "label": "운동"
+        },
+        {
+          "value": "na",
+          "label": "해당 없음"
+        }
+      ],
+      "wording_version": 1,
+      "status": "active"
+    },
+    {
+      "id": "s.stress.005",
+      "group": "stress",
+      "kind": "general",
+      "prompt": "더 신경 쓰이는 쪽은?",
+      "options": [
+        {
+          "value": "direct",
+          "label": "직접적인 지적"
+        },
+        {
+          "value": "silence",
+          "label": "아무 말 없는 것"
+        }
+      ],
+      "wording_version": 1,
+      "status": "active"
+    },
+    {
+      "id": "s.joy.001",
+      "group": "joy",
+      "kind": "today",
+      "prompt": "오늘 가장 좋았던 순간은 어디서?",
+      "options": [
+        {
+          "value": "work",
+          "label": "일"
+        },
+        {
+          "value": "people",
+          "label": "사람"
+        },
+        {
+          "value": "alone",
+          "label": "혼자 시간"
+        },
+        {
+          "value": "body",
+          "label": "몸 쓰기"
+        },
+        {
+          "value": "novelty",
+          "label": "새로운 것"
+        },
+        {
+          "value": "rest",
+          "label": "먹고 쉬기"
+        },
+        {
+          "value": "none",
+          "label": "없음"
+        }
+      ],
+      "wording_version": 1,
+      "status": "retired",
+      "retired_reason": "선택지가 7개로 규칙(최대 6개)을 넘어 배포 전에 은퇴. s.joy.002 가 대신한다"
+    },
+    {
+      "id": "s.joy.002",
+      "group": "joy",
+      "kind": "today",
+      "prompt": "오늘 가장 좋았던 순간은 어디서?",
+      "options": [
+        {
+          "value": "work",
+          "label": "일"
+        },
+        {
+          "value": "people",
+          "label": "사람"
+        },
+        {
+          "value": "alone_rest",
+          "label": "혼자 시간·쉬기"
+        },
+        {
+          "value": "body",
+          "label": "몸 쓰기"
+        },
+        {
+          "value": "novelty",
+          "label": "새로운 것"
+        },
+        {
+          "value": "none",
+          "label": "없음"
+        }
+      ],
+      "wording_version": 1,
+      "status": "active",
+      "supersedes": "s.joy.001"
+    },
+    {
+      "id": "s.decide.001",
+      "group": "decide",
+      "kind": "general",
+      "prompt": "큰 결정을 할 때는?",
+      "options": [
+        {
+          "value": "research",
+          "label": "충분히 알아보고 결정"
+        },
+        {
+          "value": "quick",
+          "label": "적당히 알면 바로 결정"
+        }
+      ],
+      "wording_version": 1,
+      "status": "active"
+    },
+    {
+      "id": "s.decide.002",
+      "group": "decide",
+      "kind": "today",
+      "prompt": "오늘 미룬 결정이 있나?",
+      "options": [
+        {
+          "value": "yes",
+          "label": "있음"
+        },
+        {
+          "value": "no",
+          "label": "없음"
+        }
+      ],
+      "wording_version": 1,
+      "status": "active"
+    },
+    {
+      "id": "s.decide.003",
+      "group": "decide",
+      "kind": "general",
+      "prompt": "더 끌리는 쪽은?",
+      "options": [
+        {
+          "value": "safe",
+          "label": "확실한 중간 결과"
+        },
+        {
+          "value": "risky",
+          "label": "불확실한 큰 결과"
+        }
+      ],
+      "wording_version": 1,
+      "status": "active"
+    },
+    {
+      "id": "s.decide.004",
+      "group": "decide",
+      "kind": "today",
+      "prompt": "오늘 한 선택의 기준은?",
+      "options": [
+        {
+          "value": "logic",
+          "label": "데이터·논리"
+        },
+        {
+          "value": "gut",
+          "label": "직감"
+        },
+        {
+          "value": "others",
+          "label": "남의 의견"
+        },
+        {
+          "value": "habit",
+          "label": "습관"
+        }
+      ],
+      "wording_version": 1,
+      "status": "active"
+    },
+    {
+      "id": "s.decide.005",
+      "group": "decide",
+      "kind": "general",
+      "prompt": "결정한 뒤에는?",
+      "options": [
+        {
+          "value": "settle",
+          "label": "거의 다시 생각 안 함"
+        },
+        {
+          "value": "revisit",
+          "label": "자주 다시 따져봄"
+        }
+      ],
+      "wording_version": 1,
+      "status": "active"
+    }
+  ],
+  "sources": [
+    "s.stress.001",
+    "s.energy.001",
+    "s.energy.002",
+    "s.joy.002"
+  ],
+  "plan": {
+    "_comment": "요일 번호는 월=0 ... 일=6. 하루 질문은 주 질문 하나와 '질문 하나 더' 둘, 모두 3개까지",
+    "value_weekdays": [
+      0,
+      2,
+      4,
+      5
+    ],
+    "source_weekdays": [
+      1,
+      3
+    ],
+    "general_weekdays": [
+      6
+    ],
+    "source_weeks": 8,
+    "extra_per_day": 2,
+    "value_repeat_min_days": 28,
+    "value_round_days": 365,
+    "value_skip_cooldown_days": 7,
+    "today_min_gap_days": 14,
+    "general_reask_days": 365,
+    "stress_fixed": {
+      "_comment": "처음 8주(원천 질문 기간)가 끝나면 화·목 질문 칸을 '오늘 스트레스는?'으로 고정 (2026-09-27 사용자 결정)",
+      "qid": "s.stress.002",
+      "weekdays": [
+        1,
+        3
+      ]
+    },
+    "experiment": {
+      "_comment": "원천 실험: 질문 칸을 28일 또는 56일 동안 원천 질문에만 쓴다. 1년에 두 번까지",
+      "kinds": [
+        "sources"
+      ],
+      "days": [
+        28,
+        56
+      ],
+      "max_per_year": 2
+    },
+    "lifecycle": {
+      "_comment": "계획서 부록 A-7. 굳음과 일시 중지는 밤 점검이 계산해 state/questions.json 에 적는다. 은퇴 후보는 1월에만 반영",
+      "settle_window_days": 365,
+      "settle_min_asks": 4,
+      "settle_agreement": 0.9,
+      "settle_reask_days": 730,
+      "retire_sd_below": 0.5,
+      "retire_min_asks": 12,
+      "pause_after_skips": 3,
+      "today_active_max": 24
+    }
+  }
+}

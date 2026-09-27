@@ -1,0 +1,137 @@
+{
+  "instrument": "who5",
+  "version": 1,
+  "title_en": "The World Health Organization-Five Well-Being Index (WHO-5)",
+  "title_ko": "WHO-5 웰빙 지수 (세계보건기구 5문항 정신적 안녕 척도)",
+  "citation": "World Health Organization. The World Health Organization-Five Well-Being Index (WHO-5). Geneva: World Health Organization; 2024. License: CC BY-NC-SA 3.0 IGO. (WHO/UCN/MSD/MHE/2024.01)",
+  "sources": [
+    {
+      "what": "items_en_scoring_license",
+      "url": "https://www.who.int/publications/m/item/WHO-UCN-MSD-MHE-2024.01"
+    },
+    {
+      "what": "items_en_pdf",
+      "url": "https://cdn.who.int/media/docs/default-source/mental-health/who-5_english-original4da539d6ed4b49389e3afe47cda2326a.pdf?sfvrsn=ed43f352_11"
+    },
+    {
+      "what": "translation_list_checked_no_korean (former Psychiatric Centre North Zealand site, archived 2022-12-02)",
+      "url": "https://web.archive.org/web/20221202075730/https://www.psykiatri-regionh.dk/who-5/who-5-questionnaires/Pages/default.aspx"
+    },
+    {
+      "what": "korean_validation_study_not_used (item wording not publicly available)",
+      "url": "https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART001514454"
+    }
+  ],
+  "license_note": "WHO PDF copyright page: \"© World Health Organization 2024. Some rights reserved. This work is available under the Creative Commons Attribution-NonCommercial-ShareAlike 3.0 IGO licence (CC BY-NC-SA 3.0 IGO; https://creativecommons.org/licenses/by-nc-sa/3.0/igo). Under the terms of this licence, you may copy, redistribute and adapt the work for non-commercial purposes, provided the work is appropriately cited, as indicated below. In any use of this work, there should be no suggestion that WHO endorses any specific organization, products or services. The use of the WHO logo is not permitted. If you adapt the work, then you must license your work under the same or equivalent Creative Commons licence.\" Publication page lists Copyright: CC-BY-NC-SA 3.0. Licence confirmed.",
+  "usage_ok_for_personal_noncommercial": true,
+  "usage_note": "Allowed for non-commercial use with citation; no WHO logo; no suggestion of WHO endorsement. The Korean text here is our own translation (an adaptation): if it is ever shared it must be released under CC BY-NC-SA 3.0 IGO (or equivalent) and carry the WHO translation disclaimer below plus the suggested citation.",
+  "translation_disclaimer_en": "This translation was not created by the World Health Organization (WHO). WHO is not responsible for the content or accuracy of this translation. The original English edition shall be the binding and authentic edition.",
+  "translation_disclaimer_ko": "이 번역은 세계보건기구(WHO)가 만든 것이 아닙니다. WHO는 이 번역의 내용이나 정확성에 대해 책임지지 않습니다. 영어 원본이 구속력 있는 정본입니다.",
+  "time_frame_ko": "지난 2주 동안",
+  "instructions_en": "Please indicate for each of the five statements which is closest to how you have been feeling over the last two weeks. Notice that higher numbers mean better well-being. Example: If you have felt cheerful and in good spirits more than half of the time during the last two weeks, select number three.",
+  "instructions_ko": "다음 다섯 문장 각각에 대해, 지난 2주 동안 내가 느낀 것과 가장 가까운 것을 고르세요. 숫자가 높을수록 정신적 안녕 상태가 좋다는 뜻입니다. 예: 지난 2주 중 절반 이상의 기간 동안 즐겁고 기분이 좋았다면 3을 고르세요.",
+  "instructions_ko_source": "self_translated_unverified",
+  "scale": {
+    "min": 0,
+    "max": 5,
+    "labels_en": [
+      "At no time",
+      "Some of the time",
+      "Less than half of the time",
+      "More than half of the time",
+      "Most of the time",
+      "All of the time"
+    ],
+    "labels_ko": [
+      "전혀 그렇지 않았다",
+      "가끔 그랬다",
+      "절반보다 적은 기간 동안 그랬다",
+      "절반보다 많은 기간 동안 그랬다",
+      "대부분의 기간 동안 그랬다",
+      "항상 그랬다"
+    ],
+    "labels_ko_source": "self_translated_unverified"
+  },
+  "reverse_formula": "min+max-x",
+  "domains": {},
+  "facets": {},
+  "items": [
+    {
+      "id": "who5.1",
+      "order": 1,
+      "en": "I have felt cheerful and in good spirits",
+      "ko": "나는 즐겁고 기분이 좋았다.",
+      "key": "+",
+      "facet": null,
+      "domain": null,
+      "ko_source": "self_translated_unverified",
+      "ko_match": "manual",
+      "ko_source_ref": null
+    },
+    {
+      "id": "who5.2",
+      "order": 2,
+      "en": "I have felt calm and relaxed",
+      "ko": "나는 마음이 차분하고 편안했다.",
+      "key": "+",
+      "facet": null,
+      "domain": null,
+      "ko_source": "self_translated_unverified",
+      "ko_match": "manual",
+      "ko_source_ref": null
+    },
+    {
+      "id": "who5.3",
+      "order": 3,
+      "en": "I have felt active and vigorous",
+      "ko": "나는 활동적이고 활기가 넘쳤다.",
+      "key": "+",
+      "facet": null,
+      "domain": null,
+      "ko_source": "self_translated_unverified",
+      "ko_match": "manual",
+      "ko_source_ref": null
+    },
+    {
+      "id": "who5.4",
+      "order": 4,
+      "en": "I woke up feeling fresh and rested",
+      "ko": "나는 아침에 상쾌하고 푹 쉰 느낌으로 잠에서 깼다.",
+      "key": "+",
+      "facet": null,
+      "domain": null,
+      "ko_source": "self_translated_unverified",
+      "ko_match": "manual",
+      "ko_source_ref": null
+    },
+    {
+      "id": "who5.5",
+      "order": 5,
+      "en": "My daily life has been filled with things that interest me",
+      "ko": "나의 일상은 내가 흥미를 느끼는 일들로 채워져 있었다.",
+      "key": "+",
+      "facet": null,
+      "domain": null,
+      "ko_source": "self_translated_unverified",
+      "ko_match": "manual",
+      "ko_source_ref": null
+    }
+  ],
+  "scoring": {
+    "item": "x (0-5, no reversed items)",
+    "facet": null,
+    "domain": null,
+    "total": "raw = sum of 5 items (0-25); percentage = raw x 4 (0-100). 0 = worst, 100 = best possible mental well-being.",
+    "cutoff": "Percentage below 50 (raw below 13) has been suggested as a cut-off for poor mental well-being and as an indication for further assessment (WHO 2024, citing Topp et al., 2015). Screening signal only, not a diagnosis."
+  },
+  "verification": {
+    "item_count": 5,
+    "per_facet_counts_ok": true,
+    "notes": [
+      "English items, 0-5 anchors, time frame, instructions, scoring and licence read from the WHO 2024 PDF (WHO/UCN/MSD/MHE/2024.1).",
+      "English item text has no final period in the WHO form; kept as printed.",
+      "No Korean version on the WHO page (26 other languages listed) nor on the archived Psychiatric Centre North Zealand translation list (no Korean).",
+      "A Korean WHO-5 was used in Kim HJ et al. (2010), J Korean Geriatr Psychiatry 14(2):90-96, but its wording was not publicly accessible; all Korean text here (items, anchors, instructions) is self-translated and unverified."
+    ]
+  }
+}

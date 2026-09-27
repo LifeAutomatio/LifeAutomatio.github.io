@@ -1,0 +1,51 @@
+{
+  "_comment": "검사 묶음 순서. 파일은 config/instruments/ 에 있고, 게시할 때 forms/instruments/ 로 복사된다. 사용 허가가 없는 검사는 넣지 않는다.",
+  "battery": [
+    {
+      "id": "ipip_neo_120",
+      "title_ko": "성격 검사 (120문항)",
+      "minutes": 20,
+      "yearly": true,
+      "intro_ko": "성격의 다섯 특성과 세부 특성 30가지를 봅니다. 평소의 나를 떠올리며 답하세요. 되고 싶은 모습이 아니라 지금의 모습으로."
+    },
+    {
+      "id": "swls",
+      "title_ko": "삶의 만족도 (5문항)",
+      "minutes": 2,
+      "yearly": true,
+      "intro_ko": "아래 다섯 문장에 얼마나 동의하는지 고르세요.",
+      "credit": "Satisfaction With Life Scale. Diener, Emmons, Larsen & Griffin (1985). 한국어판: 원형중."
+    },
+    {
+      "id": "who5",
+      "title_ko": "최근 2주 안녕감 (5문항)",
+      "minutes": 1,
+      "yearly": true,
+      "intro_ko": "지난 2주 동안 내가 느낀 것과 가장 가까운 것을 고르세요.",
+      "credit": "WHO-5 Well-Being Index, World Health Organization, CC BY-NC-SA 3.0 IGO. 한국어는 이 시스템의 번역이며 WHO 가 만들거나 검증하지 않았습니다."
+    },
+    {
+      "id": "stress_self4",
+      "title_ko": "스트레스 자체 점검 (4문항, 참고용)",
+      "minutes": 1,
+      "yearly": true,
+      "intro_ko": "지난 한 달을 떠올리며 답하세요. 공인 척도가 아니라 이 시스템이 만든 참고용 문항입니다.",
+      "credit": "자체 제작 문항 · 타당화되지 않음 · 점수 기준 없음. 해마다 나의 변화만 봅니다."
+    }
+  ],
+  "quick": [
+    {
+      "id": "mini_ipip_20",
+      "title_ko": "짧은 성격 검사 (20문항)",
+      "minutes": 3,
+      "intro_ko": "성격 다섯 특성을 빠르게 다시 잴 때 씁니다."
+    }
+  ],
+  "disabled": [
+    {
+      "id": "pss10",
+      "reason_ko": "공인 스트레스 척도(PSS-10)는 사용 허가를 신청해 두었고, 허가가 오기 전까지 꺼 둡니다. 그동안 '스트레스 자체 점검 4문항'과 화·목의 '오늘 스트레스는?' 질문을 씁니다."
+    }
+  ],
+  "result_note_ko": "다른 사람과 비교하는 점수(규준)가 아니라 나의 점수입니다. 해마다 같은 문항으로 나의 변화를 봅니다. 공개된 기준이 있는 검사(삶의 만족도 구간, WHO-5 의 50점)만 그 기준을 참고로 보여 줍니다. 이 검사는 자기 이해를 돕는 참고 자료이며 진단이 아닙니다."
+}

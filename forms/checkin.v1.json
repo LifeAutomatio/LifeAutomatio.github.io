@@ -1,0 +1,349 @@
+{
+  "form": "checkin.form.v1",
+  "version": 1,
+  "_comment": "매일 체크인 양식. 누르는 칸은 최대 5개로 고정한다. 새 관심사는 질문 칸이나 기간을 정한 실험으로 넣는다.",
+  "day_start": "04:00",
+  "max_required_taps": 5,
+  "single_tap_after_missed_days": 3,
+  "yesterday_allowed_until": "12:00",
+  "items": [
+    {
+      "key": "mood",
+      "slot": "fixed",
+      "prompt": "오늘 하루 기분은?",
+      "options": [
+        {
+          "value": 1,
+          "label": "아주 나쁨"
+        },
+        {
+          "value": 2,
+          "label": "나쁨"
+        },
+        {
+          "value": 3,
+          "label": "보통"
+        },
+        {
+          "value": 4,
+          "label": "좋음"
+        },
+        {
+          "value": 5,
+          "label": "아주 좋음"
+        }
+      ]
+    },
+    {
+      "key": "energy",
+      "slot": "fixed",
+      "prompt": "오늘 몸의 에너지는?",
+      "options": [
+        {
+          "value": 1,
+          "label": "바닥"
+        },
+        {
+          "value": 2,
+          "label": "낮음"
+        },
+        {
+          "value": 3,
+          "label": "보통"
+        },
+        {
+          "value": 4,
+          "label": "높음"
+        },
+        {
+          "value": 5,
+          "label": "넘침"
+        }
+      ]
+    },
+    {
+      "key": "focus",
+      "slot": "fixed",
+      "prompt": "일 말고, 오늘 가장 시간을 쓴 곳은?",
+      "options": [
+        {
+          "value": "study",
+          "label": "공부"
+        },
+        {
+          "value": "project",
+          "label": "개인 프로젝트"
+        },
+        {
+          "value": "people",
+          "label": "사람"
+        },
+        {
+          "value": "health",
+          "label": "운동·건강"
+        },
+        {
+          "value": "rest",
+          "label": "휴식"
+        },
+        {
+          "value": "admin",
+          "label": "행정·비자"
+        },
+        {
+          "value": "other",
+          "label": "기타"
+        },
+        {
+          "value": "work_only",
+          "label": "일만 했음"
+        }
+      ]
+    },
+    {
+      "key": "study_bucket",
+      "slot": "stage",
+      "prompt": "오늘 공부한 시간은?",
+      "options": [
+        {
+          "value": 0,
+          "label": "안 함"
+        },
+        {
+          "value": 1,
+          "label": "30분쯤"
+        },
+        {
+          "value": 2,
+          "label": "1시간쯤"
+        },
+        {
+          "value": 3,
+          "label": "2시간 이상"
+        }
+      ],
+      "minutes": [
+        0,
+        30,
+        60,
+        120
+      ]
+    },
+    {
+      "key": "qotd",
+      "slot": "question"
+    }
+  ],
+  "note": {
+    "prompt": "한 줄 메모 (선택)",
+    "max_length": 200
+  },
+  "extras": [
+    {
+      "kind": "thought",
+      "label": "생각 한 줄",
+      "record": "note"
+    },
+    {
+      "kind": "learned",
+      "label": "배운 것",
+      "record": "note",
+      "fields": [
+        "source_url",
+        "tags"
+      ]
+    },
+    {
+      "kind": "win",
+      "label": "업무 성과",
+      "record": "note",
+      "hint": "고객·딜 이름, 미공개 정보는 쓰지 않기",
+      "fields": [
+        "metric",
+        "skills",
+        "resume_candidate"
+      ],
+      "confirm_ko": "고객·딜 이름과 미공개 정보가 없습니다"
+    },
+    {
+      "kind": "body",
+      "label": "몸 이상",
+      "record": "body_event",
+      "kinds": [
+        [
+          "symptom",
+          "증상"
+        ],
+        [
+          "injury",
+          "부상"
+        ],
+        [
+          "illness",
+          "아픔"
+        ],
+        [
+          "checkup",
+          "검진"
+        ],
+        [
+          "treatment",
+          "치료"
+        ],
+        [
+          "other",
+          "기타"
+        ]
+      ]
+    },
+    {
+      "kind": "life",
+      "label": "큰 일",
+      "record": "life_event",
+      "hint": "비자 결과, 이직, 이주, 건강 문제는 인생 플레이북을 다시 보는 계기입니다",
+      "kinds": [
+        [
+          "visa_result",
+          "비자 결과"
+        ],
+        [
+          "job_change",
+          "이직"
+        ],
+        [
+          "move",
+          "이사·이주"
+        ],
+        [
+          "health",
+          "건강 문제"
+        ],
+        [
+          "relationship",
+          "관계"
+        ],
+        [
+          "study",
+          "학업·자격"
+        ],
+        [
+          "other",
+          "기타"
+        ]
+      ],
+      "checklists": {
+        "move": {
+          "title_ko": "이사하면 알릴 곳",
+          "show_days": 30,
+          "note_ko": "미국 안의 이사 기준입니다 (2026-09-27 공식 출처로 확인). 미국을 떠나는 이주라면 DSO 와 회사·변호사에게 따로 확인합니다. 확인 항목일 뿐 법률·세무 조언이 아닙니다.",
+          "items": [
+            {
+              "id": "dso",
+              "text_ko": "학교 DSO 에 새 주소 보고. SEVP 포털에 입력하고 DSO 에게도 메일 (10일 안)",
+              "short_ko": "DSO 주소 보고",
+              "due_days": 10,
+              "calendar": true,
+              "source_url": "https://www.ecfr.gov/current/title-8/section-214.2"
+            },
+            {
+              "id": "uscis",
+              "text_ko": "USCIS: DSO 보고가 AR-11 을 대신한다. 진행 중이거나 카드가 올 사건이 있으면 USCIS 온라인 계정에서 사건마다 주소 변경 (USPS 는 USCIS 우편을 전달하지 않음)",
+              "short_ko": "USCIS 사건 주소",
+              "due_days": 10,
+              "calendar": false,
+              "source_url": "https://www.uscis.gov/addresschange"
+            },
+            {
+              "id": "mvc",
+              "text_ko": "NJ 운전면허 주소 변경 (MVC 온라인, 1주 안, 확인 메일 보관). 뉴욕주로 옮기면 NY 면허로 30일 안에 방문 교환",
+              "short_ko": "운전면허 주소",
+              "due_days": 7,
+              "calendar": true,
+              "source_url": "https://www.nj.gov/mvc/drivertopics/addchange.htm"
+            },
+            {
+              "id": "employer",
+              "text_ko": "회사 인사·급여팀에 새 주소. 뉴욕주·뉴욕시로 옮기면 10일 안에 알리고 IT-2104 새로 제출",
+              "short_ko": "회사 급여팀",
+              "due_days": 10,
+              "calendar": false,
+              "source_url": "https://www.tax.ny.gov/pdf/current_forms/it/it2104_1_fill_in.pdf"
+            },
+            {
+              "id": "usps",
+              "text_ko": "USPS 우편물 전달 신청 (moversguide.usps.com, 12개월 전달)",
+              "short_ko": "우편물 전달",
+              "due_days": 0,
+              "calendar": false,
+              "source_url": "https://www.usps.com/manage/forward.htm"
+            },
+            {
+              "id": "consulate",
+              "text_ko": "주뉴욕 총영사관 재외국민 등록 변경신고 (30일 안, 재외동포365민원포털). 아직 등록 안 했다면 등록부터",
+              "short_ko": "재외국민 등록 변경",
+              "due_days": 30,
+              "calendar": false,
+              "source_url": "https://www.law.go.kr/법령/재외국민등록법"
+            },
+            {
+              "id": "legal",
+              "text_ko": "H-1B·E-2 가 진행 중이면 회사·변호사에게 새 주소",
+              "short_ko": "회사·변호사",
+              "due_days": null,
+              "when_ko": "진행 중인 신청이 있을 때 바로",
+              "calendar": false,
+              "source_url": null
+            },
+            {
+              "id": "money",
+              "text_ko": "은행, 카드, 보험, 통신사 주소 변경. IRS 는 Form 8822 나 다음 신고서로 알림",
+              "short_ko": "은행·카드·보험·IRS",
+              "due_days": null,
+              "when_ko": "한 달 안에 천천히",
+              "calendar": false,
+              "source_url": "https://www.irs.gov/taxtopics/tc157"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "quick_buttons": {
+    "_comment": "화면에 켜 두는 빠른 기록 버튼은 3개까지. enabled 가 true 인 것만 보인다.",
+    "max_enabled": 3,
+    "catalog": [
+      {
+        "kind": "shower",
+        "label": "샤워",
+        "module": "shower",
+        "enabled": false
+      },
+      {
+        "kind": "skincare",
+        "label": "피부 관리",
+        "module": "skincare",
+        "enabled": false
+      },
+      {
+        "kind": "workout",
+        "label": "운동",
+        "module": "health",
+        "enabled": false
+      },
+      {
+        "kind": "perfume_worn",
+        "label": "향수 뿌림",
+        "module": "perfume",
+        "enabled": false
+      },
+      {
+        "kind": "compliment",
+        "label": "칭찬 받음",
+        "module": "style",
+        "enabled": false
+      }
+    ]
+  },
+  "disclaimer": "이 시스템은 나의 기록을 정리해 보여주는 도구입니다. 의학적·심리학적 진단이나 치료를 하지 않으며, 그 근거로 쓸 수 없습니다. 기분이 낮은 날이 2주 넘게 이어지거나 일상이 어려우면 전문가와 상의하세요. 위급할 때: 미국 988(전화·문자), 한국 109.",
+  "intro_ko": "처음 쓰기 전에: 기분 한 번만 눌러도 저장됩니다. 빠진 날은 채우지 않아도 됩니다. 알림은 빠진 날이 늘수록 줄어듭니다."
+}

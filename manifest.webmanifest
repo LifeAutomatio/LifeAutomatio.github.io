@@ -1,0 +1,13 @@
+{
+  "name": "오늘 · 인생 기록",
+  "short_name": "오늘",
+  "start_url": "./#checkin",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0b0f17",
+  "theme_color": "#0b0f17",
+  "icons": [
+    {"src": "icon.svg", "sizes": "any", "type": "image/svg+xml"},
+    {"src": "icon-180.png", "sizes": "180x180", "type": "image/png"}
+  ]
+}

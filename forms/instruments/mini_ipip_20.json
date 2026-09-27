@@ -1,0 +1,356 @@
+{
+  "instrument": "mini_ipip_20",
+  "version": 1,
+  "title_en": "Mini-IPIP (20-item short form of the IPIP Big-Five markers)",
+  "title_ko": "미니 IPIP 5요인 성격검사 (20문항)",
+  "citation": "Donnellan, M. B., Oswald, F. L., Baird, B. M., & Lucas, R. E. (2006). The Mini-IPIP scales: Tiny-yet-effective measures of the Big Five factors of personality. Psychological Assessment, 18, 192-203.",
+  "sources": [
+    {
+      "what": "items_en_and_keys",
+      "url": "https://ipip.ori.org/MiniIPIPKey.htm"
+    },
+    {
+      "what": "administration_order (Appendix of Donnellan et al., 2006; PDF copy read)",
+      "url": "https://faracivisiting.wordpress.com/wp-content/uploads/2010/04/donnellan-et-al-2006.pdf"
+    },
+    {
+      "what": "items_ko",
+      "url": "https://ipip.ori.org/KoreanBig-FiveFactorMarkers.htm"
+    },
+    {
+      "what": "ko_translator_credits",
+      "url": "https://ipip.ori.org/newItemTranslations.htm"
+    },
+    {
+      "what": "instructions_en_and_labels_en",
+      "url": "https://ipip.ori.org/New_IPIP-50-item-scale.htm"
+    },
+    {
+      "what": "license",
+      "url": "https://ipip.ori.org/newPermission.htm"
+    }
+  ],
+  "ko_translation_credit": "Dr. In-Sue Oh (with Kibeom Lee and Jong-Goo Lee), back-translated Korean version of the 100 IPIP Big-Five factor markers, per https://ipip.ori.org/newItemTranslations.htm.",
+  "license_note": "\"Because the IPIP has been placed in the public domain, permission has already been automatically granted for any person to use IPIP items, scales, and inventories for any purpose, commercial or non-commercial.\" (https://ipip.ori.org/newPermission.htm). Home page: \"The items and scales are in the public domain, which means that one can copy, edit, translate, or use them for any purpose without asking permission and without paying a fee.\" (https://ipip.ori.org/). Translations page: \"The accuracy of these translations has not not been verified by anyone associated with the IPIP project.\" [sic] (https://ipip.ori.org/newItemTranslations.htm). No separate licence is stated for the Korean translations hosted on ipip.ori.org.",
+  "usage_ok_for_personal_noncommercial": true,
+  "usage_note": "Items are IPIP public-domain items (Mini-IPIP is a subset of the 50-item IPIP Big-Five markers). Korean text is from In-Sue Oh's translation hosted on ipip.ori.org (not verified by IPIP; no separate licence stated).",
+  "time_frame_ko": null,
+  "instructions_en": "Describe yourself as you generally are now, not as you wish to be in the future. Describe yourself as you honestly see yourself, in relation to other people you know of the same sex as you are, and roughly your same age. So that you can describe yourself in an honest manner, your responses will be kept in absolute confidence. Indicate for each statement whether it is 1. Very Inaccurate, 2. Moderately Inaccurate, 3. Neither Accurate Nor Inaccurate, 4. Moderately Accurate, or 5. Very Accurate as a description of you.",
+  "instructions_ko": "평소의 나를 떠올리며, 각 문장이 나를 얼마나 잘 설명하는지 고르세요. 되고 싶은 모습이 아니라 지금의 모습으로 답하세요.",
+  "scale": {
+    "min": 1,
+    "max": 5,
+    "labels_en": [
+      "Very Inaccurate",
+      "Moderately Inaccurate",
+      "Neither Accurate Nor Inaccurate",
+      "Moderately Accurate",
+      "Very Accurate"
+    ],
+    "labels_ko": [
+      "전혀 아니다",
+      "아닌 편이다",
+      "중간이다",
+      "그런 편이다",
+      "매우 그렇다"
+    ]
+  },
+  "reverse_formula": "min+max-x",
+  "domains": {
+    "E": {
+      "en": "Extraversion (Surgency)",
+      "ko": "외향성"
+    },
+    "A": {
+      "en": "Agreeableness",
+      "ko": "우호성"
+    },
+    "C": {
+      "en": "Conscientiousness",
+      "ko": "성실성"
+    },
+    "N": {
+      "en": "Neuroticism",
+      "ko": "신경성"
+    },
+    "I": {
+      "en": "Intellect/Imagination",
+      "ko": "지성/상상력"
+    }
+  },
+  "facets": {},
+  "items": [
+    {
+      "id": "mini20.e1",
+      "order": 1,
+      "en": "Am the life of the party.",
+      "ko": "나는 각종 모임에 다니는 것을 즐긴다.",
+      "key": "+",
+      "facet": null,
+      "domain": "E",
+      "ko_source": "KoreanBig-FiveFactorMarkers",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "table row 5, section '요인 I (외향성) / Extraversion' (EN shown on page: \"Am the life of the party.\")",
+      "ko_note": "원문은 '모임의 분위기 메이커'; 한국어판 '각종 모임에 다니는 것을 즐긴다'는 번안(의미 확장).",
+      "ko_alt": "나는 모임에서 분위기를 띄우는 사람이다.",
+      "ko_alt_source": "self_translated_unverified"
+    },
+    {
+      "id": "mini20.a1",
+      "order": 2,
+      "en": "Sympathize with others' feelings.",
+      "ko": "나는 다른 사람들의 감정을 잘 공감한다.",
+      "key": "+",
+      "facet": null,
+      "domain": "A",
+      "ko_source": "KoreanBig-FiveFactorMarkers",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "table row 33, section '요인 II (원만성/호감성) / Agreeableness' (EN shown on page: \"Sympathize with others' feelings.\")"
+    },
+    {
+      "id": "mini20.c1",
+      "order": 3,
+      "en": "Get chores done right away.",
+      "ko": "나는 자질구레한 일들은 금방금방 해치운다.",
+      "key": "+",
+      "facet": null,
+      "domain": "C",
+      "ko_source": "KoreanBig-FiveFactorMarkers",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "table row 60, section '요인 III (성실성) / Conscientiousness' (EN shown on page: \"Get chores done right away.\")"
+    },
+    {
+      "id": "mini20.n1",
+      "order": 4,
+      "en": "Have frequent mood swings.",
+      "ko": "나는 감정의 기복이 심하다.",
+      "key": "+",
+      "facet": null,
+      "domain": "N",
+      "ko_source": "KoreanBig-FiveFactorMarkers",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "table row 92, section '요인 IV (정서적 안정성) / Emotional Stability' (EN shown on page: \"Have frequent mood swings.\")"
+    },
+    {
+      "id": "mini20.i1",
+      "order": 5,
+      "en": "Have a vivid imagination.",
+      "ko": "나는 생생한 상상력을 가지고 있다.",
+      "key": "+",
+      "facet": null,
+      "domain": "I",
+      "ko_source": "KoreanBig-FiveFactorMarkers",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "table row 111, section '요인 V (지성/상상력) / Intellect' (EN shown on page: \"Have a vivid imagination.\")"
+    },
+    {
+      "id": "mini20.e3",
+      "order": 6,
+      "en": "Don't talk a lot.",
+      "ko": "나는 말이 적은 편이다.",
+      "key": "-",
+      "facet": null,
+      "domain": "E",
+      "ko_source": "KoreanBig-FiveFactorMarkers",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "table row 11, section '요인 I (외향성) / Extraversion' (EN shown on page: \"Don't talk a lot.\")"
+    },
+    {
+      "id": "mini20.a4",
+      "order": 7,
+      "en": "Am not interested in other people's problems.",
+      "ko": "나는 다른 사람들의 개인적인 문제에 관심이 없다.",
+      "key": "-",
+      "facet": null,
+      "domain": "A",
+      "ko_source": "KoreanBig-FiveFactorMarkers",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "table row 41, section '요인 II (원만성/호감성) / Agreeableness' (EN shown on page: \"Am not interested in other people's problems.\")"
+    },
+    {
+      "id": "mini20.c3",
+      "order": 8,
+      "en": "Often forget to put things back in their proper place.",
+      "ko": "나는 물건들을 제자리에 되놓은 것을 자주 잊는다.",
+      "key": "-",
+      "facet": null,
+      "domain": "C",
+      "ko_source": "KoreanBig-FiveFactorMarkers",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "table row 67, section '요인 III (성실성) / Conscientiousness' (EN shown on page: \"Often forget to put things back in their proper place.\")",
+      "ko_note": "원문 한국어에 오탈자('되놓은 것을' → '되놓는 것을'). 뜻은 같음.",
+      "ko_alt": "나는 물건들을 제자리에 되돌려 놓는 것을 자주 잊는다.",
+      "ko_alt_source": "self_translated_unverified"
+    },
+    {
+      "id": "mini20.n3",
+      "order": 9,
+      "en": "Am relaxed most of the time.",
+      "ko": "나는 대체적으로 이완된 상태이다.",
+      "key": "-",
+      "facet": null,
+      "domain": "N",
+      "ko_source": "KoreanBig-FiveFactorMarkers",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "table row 84, section '요인 IV (정서적 안정성) / Emotional Stability' (EN shown on page: \"Am relaxed most of the time.\")",
+      "ko_note": "'이완된 상태'가 다소 어색한 직역(뜻은 같음).",
+      "ko_alt": "나는 대체로 마음이 느긋하고 편안하다.",
+      "ko_alt_source": "self_translated_unverified"
+    },
+    {
+      "id": "mini20.i3",
+      "order": 10,
+      "en": "Am not interested in abstract ideas.",
+      "ko": "나는 복잡한 것은 질색이다.",
+      "key": "-",
+      "facet": null,
+      "domain": "I",
+      "ko_source": "KoreanBig-FiveFactorMarkers",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "table row 119, section '요인 V (지성/상상력) / Intellect' (EN shown on page: \"Am not interested in abstract ideas.\")",
+      "ko_note": "한국어판 '복잡한 것은 질색이다'는 '추상적인 생각에 관심이 없다'와 내용이 다름.",
+      "ko_alt": "나는 추상적인 개념에는 관심이 없다.",
+      "ko_alt_source": "self_translated_unverified"
+    },
+    {
+      "id": "mini20.e2",
+      "order": 11,
+      "en": "Talk to a lot of different people at parties.",
+      "ko": "나는 모임에서 여러 사람들과 이야기를 나누는 편이다.",
+      "key": "+",
+      "facet": null,
+      "domain": "E",
+      "ko_source": "KoreanBig-FiveFactorMarkers",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "table row 8, section '요인 I (외향성) / Extraversion' (EN shown on page: \"Talk to a lot of different people at parties.\")"
+    },
+    {
+      "id": "mini20.a2",
+      "order": 12,
+      "en": "Feel others' emotions.",
+      "ko": "나는 주변 다른 사람들의 감정을 잘 알아차린다.",
+      "key": "+",
+      "facet": null,
+      "domain": "A",
+      "ko_source": "KoreanBig-FiveFactorMarkers",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "table row 36, section '요인 II (원만성/호감성) / Agreeableness' (EN shown on page: \"Feel others' emotions.\")"
+    },
+    {
+      "id": "mini20.c2",
+      "order": 13,
+      "en": "Like order.",
+      "ko": "나는 질서정연한 것을 좋아한다.",
+      "key": "+",
+      "facet": null,
+      "domain": "C",
+      "ko_source": "KoreanBig-FiveFactorMarkers",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "table row 61, section '요인 III (성실성) / Conscientiousness' (EN shown on page: \"Like order.\")"
+    },
+    {
+      "id": "mini20.n2",
+      "order": 14,
+      "en": "Get upset easily.",
+      "ko": "나는 쉽게 속이 상한다.",
+      "key": "+",
+      "facet": null,
+      "domain": "N",
+      "ko_source": "KoreanBig-FiveFactorMarkers",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "table row 90, section '요인 IV (정서적 안정성) / Emotional Stability' (EN shown on page: \"Get upset easily.\")"
+    },
+    {
+      "id": "mini20.i2",
+      "order": 15,
+      "en": "Have difficulty understanding abstract ideas.",
+      "ko": "나는 추상적인 것을 잘 이해하지 못한다.",
+      "key": "-",
+      "facet": null,
+      "domain": "I",
+      "ko_source": "KoreanBig-FiveFactorMarkers",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "table row 118, section '요인 V (지성/상상력) / Intellect' (EN shown on page: \"Have difficulty understanding abstract ideas.\")"
+    },
+    {
+      "id": "mini20.e4",
+      "order": 16,
+      "en": "Keep in the background.",
+      "ko": "나는 나서지 않는 편이다.",
+      "key": "-",
+      "facet": null,
+      "domain": "E",
+      "ko_source": "KoreanBig-FiveFactorMarkers",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "table row 12, section '요인 I (외향성) / Extraversion' (EN shown on page: \"Keep in the background.\")"
+    },
+    {
+      "id": "mini20.a3",
+      "order": 17,
+      "en": "Am not really interested in others.",
+      "ko": "나는 다른 사람들에 대해 별로 관심이 없다.",
+      "key": "-",
+      "facet": null,
+      "domain": "A",
+      "ko_source": "KoreanBig-FiveFactorMarkers",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "table row 39, section '요인 II (원만성/호감성) / Agreeableness' (EN shown on page: \"Am not really interested in others.\")"
+    },
+    {
+      "id": "mini20.c4",
+      "order": 18,
+      "en": "Make a mess of things.",
+      "ko": "나는 물건들을 어질러 놓는 편이다.",
+      "key": "-",
+      "facet": null,
+      "domain": "C",
+      "ko_source": "KoreanBig-FiveFactorMarkers",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "table row 66, section '요인 III (성실성) / Conscientiousness' (EN shown on page: \"Make a mess of things.\")",
+      "ko_note": "영어는 '일을 엉망으로 만든다'로도 읽히지만 한국어판은 '물건을 어질러 놓는다'로 문자적으로 번역. 채점 방향은 같음."
+    },
+    {
+      "id": "mini20.n4",
+      "order": 19,
+      "en": "Seldom feel blue.",
+      "ko": "나는 거의 우울함을 느끼지 않는 편이다.",
+      "key": "-",
+      "facet": null,
+      "domain": "N",
+      "ko_source": "KoreanBig-FiveFactorMarkers",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "table row 85, section '요인 IV (정서적 안정성) / Emotional Stability' (EN shown on page: \"Seldom feel blue.\")"
+    },
+    {
+      "id": "mini20.i4",
+      "order": 20,
+      "en": "Do not have a good imagination.",
+      "ko": "나는 상상력이 좋지 않다.",
+      "key": "-",
+      "facet": null,
+      "domain": "I",
+      "ko_source": "KoreanBig-FiveFactorMarkers",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "table row 120, section '요인 V (지성/상상력) / Intellect' (EN shown on page: \"Do not have a good imagination.\")"
+    }
+  ],
+  "scoring": {
+    "item": "'+' keyed: x; '-' keyed: 6-x (min+max-x)",
+    "facet": null,
+    "domain": "sum of the 4 items of the domain after reversing; range 4-20 (or mean 1-5)",
+    "total": null,
+    "note": "N is scored as Neuroticism (high = less stable), following Donnellan et al. (2006); the IPIP key page notes this is the reverse of the original Emotional Stability marker scale. Domain 'I' (Intellect/Imagination) corresponds to Openness."
+  },
+  "verification": {
+    "item_count": 20,
+    "per_facet_counts_ok": true,
+    "notes": [
+      "Keys and item text from MiniIPIPKey.htm; all 20 items and keys also match the Appendix of Donnellan et al. (2006), which marks 11 items (R).",
+      "Administration order = the numbered Appendix order of Donnellan et al. (2006) (E,A,C,N,I repeating). The IPIP key page itself gives no order.",
+      "Item ids use the within-domain listing order of the IPIP key page (e.g., mini20.e3 = 'Don't talk a lot.').",
+      "Korean: all 20 matched by exact English text in the same table row on KoreanBig-FiveFactorMarkers.htm, then checked by meaning. Note: elsewhere on that page some rows are misaligned (e.g., 'Have a good word for everyone' / 'Find it difficult to get down to work' / 'Leave a mess in my room' rows carry another item's Korean); none of the 20 Mini-IPIP items are affected.",
+      "The Korean page announces a colour code (black = literal, blue = free translation, red = adaptation) but the published HTML renders every Korean item in black, so the code cannot be recovered.",
+      "On the Korean page the N items sit under 'Emotional Stability' with keys reversed relative to Mini-IPIP; the Mini-IPIP (Neuroticism) keys used here are from the IPIP Mini-IPIP key."
+    ]
+  }
+}

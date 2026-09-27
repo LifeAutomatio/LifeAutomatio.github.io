@@ -1,0 +1,687 @@
+{
+  "_comment": "프로필 카드 양식. 카드는 profile_item 기록으로 저장되고, 고치면 새 카드가 옛 카드를 대신한다(supersedes). 사진은 보관하지 않는다. single 이 true 인 영역은 요약 한 장만 둔다. 필드의 show_if 는 '종류'에 따라 보이는 칸을 정한다. 좋아함·어울림은 공통 항목이지만 취향 영역(liked/suits 가 true)에서만 입력 칸을 보인다.",
+  "version": 1,
+  "evidence": [
+    {
+      "value": "self",
+      "label": "본인 판단"
+    },
+    {
+      "value": "expert",
+      "label": "전문가 진단"
+    },
+    {
+      "value": "others",
+      "label": "주변 반응"
+    },
+    {
+      "value": "ai",
+      "label": "AI 분석"
+    }
+  ],
+  "modules": [
+    {
+      "module": "perfume",
+      "title_ko": "향수",
+      "card": "향수마다 한 장",
+      "title_fields": [
+        "brand",
+        "name"
+      ],
+      "liked": true,
+      "suits": true,
+      "fields": [
+        {
+          "key": "brand",
+          "label": "브랜드",
+          "type": "text",
+          "placeholder": ""
+        },
+        {
+          "key": "name",
+          "label": "이름",
+          "type": "text",
+          "placeholder": ""
+        },
+        {
+          "key": "family",
+          "label": "향 계열",
+          "type": "select",
+          "options": [
+            "시트러스",
+            "플로럴",
+            "우디",
+            "아로마틱·푸제르",
+            "앰버·오리엔탈",
+            "그린",
+            "아쿠아·마린",
+            "머스크",
+            "구르망",
+            "가죽·스모키",
+            "기타"
+          ]
+        },
+        {
+          "key": "notes",
+          "label": "주요 향",
+          "type": "text",
+          "placeholder": "예: 베르가못, 시더우드"
+        },
+        {
+          "key": "owned",
+          "label": "보유",
+          "type": "select",
+          "options": [
+            "가지고 있음",
+            "써 봄",
+            "관심 있음"
+          ]
+        },
+        {
+          "key": "season",
+          "label": "계절",
+          "type": "multi",
+          "options": [
+            "봄",
+            "여름",
+            "가을",
+            "겨울"
+          ]
+        },
+        {
+          "key": "occasion",
+          "label": "상황",
+          "type": "multi",
+          "options": [
+            "출근",
+            "데이트",
+            "주말",
+            "모임",
+            "운동 후"
+          ]
+        },
+        {
+          "key": "longevity",
+          "label": "지속",
+          "type": "select",
+          "options": [
+            "짧음",
+            "보통",
+            "김"
+          ]
+        },
+        {
+          "key": "reaction",
+          "label": "주변 반응",
+          "type": "text",
+          "placeholder": ""
+        }
+      ]
+    },
+    {
+      "module": "style",
+      "title_ko": "옷 스타일",
+      "card": "요약 한 장",
+      "title_fixed": "옷 스타일 요약",
+      "fields": [
+        {
+          "key": "keywords",
+          "label": "스타일 열쇠말",
+          "type": "text",
+          "placeholder": "예: 미니멀, 클래식"
+        },
+        {
+          "key": "fit",
+          "label": "선호 핏",
+          "type": "text",
+          "placeholder": ""
+        },
+        {
+          "key": "combos",
+          "label": "자주 입는 조합",
+          "type": "text",
+          "placeholder": ""
+        },
+        {
+          "key": "avoid",
+          "label": "피하는 것",
+          "type": "text",
+          "placeholder": ""
+        }
+      ],
+      "single": true,
+      "liked": true,
+      "suits": true
+    },
+    {
+      "module": "size",
+      "title_ko": "옷 사이즈",
+      "card": "브랜드마다 한 장",
+      "title_fields": [
+        "brand"
+      ],
+      "fields": [
+        {
+          "key": "brand",
+          "label": "브랜드",
+          "type": "text",
+          "placeholder": ""
+        },
+        {
+          "key": "top",
+          "label": "상의",
+          "type": "text",
+          "placeholder": ""
+        },
+        {
+          "key": "bottom",
+          "label": "하의",
+          "type": "text",
+          "placeholder": ""
+        },
+        {
+          "key": "shoes",
+          "label": "신발",
+          "type": "text",
+          "placeholder": ""
+        }
+      ]
+    },
+    {
+      "module": "color",
+      "title_ko": "색",
+      "card": "요약 한 장",
+      "title_fixed": "어울리는 색",
+      "suits": true,
+      "fields": [
+        {
+          "key": "good",
+          "label": "어울리는 색",
+          "type": "text",
+          "placeholder": ""
+        },
+        {
+          "key": "avoid",
+          "label": "피하는 색",
+          "type": "text",
+          "placeholder": ""
+        },
+        {
+          "key": "season_type",
+          "label": "퍼스널 컬러",
+          "type": "select",
+          "options": [
+            "봄 웜",
+            "여름 쿨",
+            "가을 웜",
+            "겨울 쿨",
+            "모름"
+          ]
+        }
+      ],
+      "single": true,
+      "liked": true
+    },
+    {
+      "module": "appearance",
+      "title_ko": "얼굴형과 외모",
+      "card": "요약 한 장",
+      "title_fixed": "얼굴형과 외모",
+      "fields": [
+        {
+          "key": "face_shape",
+          "label": "얼굴형",
+          "type": "select",
+          "options": [
+            "계란형",
+            "둥근형",
+            "각진형",
+            "긴형",
+            "하트형",
+            "다이아몬드형",
+            "모름"
+          ]
+        },
+        {
+          "key": "hair",
+          "label": "어울리는 헤어 스타일과 길이",
+          "type": "text",
+          "placeholder": ""
+        },
+        {
+          "key": "glasses",
+          "label": "어울리는 안경",
+          "type": "text",
+          "placeholder": ""
+        },
+        {
+          "key": "body",
+          "label": "체형",
+          "type": "text",
+          "placeholder": ""
+        }
+      ],
+      "single": true,
+      "liked": true,
+      "suits": true
+    },
+    {
+      "module": "skincare",
+      "title_ko": "피부 관리",
+      "card": "순서 한 장, 제품마다 한 장",
+      "title_fields": [
+        "kind",
+        "product"
+      ],
+      "liked": true,
+      "fields": [
+        {
+          "key": "kind",
+          "label": "종류",
+          "type": "select",
+          "options": [
+            "루틴",
+            "제품"
+          ]
+        },
+        {
+          "key": "skin_type",
+          "label": "피부 타입",
+          "type": "select",
+          "options": [
+            "건성",
+            "지성",
+            "복합성",
+            "중성",
+            "민감성",
+            "모름"
+          ],
+          "show_if": {
+            "kind": [
+              "루틴"
+            ]
+          }
+        },
+        {
+          "key": "am",
+          "label": "아침 순서",
+          "type": "text",
+          "placeholder": "예: 세안 → 토너 → 선크림",
+          "show_if": {
+            "kind": [
+              "루틴"
+            ]
+          }
+        },
+        {
+          "key": "pm",
+          "label": "저녁 순서",
+          "type": "text",
+          "placeholder": "",
+          "show_if": {
+            "kind": [
+              "루틴"
+            ]
+          }
+        },
+        {
+          "key": "product",
+          "label": "제품 이름",
+          "type": "text",
+          "placeholder": "",
+          "show_if": {
+            "kind": [
+              "제품"
+            ]
+          }
+        },
+        {
+          "key": "verdict",
+          "label": "나와 맞음",
+          "type": "select",
+          "options": [
+            "잘 맞음",
+            "보통",
+            "안 맞음"
+          ],
+          "show_if": {
+            "kind": [
+              "제품"
+            ]
+          }
+        },
+        {
+          "key": "bad",
+          "label": "안 맞았던 제품이나 성분",
+          "type": "text",
+          "placeholder": ""
+        }
+      ],
+      "suits": true
+    },
+    {
+      "module": "health",
+      "title_ko": "건강",
+      "card": "기본 한 장, 사건마다 한 장",
+      "title_fields": [
+        "kind",
+        "summary"
+      ],
+      "fields": [
+        {
+          "key": "kind",
+          "label": "종류",
+          "type": "select",
+          "options": [
+            "기본 정보",
+            "검진",
+            "부상·치료",
+            "기타"
+          ]
+        },
+        {
+          "key": "allergies",
+          "label": "알레르기",
+          "type": "text",
+          "placeholder": "",
+          "show_if": {
+            "kind": [
+              "기본 정보"
+            ]
+          }
+        },
+        {
+          "key": "meds",
+          "label": "복용 약",
+          "type": "text",
+          "placeholder": "",
+          "show_if": {
+            "kind": [
+              "기본 정보"
+            ]
+          }
+        },
+        {
+          "key": "date",
+          "label": "날짜",
+          "type": "date",
+          "show_if": {
+            "kind": [
+              "검진",
+              "부상·치료",
+              "기타"
+            ]
+          }
+        },
+        {
+          "key": "summary",
+          "label": "요약",
+          "type": "text",
+          "placeholder": ""
+        }
+      ]
+    },
+    {
+      "module": "sleep",
+      "title_ko": "수면",
+      "card": "요약 한 장",
+      "title_fixed": "수면",
+      "fields": [
+        {
+          "key": "target_bed",
+          "label": "목표 취침",
+          "type": "text",
+          "placeholder": ""
+        },
+        {
+          "key": "target_wake",
+          "label": "목표 기상",
+          "type": "text",
+          "placeholder": ""
+        },
+        {
+          "key": "pattern",
+          "label": "확인된 패턴",
+          "type": "text",
+          "placeholder": ""
+        }
+      ],
+      "single": true
+    },
+    {
+      "module": "shower",
+      "title_ko": "샤워",
+      "card": "요약 한 장",
+      "title_fixed": "샤워",
+      "fields": [
+        {
+          "key": "time_of_day",
+          "label": "주로 하는 때",
+          "type": "select",
+          "options": [
+            "아침",
+            "저녁",
+            "운동 후",
+            "불규칙"
+          ]
+        },
+        {
+          "key": "pattern",
+          "label": "확인된 패턴",
+          "type": "text",
+          "placeholder": ""
+        }
+      ],
+      "single": true
+    },
+    {
+      "module": "career",
+      "title_ko": "커리어",
+      "card": "자격증마다 한 장, 역량 한 장, 이력 한 장",
+      "title_fields": [
+        "kind",
+        "name"
+      ],
+      "fields": [
+        {
+          "key": "kind",
+          "label": "종류",
+          "type": "select",
+          "options": [
+            "자격증",
+            "역량",
+            "이력"
+          ]
+        },
+        {
+          "key": "name",
+          "label": "이름",
+          "type": "text",
+          "placeholder": "예: Series 57, Python"
+        },
+        {
+          "key": "issuer",
+          "label": "발급처",
+          "type": "text",
+          "placeholder": "예: FINRA",
+          "show_if": {
+            "kind": [
+              "자격증"
+            ]
+          }
+        },
+        {
+          "key": "status",
+          "label": "상태",
+          "type": "select",
+          "options": [
+            "준비 중",
+            "응시 예정",
+            "불합격·재응시 예정",
+            "취득",
+            "만료 예정",
+            "만료",
+            "해당 없음"
+          ],
+          "show_if": {
+            "kind": [
+              "자격증"
+            ]
+          }
+        },
+        {
+          "key": "date",
+          "label": "응시일 또는 취득일",
+          "type": "date",
+          "show_if": {
+            "kind": [
+              "자격증"
+            ]
+          }
+        },
+        {
+          "key": "expires",
+          "label": "만료일",
+          "type": "date",
+          "show_if": {
+            "kind": [
+              "자격증"
+            ]
+          }
+        },
+        {
+          "key": "next_deadline",
+          "label": "다음 기한",
+          "type": "date",
+          "show_if": {
+            "kind": [
+              "자격증"
+            ]
+          }
+        },
+        {
+          "key": "rule_url",
+          "label": "규정 출처 주소",
+          "type": "text",
+          "placeholder": "https://",
+          "show_if": {
+            "kind": [
+              "자격증"
+            ]
+          }
+        },
+        {
+          "key": "rule_checked",
+          "label": "규정 확인일",
+          "type": "date",
+          "show_if": {
+            "kind": [
+              "자격증"
+            ]
+          }
+        },
+        {
+          "key": "self_rating",
+          "label": "자가 평가",
+          "type": "select",
+          "options": [
+            "1 입문",
+            "2 기초",
+            "3 실무",
+            "4 능숙",
+            "5 전문"
+          ],
+          "show_if": {
+            "kind": [
+              "역량"
+            ]
+          }
+        },
+        {
+          "key": "proof",
+          "label": "근거가 된 일",
+          "type": "text",
+          "placeholder": "",
+          "show_if": {
+            "kind": [
+              "역량"
+            ]
+          }
+        },
+        {
+          "key": "summary",
+          "label": "요약",
+          "type": "text",
+          "placeholder": "",
+          "show_if": {
+            "kind": [
+              "이력"
+            ]
+          }
+        },
+        {
+          "key": "period",
+          "label": "기간",
+          "type": "text",
+          "placeholder": "예: 2025-09 ~ 현재",
+          "show_if": {
+            "kind": [
+              "이력"
+            ]
+          }
+        }
+      ],
+      "note_ko": "자격증 기한 알림은 기한 목록(registry/deadlines.json)에 올리면 90일, 30일, 7일 전에 캘린더에 들어갑니다."
+    },
+    {
+      "module": "external_test",
+      "title_ko": "외부 검사 결과",
+      "card": "검사마다 한 장",
+      "title_fields": [
+        "test"
+      ],
+      "note_ko": "밖에서 받은 검사는 점수와 받은 곳, 날짜만 적습니다.",
+      "fields": [
+        {
+          "key": "test",
+          "label": "검사 이름",
+          "type": "text",
+          "placeholder": "예: 퍼스널 컬러 진단"
+        },
+        {
+          "key": "score",
+          "label": "점수나 결과",
+          "type": "text",
+          "placeholder": ""
+        },
+        {
+          "key": "where",
+          "label": "받은 곳",
+          "type": "text",
+          "placeholder": ""
+        },
+        {
+          "key": "date",
+          "label": "날짜",
+          "type": "date"
+        }
+      ]
+    }
+  ],
+  "confidence": [
+    {
+      "value": "low",
+      "label": "확신 낮음"
+    },
+    {
+      "value": "medium",
+      "label": "확신 중간"
+    },
+    {
+      "value": "high",
+      "label": "확신 높음"
+    }
+  ],
+  "ai_note_ko": "AI 분석은 참고용입니다. 본인 판단, 전문가 진단, 주변 반응과 구분해 적습니다.",
+  "mbti_notice_ko": "MBTI: ISTP — 본인이 밝힌 자기소개입니다. 이 시스템은 측정값으로 쓰지 않고, 가설을 세우는 출발점으로만 씁니다."
+}

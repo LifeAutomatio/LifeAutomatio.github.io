@@ -1,0 +1,1727 @@
+{
+  "instrument": "ipip_neo_120",
+  "version": 1,
+  "title_en": "IPIP-NEO-120 (Johnson, 2014) - 30 facets of the Five-Factor Model",
+  "title_ko": "IPIP-NEO-120 성격검사 (5요인 30개 하위요인)",
+  "citation": "Johnson, J. A. (2014). Measuring thirty facets of the Five Factor Model with a 120-item public domain inventory: Development of the IPIP-NEO-120. Journal of Research in Personality, 51, 78-89.",
+  "sources": [
+    {
+      "what": "items_en",
+      "url": "https://ipip.ori.org/30FacetNEO-PI-RItems.htm"
+    },
+    {
+      "what": "keys_crosscheck_ipip_neo_300",
+      "url": "https://ipip.ori.org/newNEOKey.htm"
+    },
+    {
+      "what": "items_ko",
+      "url": "https://ipip.ori.org/KoreanIPIP-NEO-300.htm"
+    },
+    {
+      "what": "ko_translator_credits",
+      "url": "https://ipip.ori.org/newItemTranslations.htm"
+    },
+    {
+      "what": "instructions_en_and_labels_en",
+      "url": "https://ipip.ori.org/New_IPIP-50-item-scale.htm"
+    },
+    {
+      "what": "scoring",
+      "url": "https://ipip.ori.org/newScoringInstructions.htm"
+    },
+    {
+      "what": "license",
+      "url": "https://ipip.ori.org/newPermission.htm"
+    }
+  ],
+  "ko_translation_credit": "Jong-bum Kim (project lead, first draft), Ji-yong Kim (refinement), Myo-gyeong Choi (editing) - career development teachers, per https://ipip.ori.org/newItemTranslations.htm. The Korean page itself credits only Jong-bum Kim.",
+  "license_note": "\"Because the IPIP has been placed in the public domain, permission has already been automatically granted for any person to use IPIP items, scales, and inventories for any purpose, commercial or non-commercial.\" (https://ipip.ori.org/newPermission.htm). Home page: \"The items and scales are in the public domain, which means that one can copy, edit, translate, or use them for any purpose without asking permission and without paying a fee.\" (https://ipip.ori.org/). Translations page: \"The accuracy of these translations has not not been verified by anyone associated with the IPIP project.\" [sic] (https://ipip.ori.org/newItemTranslations.htm). No separate licence is stated for the Korean translations hosted on ipip.ori.org.",
+  "usage_ok_for_personal_noncommercial": true,
+  "usage_note": "IPIP items/scales are public domain (any use, commercial or non-commercial, no permission needed). The Korean text is a volunteer translation hosted on ipip.ori.org; IPIP states it is not verified. Several Korean items drift in meaning (see items with ko_note / ko_alt).",
+  "time_frame_ko": null,
+  "instructions_en": "Describe yourself as you generally are now, not as you wish to be in the future. Describe yourself as you honestly see yourself, in relation to other people you know of the same sex as you are, and roughly your same age. So that you can describe yourself in an honest manner, your responses will be kept in absolute confidence. Indicate for each statement whether it is 1. Very Inaccurate, 2. Moderately Inaccurate, 3. Neither Accurate Nor Inaccurate, 4. Moderately Accurate, or 5. Very Accurate as a description of you.",
+  "instructions_ko": "평소의 나를 떠올리며, 각 문장이 나를 얼마나 잘 설명하는지 고르세요. 되고 싶은 모습이 아니라 지금의 모습으로 답하세요.",
+  "scale": {
+    "min": 1,
+    "max": 5,
+    "labels_en": [
+      "Very Inaccurate",
+      "Moderately Inaccurate",
+      "Neither Accurate Nor Inaccurate",
+      "Moderately Accurate",
+      "Very Accurate"
+    ],
+    "labels_ko": [
+      "전혀 아니다",
+      "아닌 편이다",
+      "중간이다",
+      "그런 편이다",
+      "매우 그렇다"
+    ]
+  },
+  "reverse_formula": "min+max-x",
+  "domains": {
+    "N": {
+      "en": "Neuroticism",
+      "ko": "신경성"
+    },
+    "E": {
+      "en": "Extraversion",
+      "ko": "외향성"
+    },
+    "O": {
+      "en": "Openness to Experience",
+      "ko": "개방성"
+    },
+    "A": {
+      "en": "Agreeableness",
+      "ko": "우호성"
+    },
+    "C": {
+      "en": "Conscientiousness",
+      "ko": "성실성"
+    }
+  },
+  "facets": {
+    "N1": {
+      "en": "Anxiety",
+      "ko": "불안",
+      "domain": "N"
+    },
+    "N2": {
+      "en": "Anger",
+      "ko": "분노",
+      "domain": "N"
+    },
+    "N3": {
+      "en": "Depression",
+      "ko": "우울",
+      "domain": "N"
+    },
+    "N4": {
+      "en": "Self-Consciousness",
+      "ko": "자의식",
+      "domain": "N"
+    },
+    "N5": {
+      "en": "Immoderation",
+      "ko": "무절제",
+      "domain": "N"
+    },
+    "N6": {
+      "en": "Vulnerability",
+      "ko": "취약성",
+      "domain": "N"
+    },
+    "E1": {
+      "en": "Friendliness",
+      "ko": "친근함",
+      "domain": "E"
+    },
+    "E2": {
+      "en": "Gregariousness",
+      "ko": "사교성",
+      "domain": "E"
+    },
+    "E3": {
+      "en": "Assertiveness",
+      "ko": "주장성",
+      "domain": "E"
+    },
+    "E4": {
+      "en": "Activity Level",
+      "ko": "활동성",
+      "domain": "E"
+    },
+    "E5": {
+      "en": "Excitement-Seeking",
+      "ko": "자극추구",
+      "domain": "E"
+    },
+    "E6": {
+      "en": "Cheerfulness",
+      "ko": "쾌활함",
+      "domain": "E"
+    },
+    "O1": {
+      "en": "Imagination",
+      "ko": "상상력",
+      "domain": "O"
+    },
+    "O2": {
+      "en": "Artistic Interests",
+      "ko": "예술적 관심",
+      "domain": "O"
+    },
+    "O3": {
+      "en": "Emotionality",
+      "ko": "정서성",
+      "domain": "O"
+    },
+    "O4": {
+      "en": "Adventurousness",
+      "ko": "모험성",
+      "domain": "O"
+    },
+    "O5": {
+      "en": "Intellect",
+      "ko": "지성",
+      "domain": "O"
+    },
+    "O6": {
+      "en": "Liberalism",
+      "ko": "진보성",
+      "domain": "O"
+    },
+    "A1": {
+      "en": "Trust",
+      "ko": "신뢰",
+      "domain": "A"
+    },
+    "A2": {
+      "en": "Morality",
+      "ko": "도덕성",
+      "domain": "A"
+    },
+    "A3": {
+      "en": "Altruism",
+      "ko": "이타성",
+      "domain": "A"
+    },
+    "A4": {
+      "en": "Cooperation",
+      "ko": "협조성",
+      "domain": "A"
+    },
+    "A5": {
+      "en": "Modesty",
+      "ko": "겸손",
+      "domain": "A"
+    },
+    "A6": {
+      "en": "Sympathy",
+      "ko": "동정심",
+      "domain": "A"
+    },
+    "C1": {
+      "en": "Self-Efficacy",
+      "ko": "자기효능감",
+      "domain": "C"
+    },
+    "C2": {
+      "en": "Orderliness",
+      "ko": "질서정연함",
+      "domain": "C"
+    },
+    "C3": {
+      "en": "Dutifulness",
+      "ko": "책임감",
+      "domain": "C"
+    },
+    "C4": {
+      "en": "Achievement-Striving",
+      "ko": "성취추구",
+      "domain": "C"
+    },
+    "C5": {
+      "en": "Self-Discipline",
+      "ko": "자기통제",
+      "domain": "C"
+    },
+    "C6": {
+      "en": "Cautiousness",
+      "ko": "신중함",
+      "domain": "C"
+    }
+  },
+  "items": [
+    {
+      "id": "ipip120.n1.1",
+      "order": 1,
+      "en": "Worry about things.",
+      "ko": "나는 걱정이 많다.",
+      "key": "+",
+      "facet": "N1",
+      "domain": "N",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 1 of the table (EN shown on page: \"Worry about things.\")"
+    },
+    {
+      "id": "ipip120.e1.1",
+      "order": 2,
+      "en": "Make friends easily.",
+      "ko": "나는 친구를 쉽게 사귄다.",
+      "key": "+",
+      "facet": "E1",
+      "domain": "E",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 2 of the table (EN shown on page: \"Make friends easily.\")"
+    },
+    {
+      "id": "ipip120.o1.1",
+      "order": 3,
+      "en": "Have a vivid imagination.",
+      "ko": "나는 눈에 보이듯 생생한 상상을 한다.",
+      "key": "+",
+      "facet": "O1",
+      "domain": "O",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 3 of the table (EN shown on page: \"Have a vivid imagination.\")"
+    },
+    {
+      "id": "ipip120.a1.1",
+      "order": 4,
+      "en": "Trust others.",
+      "ko": "나는 다른 사람을 잘 믿는다.",
+      "key": "+",
+      "facet": "A1",
+      "domain": "A",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 4 of the table (EN shown on page: \"Trust others.\")"
+    },
+    {
+      "id": "ipip120.c1.1",
+      "order": 5,
+      "en": "Complete tasks successfully.",
+      "ko": "나는 일을 성공적으로 잘 끝맺는다.",
+      "key": "+",
+      "facet": "C1",
+      "domain": "C",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 5 of the table (EN shown on page: \"Complete tasks successfully.\")"
+    },
+    {
+      "id": "ipip120.n2.1",
+      "order": 6,
+      "en": "Get angry easily.",
+      "ko": "나는 쉽게 화가 난다.",
+      "key": "+",
+      "facet": "N2",
+      "domain": "N",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 6 of the table (EN shown on page: \"Get angry easily.\")"
+    },
+    {
+      "id": "ipip120.e2.1",
+      "order": 7,
+      "en": "Love large parties.",
+      "ko": "나는 큰 파티나 모임을 매우 좋아한다.",
+      "key": "+",
+      "facet": "E2",
+      "domain": "E",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 7 of the table (EN shown on page: \"Love large parties.\")"
+    },
+    {
+      "id": "ipip120.o2.1",
+      "order": 8,
+      "en": "Believe in the importance of art.",
+      "ko": "나는 예술의 중요성을 믿는다.",
+      "key": "+",
+      "facet": "O2",
+      "domain": "O",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 8 of the table (EN shown on page: \"Believe in the importance of art.\")"
+    },
+    {
+      "id": "ipip120.a2.1",
+      "order": 9,
+      "en": "Use others for my own ends.",
+      "ko": "나는 나의 목적을 위해 다른 사람들을 이용한다.",
+      "key": "-",
+      "facet": "A2",
+      "domain": "A",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 99 of the table (EN shown on page: \"Use others for my own ends.\")"
+    },
+    {
+      "id": "ipip120.c2.1",
+      "order": 10,
+      "en": "Like to tidy up.",
+      "ko": "나는 정돈하기를 좋아한다.",
+      "key": "+",
+      "facet": "C2",
+      "domain": "C",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 40 of the table (EN shown on page: \"Like to tidy up.\")"
+    },
+    {
+      "id": "ipip120.n3.1",
+      "order": 11,
+      "en": "Often feel blue.",
+      "ko": "나는 자주 우울해진다.",
+      "key": "+",
+      "facet": "N3",
+      "domain": "N",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 11 of the table (EN shown on page: \"Often feel blue.\")"
+    },
+    {
+      "id": "ipip120.e3.1",
+      "order": 12,
+      "en": "Take charge.",
+      "ko": "나는 일에 주도적으로 나선다.",
+      "key": "+",
+      "facet": "E3",
+      "domain": "E",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 12 of the table (EN shown on page: \"Take charge.\")"
+    },
+    {
+      "id": "ipip120.o3.1",
+      "order": 13,
+      "en": "Experience my emotions intensely.",
+      "ko": "나는 감정에 격렬하게 휩싸일 때가 많다.",
+      "key": "+",
+      "facet": "O3",
+      "domain": "O",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 13 of the table (EN shown on page: \"Experience my emotions intensely.\")"
+    },
+    {
+      "id": "ipip120.a3.1",
+      "order": 14,
+      "en": "Am concerned about others.",
+      "ko": "나는 다른 사람들을 걱정해주는 편이다.",
+      "key": "+",
+      "facet": "A3",
+      "domain": "A",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 104 of the table (EN shown on page: \"Am concerned about others.\")"
+    },
+    {
+      "id": "ipip120.c3.1",
+      "order": 15,
+      "en": "Keep my promises.",
+      "ko": "나는 약속을 꼭 지킨다.",
+      "key": "+",
+      "facet": "C3",
+      "domain": "C",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 45 of the table (EN shown on page: \"Keep my promises.\")"
+    },
+    {
+      "id": "ipip120.n4.1",
+      "order": 16,
+      "en": "Find it difficult to approach others.",
+      "ko": "나는 다른 사람들에게 먼저 다가서는 것을 어려워 한다.",
+      "key": "+",
+      "facet": "N4",
+      "domain": "N",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 76 of the table (EN shown on page: \"Find it difficult to approach others.\")"
+    },
+    {
+      "id": "ipip120.e4.1",
+      "order": 17,
+      "en": "Am always busy.",
+      "ko": "나는 항상 바쁘다.",
+      "key": "+",
+      "facet": "E4",
+      "domain": "E",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 17 of the table (EN shown on page: \"Am always busy.\")"
+    },
+    {
+      "id": "ipip120.o4.1",
+      "order": 18,
+      "en": "Prefer variety to routine.",
+      "ko": "나는 틀에 박히지 않는 것을 좋아한다.",
+      "key": "+",
+      "facet": "O4",
+      "domain": "O",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 18 of the table (EN shown on page: \"Prefer variety to routine.\")"
+    },
+    {
+      "id": "ipip120.a4.1",
+      "order": 19,
+      "en": "Love a good fight.",
+      "ko": "나는 선의의 경쟁을 좋아한다.",
+      "key": "-",
+      "facet": "A4",
+      "domain": "A",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 169 of the table (EN shown on page: \"Love a good fight.\")",
+      "ko_note": "원문 'good fight'(싸움·언쟁)가 '선의의 경쟁'으로 번역되어 사회적으로 바람직한 뜻이 됨. '-' 키 협조성 문항의 방향이 흐려질 위험이 큼.",
+      "ko_alt": "나는 다투거나 싸우는 것을 즐긴다.",
+      "ko_alt_source": "self_translated_unverified"
+    },
+    {
+      "id": "ipip120.c4.1",
+      "order": 20,
+      "en": "Do more than what's expected of me.",
+      "ko": "나는 대체로 나에게 기대된 것보다 더 많은 일을 한다.",
+      "key": "+",
+      "facet": "C4",
+      "domain": "C",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 140 of the table (EN shown on page: \"Do more than what's expected of me.\")"
+    },
+    {
+      "id": "ipip120.n5.1",
+      "order": 21,
+      "en": "Go on binges.",
+      "ko": "나는 폭식을 즐긴다.",
+      "key": "+",
+      "facet": "N5",
+      "domain": "N",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 111 of the table (EN shown on page: \"Go on binges.\")"
+    },
+    {
+      "id": "ipip120.e5.1",
+      "order": 22,
+      "en": "Love excitement.",
+      "ko": "나는 신나는 일을 굉장히 즐긴다.",
+      "key": "+",
+      "facet": "E5",
+      "domain": "E",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 22 of the table (EN shown on page: \"Love excitement.\")"
+    },
+    {
+      "id": "ipip120.o5.1",
+      "order": 23,
+      "en": "Love to read challenging material.",
+      "ko": "나는 내용이 어려운 자료들을 읽는 것을 좋아한다.",
+      "key": "+",
+      "facet": "O5",
+      "domain": "O",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 53 of the table (EN shown on page: \"Love to read challenging material.\")"
+    },
+    {
+      "id": "ipip120.a5.1",
+      "order": 24,
+      "en": "Believe that I am better than others.",
+      "ko": "나는 내가 다른 사람들보다 낫다고 믿는다.",
+      "key": "-",
+      "facet": "A5",
+      "domain": "A",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 144 of the table (EN shown on page: \"Believe that I am better than others.\")"
+    },
+    {
+      "id": "ipip120.c5.1",
+      "order": 25,
+      "en": "Am always prepared.",
+      "ko": "나는 항상 준비되어 있다.",
+      "key": "+",
+      "facet": "C5",
+      "domain": "C",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 55 of the table (EN shown on page: \"Am always prepared.\")"
+    },
+    {
+      "id": "ipip120.n6.1",
+      "order": 26,
+      "en": "Panic easily.",
+      "ko": "나는 쉽게 공황 상태에 빠진다.",
+      "key": "+",
+      "facet": "N6",
+      "domain": "N",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 26 of the table (EN shown on page: \"Panic easily.\")"
+    },
+    {
+      "id": "ipip120.e6.1",
+      "order": 27,
+      "en": "Radiate joy.",
+      "ko": "나는 기쁠 때 티를 낸다.",
+      "key": "+",
+      "facet": "E6",
+      "domain": "E",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 27 of the table (EN shown on page: \"Radiate joy.\")",
+      "ko_note": "원문은 '기쁨을 발산한다(늘 밝다)'; 한국어판 '기쁠 때 티를 낸다'는 조건부 표현이라 의미가 좁아짐.",
+      "ko_alt": "나는 주위에 기쁨을 발산한다.",
+      "ko_alt_source": "self_translated_unverified"
+    },
+    {
+      "id": "ipip120.o6.1",
+      "order": 28,
+      "en": "Tend to vote for liberal political candidates.",
+      "ko": "나는 진보적인 후보자에게 투표하는 경향이 있다.",
+      "key": "+",
+      "facet": "O6",
+      "domain": "O",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 28 of the table (EN shown on page: \"Tend to vote for liberal political candidates.\")"
+    },
+    {
+      "id": "ipip120.a6.1",
+      "order": 29,
+      "en": "Sympathize with the homeless.",
+      "ko": "나는 노숙자를 측은하게 생각한다.",
+      "key": "+",
+      "facet": "A6",
+      "domain": "A",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 29 of the table (EN shown on page: \"Sympathize with the homeless.\")"
+    },
+    {
+      "id": "ipip120.c6.1",
+      "order": 30,
+      "en": "Jump into things without thinking.",
+      "ko": "나는 생각없이 일에 뛰어 든다.",
+      "key": "-",
+      "facet": "C6",
+      "domain": "C",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 120 of the table (EN shown on page: \"Jump into things without thinking.\")"
+    },
+    {
+      "id": "ipip120.n1.2",
+      "order": 31,
+      "en": "Fear for the worst.",
+      "ko": "나는 최악의 사태를 두려워한다.",
+      "key": "+",
+      "facet": "N1",
+      "domain": "N",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 31 of the table (EN shown on page: \"Fear for the worst.\")"
+    },
+    {
+      "id": "ipip120.e1.2",
+      "order": 32,
+      "en": "Feel comfortable around people.",
+      "ko": "나는 사람들과 있을 때 편안함을 느낀다.",
+      "key": "+",
+      "facet": "E1",
+      "domain": "E",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 62 of the table (EN shown on page: \"Feel comfortable around people.\")"
+    },
+    {
+      "id": "ipip120.o1.2",
+      "order": 33,
+      "en": "Enjoy wild flights of fantasy.",
+      "ko": "나는 한계를 두지 않고 상상하기를 매우 즐긴다.",
+      "key": "+",
+      "facet": "O1",
+      "domain": "O",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 33 of the table (EN shown on page: \"Enjoy wild flights of fantasy.\")"
+    },
+    {
+      "id": "ipip120.a1.2",
+      "order": 34,
+      "en": "Believe that others have good intentions.",
+      "ko": "나는 다른 사람들이 좋은 의도를 가지고 있다고 믿는다.",
+      "key": "+",
+      "facet": "A1",
+      "domain": "A",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 34 of the table (EN shown on page: \"Believe that others have good intentions.\")"
+    },
+    {
+      "id": "ipip120.c1.2",
+      "order": 35,
+      "en": "Excel in what I do.",
+      "ko": "나는 내가 하는 일에 뛰어나다.",
+      "key": "+",
+      "facet": "C1",
+      "domain": "C",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 35 of the table (EN shown on page: \"Excel in what I do.\")"
+    },
+    {
+      "id": "ipip120.n2.2",
+      "order": 36,
+      "en": "Get irritated easily.",
+      "ko": "나는 쉽게 짜증을 낸다.",
+      "key": "+",
+      "facet": "N2",
+      "domain": "N",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 36 of the table (EN shown on page: \"Get irritated easily.\")"
+    },
+    {
+      "id": "ipip120.e2.2",
+      "order": 37,
+      "en": "Talk to a lot of different people at parties.",
+      "ko": "나는 모임에서 많은 사람들과 이야기한다.",
+      "key": "+",
+      "facet": "E2",
+      "domain": "E",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 37 of the table (EN shown on page: \"Talk to a lot of different people at parties.\")"
+    },
+    {
+      "id": "ipip120.o2.2",
+      "order": 38,
+      "en": "See beauty in things that others might not notice.",
+      "ko": "나는 다른 사람들이 눈치채지 못하는 아름다움을 잘 발견한다.",
+      "key": "+",
+      "facet": "O2",
+      "domain": "O",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 68 of the table (EN shown on page: \"See beauty in things that others might not notice.\")"
+    },
+    {
+      "id": "ipip120.a2.2",
+      "order": 39,
+      "en": "Cheat to get ahead.",
+      "ko": "나는 다른 이보다 앞서 나가기 위해 속임수를 쓰기도 한다.",
+      "key": "-",
+      "facet": "A2",
+      "domain": "A",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 159 of the table (EN shown on page: \"Cheat to get ahead.\")"
+    },
+    {
+      "id": "ipip120.c2.2",
+      "order": 40,
+      "en": "Often forget to put things back in their proper place.",
+      "ko": "나는 종종 물건들을 제자리에 놓는 것을 잊는다.",
+      "key": "-",
+      "facet": "C2",
+      "domain": "C",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 160 of the table (EN shown on page: \"Often forget to put things back in their proper place.\")"
+    },
+    {
+      "id": "ipip120.n3.2",
+      "order": 41,
+      "en": "Dislike myself.",
+      "ko": "나는 나 자신을 혐오한다.",
+      "key": "+",
+      "facet": "N3",
+      "domain": "N",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 41 of the table (EN shown on page: \"Dislike myself.\")",
+      "ko_note": "'혐오한다'는 원문 'dislike'보다 강한 표현(경미한 차이).",
+      "ko_alt": "나는 나 자신이 싫다.",
+      "ko_alt_source": "self_translated_unverified"
+    },
+    {
+      "id": "ipip120.e3.2",
+      "order": 42,
+      "en": "Try to lead others.",
+      "ko": "나는 다른 사람들을 이끌어 가려고 애쓴다.",
+      "key": "+",
+      "facet": "E3",
+      "domain": "E",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 42 of the table (EN shown on page: \"Try to lead others.\")"
+    },
+    {
+      "id": "ipip120.o3.2",
+      "order": 43,
+      "en": "Feel others' emotions.",
+      "ko": "나는 다른 사람의 감정에 공감한다.",
+      "key": "+",
+      "facet": "O3",
+      "domain": "O",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 43 of the table (EN shown on page: \"Feel others' emotions.\")"
+    },
+    {
+      "id": "ipip120.a3.2",
+      "order": 44,
+      "en": "Love to help others.",
+      "ko": "나는 다른 사람들을 돕는 것을 좋아한다.",
+      "key": "+",
+      "facet": "A3",
+      "domain": "A",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 74 of the table (EN shown on page: \"Love to help others.\")"
+    },
+    {
+      "id": "ipip120.c3.2",
+      "order": 45,
+      "en": "Tell the truth.",
+      "ko": "나는 진실을 말한다.",
+      "key": "+",
+      "facet": "C3",
+      "domain": "C",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 105 of the table (EN shown on page: \"Tell the truth.\")"
+    },
+    {
+      "id": "ipip120.n4.2",
+      "order": 46,
+      "en": "Am afraid to draw attention to myself.",
+      "ko": "나는 나에게 관심이 쏠리는 것을 두려워한다.",
+      "key": "+",
+      "facet": "N4",
+      "domain": "N",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 106 of the table (EN shown on page: \"Am afraid to draw attention to myself.\")"
+    },
+    {
+      "id": "ipip120.e4.2",
+      "order": 47,
+      "en": "Am always on the go.",
+      "ko": "나는 항상 쉴새없이 움직인다.",
+      "key": "+",
+      "facet": "E4",
+      "domain": "E",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 47 of the table (EN shown on page: \"Am always on the go.\")"
+    },
+    {
+      "id": "ipip120.o4.2",
+      "order": 48,
+      "en": "Prefer to stick with things that I know.",
+      "ko": "나는 내가 잘 아는 바를 고수하는 것을 좋아한다.",
+      "key": "-",
+      "facet": "O4",
+      "domain": "O",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 138 of the table (EN shown on page: \"Prefer to stick with things that I know.\")"
+    },
+    {
+      "id": "ipip120.a4.2",
+      "order": 49,
+      "en": "Yell at people.",
+      "ko": "나는 다른 사람들에게 소리지르는 편이다.",
+      "key": "-",
+      "facet": "A4",
+      "domain": "A",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 199 of the table (EN shown on page: \"Yell at people.\")"
+    },
+    {
+      "id": "ipip120.c4.2",
+      "order": 50,
+      "en": "Work hard.",
+      "ko": "나는 열심히 일한다.",
+      "key": "+",
+      "facet": "C4",
+      "domain": "C",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 50 of the table (EN shown on page: \"Work hard.\")"
+    },
+    {
+      "id": "ipip120.n5.2",
+      "order": 51,
+      "en": "Rarely overindulge.",
+      "ko": "나는 좀처럼 제멋대로 행동하지 않는다.",
+      "key": "-",
+      "facet": "N5",
+      "domain": "N",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 171 of the table (EN shown on page: \"Rarely overindulge.\")",
+      "ko_note": "원문은 '(먹고 마시기 등을) 좀처럼 과하게 하지 않는다'; 한국어판 '제멋대로 행동하지 않는다'는 의미가 다름.",
+      "ko_alt": "나는 먹고 마시거나 즐기는 것을 좀처럼 지나치게 하지 않는다.",
+      "ko_alt_source": "self_translated_unverified"
+    },
+    {
+      "id": "ipip120.e5.2",
+      "order": 52,
+      "en": "Seek adventure.",
+      "ko": "나는 모험을 추구한다.",
+      "key": "+",
+      "facet": "E5",
+      "domain": "E",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 52 of the table (EN shown on page: \"Seek adventure.\")"
+    },
+    {
+      "id": "ipip120.o5.2",
+      "order": 53,
+      "en": "Avoid philosophical discussions.",
+      "ko": "나는 철학적 논의를 피한다.",
+      "key": "-",
+      "facet": "O5",
+      "domain": "O",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 203 of the table (EN shown on page: \"Avoid philosophical discussions.\")"
+    },
+    {
+      "id": "ipip120.a5.2",
+      "order": 54,
+      "en": "Think highly of myself.",
+      "ko": "나는 스스로를 높게 평가한다.",
+      "key": "-",
+      "facet": "A5",
+      "domain": "A",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 174 of the table (EN shown on page: \"Think highly of myself.\")"
+    },
+    {
+      "id": "ipip120.c5.2",
+      "order": 55,
+      "en": "Carry out my plans.",
+      "ko": "나는 계획들을 실행한다.",
+      "key": "+",
+      "facet": "C5",
+      "domain": "C",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 145 of the table (EN shown on page: \"Carry out my plans.\")"
+    },
+    {
+      "id": "ipip120.n6.2",
+      "order": 56,
+      "en": "Become overwhelmed by events.",
+      "ko": "나는 주변에서 벌어지는 일들에 압도당한다.",
+      "key": "+",
+      "facet": "N6",
+      "domain": "N",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 56 of the table (EN shown on page: \"Become overwhelmed by events.\")"
+    },
+    {
+      "id": "ipip120.e6.2",
+      "order": 57,
+      "en": "Have a lot of fun.",
+      "ko": "나는 아주 재미있는 사람이다.",
+      "key": "+",
+      "facet": "E6",
+      "domain": "E",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 57 of the table (EN shown on page: \"Have a lot of fun.\")",
+      "ko_note": "원문은 '즐겁게 지내는 일이 많다'; 한국어판 '아주 재미있는 사람이다'는 초점이 다름.",
+      "ko_alt": "나는 즐거운 시간을 많이 보낸다.",
+      "ko_alt_source": "self_translated_unverified"
+    },
+    {
+      "id": "ipip120.o6.2",
+      "order": 58,
+      "en": "Believe that there is no absolute right and wrong.",
+      "ko": "나는 절대적인 옳고 그름은 없다고 믿는다.",
+      "key": "+",
+      "facet": "O6",
+      "domain": "O",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "manual",
+      "ko_source_ref": "row 58 of the table (EN shown on page: \"Believe that there is no absolute right or wrong.\"); the 120 page says 'right and wrong', the 300-item key and Korean page say 'right or wrong'; row position is also the O6 slot of the IPIP-NEO-300 round-robin order"
+    },
+    {
+      "id": "ipip120.a6.2",
+      "order": 59,
+      "en": "Feel sympathy for those who are worse off than myself.",
+      "ko": "나는 나보다 못한 사람들에게 동정심을 느낀다.",
+      "key": "+",
+      "facet": "A6",
+      "domain": "A",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 59 of the table (EN shown on page: \"Feel sympathy for those who are worse off than myself.\")"
+    },
+    {
+      "id": "ipip120.c6.2",
+      "order": 60,
+      "en": "Make rash decisions.",
+      "ko": "나는 결정을 성급하게 내리는 편이다.",
+      "key": "-",
+      "facet": "C6",
+      "domain": "C",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 150 of the table (EN shown on page: \"Make rash decisions.\")"
+    },
+    {
+      "id": "ipip120.n1.3",
+      "order": 61,
+      "en": "Am afraid of many things.",
+      "ko": "나는 많은 것을 두려워한다.",
+      "key": "+",
+      "facet": "N1",
+      "domain": "N",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 61 of the table (EN shown on page: \"Am afraid of many things.\")"
+    },
+    {
+      "id": "ipip120.e1.3",
+      "order": 62,
+      "en": "Avoid contacts with others.",
+      "ko": "나는 다른 사람들과의 접촉을 피한다.",
+      "key": "-",
+      "facet": "E1",
+      "domain": "E",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 212 of the table (EN shown on page: \"Avoid contacts with others.\")"
+    },
+    {
+      "id": "ipip120.o1.3",
+      "order": 63,
+      "en": "Love to daydream.",
+      "ko": "나는 공상하기를 좋아한다.",
+      "key": "+",
+      "facet": "O1",
+      "domain": "O",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 63 of the table (EN shown on page: \"Love to daydream.\")"
+    },
+    {
+      "id": "ipip120.a1.3",
+      "order": 64,
+      "en": "Trust what people say.",
+      "ko": "나는 사람들이 말하는 것을 신뢰한다.",
+      "key": "+",
+      "facet": "A1",
+      "domain": "A",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 64 of the table (EN shown on page: \"Trust what people say.\")"
+    },
+    {
+      "id": "ipip120.c1.3",
+      "order": 65,
+      "en": "Handle tasks smoothly.",
+      "ko": "나는 일을 매끄럽게 처리한다.",
+      "key": "+",
+      "facet": "C1",
+      "domain": "C",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 65 of the table (EN shown on page: \"Handle tasks smoothly.\")"
+    },
+    {
+      "id": "ipip120.n2.3",
+      "order": 66,
+      "en": "Lose my temper.",
+      "ko": "나는 화가 날 때 평정을 유지하기가 어렵다.",
+      "key": "+",
+      "facet": "N2",
+      "domain": "N",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 126 of the table (EN shown on page: \"Lose my temper.\")"
+    },
+    {
+      "id": "ipip120.e2.3",
+      "order": 67,
+      "en": "Prefer to be alone.",
+      "ko": "나는 혼자 있기를 좋아한다.",
+      "key": "-",
+      "facet": "E2",
+      "domain": "E",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 157 of the table (EN shown on page: \"Prefer to be alone.\")"
+    },
+    {
+      "id": "ipip120.o2.3",
+      "order": 68,
+      "en": "Do not like poetry.",
+      "ko": "나는 시를 좋아하지 않는다.",
+      "key": "-",
+      "facet": "O2",
+      "domain": "O",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 188 of the table (EN shown on page: \"Do not like poetry.\")"
+    },
+    {
+      "id": "ipip120.a2.3",
+      "order": 69,
+      "en": "Take advantage of others.",
+      "ko": "나는 다른 사람을 이용한다.",
+      "key": "-",
+      "facet": "A2",
+      "domain": "A",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 249 of the table (EN shown on page: \"Take advantage of others.\")"
+    },
+    {
+      "id": "ipip120.c2.3",
+      "order": 70,
+      "en": "Leave a mess in my room.",
+      "ko": "나는 방을 지저분하게 만든다.",
+      "key": "-",
+      "facet": "C2",
+      "domain": "C",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 190 of the table (EN shown on page: \"Leave a mess in my room.\")"
+    },
+    {
+      "id": "ipip120.n3.3",
+      "order": 71,
+      "en": "Am often down in the dumps.",
+      "ko": "나는 자주 의기소침해진다.",
+      "key": "+",
+      "facet": "N3",
+      "domain": "N",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 71 of the table (EN shown on page: \"Am often down in the dumps.\")"
+    },
+    {
+      "id": "ipip120.e3.3",
+      "order": 72,
+      "en": "Take control of things.",
+      "ko": "나는 내가 원하는 대로 상황을 통제하며 일한다.",
+      "key": "+",
+      "facet": "E3",
+      "domain": "E",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 132 of the table (EN shown on page: \"Take control of things.\")"
+    },
+    {
+      "id": "ipip120.o3.3",
+      "order": 73,
+      "en": "Rarely notice my emotional reactions.",
+      "ko": "나는 내 감정적 반응들을 거의 눈치채지 못한다.",
+      "key": "-",
+      "facet": "O3",
+      "domain": "O",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 223 of the table (EN shown on page: \"Rarely notice my emotional reactions.\")"
+    },
+    {
+      "id": "ipip120.a3.3",
+      "order": 74,
+      "en": "Am indifferent to the feelings of others.",
+      "ko": "나는 다른 사람들의 기분에 무관심한 편이다.",
+      "key": "-",
+      "facet": "A3",
+      "domain": "A",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 194 of the table (EN shown on page: \"Am indifferent to the feelings of others.\")"
+    },
+    {
+      "id": "ipip120.c3.3",
+      "order": 75,
+      "en": "Break rules.",
+      "ko": "나는 규칙을 어기는 편이다.",
+      "key": "-",
+      "facet": "C3",
+      "domain": "C",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 165 of the table (EN shown on page: \"Break rules.\")"
+    },
+    {
+      "id": "ipip120.n4.3",
+      "order": 76,
+      "en": "Only feel comfortable with friends.",
+      "ko": "나는 친구들과 함께 할 때만 편안함을 느낀다.",
+      "key": "+",
+      "facet": "N4",
+      "domain": "N",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 136 of the table (EN shown on page: \"Only feel comfortable with friends.\")"
+    },
+    {
+      "id": "ipip120.e4.3",
+      "order": 77,
+      "en": "Do a lot in my spare time.",
+      "ko": "나는 여가시간에 많은 것들을 한다.",
+      "key": "+",
+      "facet": "E4",
+      "domain": "E",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 77 of the table (EN shown on page: \"Do a lot in my spare time.\")"
+    },
+    {
+      "id": "ipip120.o4.3",
+      "order": 78,
+      "en": "Dislike changes.",
+      "ko": "나는 변화를 싫어한다.",
+      "key": "-",
+      "facet": "O4",
+      "domain": "O",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 168 of the table (EN shown on page: \"Dislike changes.\")"
+    },
+    {
+      "id": "ipip120.a4.3",
+      "order": 79,
+      "en": "Insult people.",
+      "ko": "나는 사람들을 무시하는 편이다.",
+      "key": "-",
+      "facet": "A4",
+      "domain": "A",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 229 of the table (EN shown on page: \"Insult people.\")",
+      "ko_note": "원문은 '모욕한다'; '무시하는 편이다'는 '깔본다/신경 쓰지 않는다'로도 읽혀 의미가 약간 다름.",
+      "ko_alt": "나는 다른 사람들에게 모욕적인 말을 한다.",
+      "ko_alt_source": "self_translated_unverified"
+    },
+    {
+      "id": "ipip120.c4.3",
+      "order": 80,
+      "en": "Put little time and effort into my work.",
+      "ko": "나는 나의 일에 시간과 노력을 거의 기울이지 않는다.",
+      "key": "-",
+      "facet": "C4",
+      "domain": "C",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 290 of the table (EN shown on page: \"Put little time and effort into my work.\")"
+    },
+    {
+      "id": "ipip120.n5.3",
+      "order": 81,
+      "en": "Easily resist temptations.",
+      "ko": "나는 유혹을 쉽게 물리친다.",
+      "key": "-",
+      "facet": "N5",
+      "domain": "N",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 201 of the table (EN shown on page: \"Easily resist temptations.\")"
+    },
+    {
+      "id": "ipip120.e5.3",
+      "order": 82,
+      "en": "Enjoy being reckless.",
+      "ko": "나는 앞뒤 재지 않고 행동한다.",
+      "key": "+",
+      "facet": "E5",
+      "domain": "E",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 142 of the table (EN shown on page: \"Enjoy being reckless.\")",
+      "ko_note": "'즐긴다'가 빠지고 '앞뒤 재지 않고 행동한다'로 번역되어 C6(신중함) 문항 내용과 겹침.",
+      "ko_alt": "나는 무모하게 행동하는 것을 즐긴다.",
+      "ko_alt_source": "self_translated_unverified"
+    },
+    {
+      "id": "ipip120.o5.3",
+      "order": 83,
+      "en": "Have difficulty understanding abstract ideas.",
+      "ko": "나는 추상적인 생각을 이해하는 데 어려움을 겪는다.",
+      "key": "-",
+      "facet": "O5",
+      "domain": "O",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 233 of the table (EN shown on page: \"Have difficulty understanding abstract ideas.\")"
+    },
+    {
+      "id": "ipip120.a5.3",
+      "order": 84,
+      "en": "Have a high opinion of myself.",
+      "ko": "나는 스스로가 꽤 괜찮은 사람이라 생각한다.",
+      "key": "-",
+      "facet": "A5",
+      "domain": "A",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 204 of the table (EN shown on page: \"Have a high opinion of myself.\")",
+      "ko_note": "원문은 자만에 가까운 '자신을 매우 높이 평가한다'; '꽤 괜찮은 사람이라 생각한다'는 건강한 자존감으로도 읽혀 '-' 키 겸손 문항이 약해질 수 있음.",
+      "ko_alt": "나는 나 자신을 대단하게 여긴다.",
+      "ko_alt_source": "self_translated_unverified"
+    },
+    {
+      "id": "ipip120.c5.3",
+      "order": 85,
+      "en": "Waste my time.",
+      "ko": "나는 시간을 낭비한다.",
+      "key": "-",
+      "facet": "C5",
+      "domain": "C",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 205 of the table (EN shown on page: \"Waste my time.\")"
+    },
+    {
+      "id": "ipip120.n6.3",
+      "order": 86,
+      "en": "Feel that I'm unable to deal with things.",
+      "ko": "나는 내 일을 처리할 능력이 없다고 느낄 때가 있다.",
+      "key": "+",
+      "facet": "N6",
+      "domain": "N",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 86 of the table (EN shown on page: \"Feel that I'm unable to deal with things.\")"
+    },
+    {
+      "id": "ipip120.e6.3",
+      "order": 87,
+      "en": "Love life.",
+      "ko": "나는 삶을 사랑한다.",
+      "key": "+",
+      "facet": "E6",
+      "domain": "E",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 147 of the table (EN shown on page: \"Love life.\")"
+    },
+    {
+      "id": "ipip120.o6.3",
+      "order": 88,
+      "en": "Tend to vote for conservative political candidates.",
+      "ko": "나는 보수적인 후보자에게 투표하는 경향이 있다.",
+      "key": "-",
+      "facet": "O6",
+      "domain": "O",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 148 of the table (EN shown on page: \"Tend to vote for conservative political candidates.\")"
+    },
+    {
+      "id": "ipip120.a6.3",
+      "order": 89,
+      "en": "Am not interested in other people's problems.",
+      "ko": "나는 다른 사람들의 문제에 관심이 없다.",
+      "key": "-",
+      "facet": "A6",
+      "domain": "A",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 149 of the table (EN shown on page: \"Am not interested in other people's problems.\")"
+    },
+    {
+      "id": "ipip120.c6.3",
+      "order": 90,
+      "en": "Rush into things.",
+      "ko": "나는 성급하게 일을 서두른다.",
+      "key": "-",
+      "facet": "C6",
+      "domain": "C",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 210 of the table (EN shown on page: \"Rush into things.\")"
+    },
+    {
+      "id": "ipip120.n1.4",
+      "order": 91,
+      "en": "Get stressed out easily.",
+      "ko": "나는 쉽게 스트레스를 받는다.",
+      "key": "+",
+      "facet": "N1",
+      "domain": "N",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 91 of the table (EN shown on page: \"Get stressed out easily.\")"
+    },
+    {
+      "id": "ipip120.e1.4",
+      "order": 92,
+      "en": "Keep others at a distance.",
+      "ko": "나는 다른 사람들과 거리를 둔다.",
+      "key": "-",
+      "facet": "E1",
+      "domain": "E",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 272 of the table (EN shown on page: \"Keep others at a distance.\")"
+    },
+    {
+      "id": "ipip120.o1.4",
+      "order": 93,
+      "en": "Like to get lost in thought.",
+      "ko": "나는 생각에 잠기는 것을 좋아한다.",
+      "key": "+",
+      "facet": "O1",
+      "domain": "O",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 93 of the table (EN shown on page: \"Like to get lost in thought.\")"
+    },
+    {
+      "id": "ipip120.a1.4",
+      "order": 94,
+      "en": "Distrust people.",
+      "ko": "나는 사람을 믿지 않는다.",
+      "key": "-",
+      "facet": "A1",
+      "domain": "A",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 184 of the table (EN shown on page: \"Distrust people.\")"
+    },
+    {
+      "id": "ipip120.c1.4",
+      "order": 95,
+      "en": "Know how to get things done.",
+      "ko": "나는 일을 어떻게 해야할지 알고 있다.",
+      "key": "+",
+      "facet": "C1",
+      "domain": "C",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 155 of the table (EN shown on page: \"Know how to get things done.\")"
+    },
+    {
+      "id": "ipip120.n2.4",
+      "order": 96,
+      "en": "Am not easily annoyed.",
+      "ko": "나는 쉽게 짜증내지 않는다.",
+      "key": "-",
+      "facet": "N2",
+      "domain": "N",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 216 of the table (EN shown on page: \"Am not easily annoyed.\")"
+    },
+    {
+      "id": "ipip120.e2.4",
+      "order": 97,
+      "en": "Avoid crowds.",
+      "ko": "나는 사람이 많은 것을 피한다.",
+      "key": "-",
+      "facet": "E2",
+      "domain": "E",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 247 of the table (EN shown on page: \"Avoid crowds.\")"
+    },
+    {
+      "id": "ipip120.o2.4",
+      "order": 98,
+      "en": "Do not enjoy going to art museums.",
+      "ko": "나는 미술관에 가는 것을 즐기지 않는다.",
+      "key": "-",
+      "facet": "O2",
+      "domain": "O",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 218 of the table (EN shown on page: \"Do not enjoy going to art museums.\")"
+    },
+    {
+      "id": "ipip120.a2.4",
+      "order": 99,
+      "en": "Obstruct others' plans.",
+      "ko": "나는 다른 사람들의 계획을 방해한다.",
+      "key": "-",
+      "facet": "A2",
+      "domain": "A",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 279 of the table (EN shown on page: \"Obstruct others' plans.\")"
+    },
+    {
+      "id": "ipip120.c2.4",
+      "order": 100,
+      "en": "Leave my belongings around.",
+      "ko": "나는 물건을 잘 잃어버린다.",
+      "key": "-",
+      "facet": "C2",
+      "domain": "C",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 220 of the table (EN shown on page: \"Leave my belongings around.\")",
+      "ko_note": "원문은 '물건을 아무 데나 늘어놓는다'인데 한국어판은 '물건을 잘 잃어버린다'로 의미가 다름.",
+      "ko_alt": "나는 내 물건들을 여기저기에 그냥 놓는 편이다.",
+      "ko_alt_source": "KoreanBig-FiveFactorMarkers (In-Sue Oh) — 같은 영어 문항의 번역, https://ipip.ori.org/KoreanBig-FiveFactorMarkers.htm"
+    },
+    {
+      "id": "ipip120.n3.4",
+      "order": 101,
+      "en": "Feel comfortable with myself.",
+      "ko": "나는 내 자신에 대해 편안함을 느낀다.",
+      "key": "-",
+      "facet": "N3",
+      "domain": "N",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 251 of the table (EN shown on page: \"Feel comfortable with myself.\")"
+    },
+    {
+      "id": "ipip120.e3.4",
+      "order": 102,
+      "en": "Wait for others to lead the way.",
+      "ko": "나는 다른 사람이 앞장설 때까지 기다린다.",
+      "key": "-",
+      "facet": "E3",
+      "domain": "E",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 162 of the table (EN shown on page: \"Wait for others to lead the way.\")"
+    },
+    {
+      "id": "ipip120.o3.4",
+      "order": 103,
+      "en": "Don't understand people who get emotional.",
+      "ko": "나는 감정적으로 행동하는 사람들을 이해하지 못한다.",
+      "key": "-",
+      "facet": "O3",
+      "domain": "O",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 283 of the table (EN shown on page: \"Don't understand people who get emotional.\")"
+    },
+    {
+      "id": "ipip120.a3.4",
+      "order": 104,
+      "en": "Take no time for others.",
+      "ko": "나는 다른 사람에게 시간을 할애하지 않는다.",
+      "key": "-",
+      "facet": "A3",
+      "domain": "A",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 284 of the table (EN shown on page: \"Take no time for others.\")"
+    },
+    {
+      "id": "ipip120.c3.4",
+      "order": 105,
+      "en": "Break my promises.",
+      "ko": "나는 약속을 잘 지키지 않는다.",
+      "key": "-",
+      "facet": "C3",
+      "domain": "C",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 195 of the table (EN shown on page: \"Break my promises.\")"
+    },
+    {
+      "id": "ipip120.n4.4",
+      "order": 106,
+      "en": "Am not bothered by difficult social situations.",
+      "ko": "나는 어려운 사회적 상황에도 크게 개의치 않는다.",
+      "key": "-",
+      "facet": "N4",
+      "domain": "N",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 256 of the table (EN shown on page: \"Am not bothered by difficult social situations.\")"
+    },
+    {
+      "id": "ipip120.e4.4",
+      "order": 107,
+      "en": "Like to take it easy.",
+      "ko": "나는 느긋한 것을 좋아한다.",
+      "key": "-",
+      "facet": "E4",
+      "domain": "E",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 167 of the table (EN shown on page: \"Like to take it easy.\")"
+    },
+    {
+      "id": "ipip120.o4.4",
+      "order": 108,
+      "en": "Am attached to conventional ways.",
+      "ko": "나는 기존 방식에 집착한다.",
+      "key": "-",
+      "facet": "O4",
+      "domain": "O",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 288 of the table (EN shown on page: \"Am attached to conventional ways.\")"
+    },
+    {
+      "id": "ipip120.a4.4",
+      "order": 109,
+      "en": "Get back at others.",
+      "ko": "나는 다른 사람에게 당한 것에 대해 되돌려 준다.",
+      "key": "-",
+      "facet": "A4",
+      "domain": "A",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 259 of the table (EN shown on page: \"Get back at others.\")"
+    },
+    {
+      "id": "ipip120.c4.4",
+      "order": 110,
+      "en": "Do just enough work to get by.",
+      "ko": "나는 그럭저럭 살아갈 수 있을 만큼만 일한다.",
+      "key": "-",
+      "facet": "C4",
+      "domain": "C",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 260 of the table (EN shown on page: \"Do just enough work to get by.\")"
+    },
+    {
+      "id": "ipip120.n5.4",
+      "order": 111,
+      "en": "Am able to control my cravings.",
+      "ko": "나는 나의 갈망을 조절할 수 있다.",
+      "key": "-",
+      "facet": "N5",
+      "domain": "N",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 231 of the table (EN shown on page: \"Am able to control my cravings.\")"
+    },
+    {
+      "id": "ipip120.e5.4",
+      "order": 112,
+      "en": "Act wild and crazy.",
+      "ko": "나는 거칠게 미친듯이 행동한다.",
+      "key": "+",
+      "facet": "E5",
+      "domain": "E",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 172 of the table (EN shown on page: \"Act wild and crazy.\")"
+    },
+    {
+      "id": "ipip120.o5.4",
+      "order": 113,
+      "en": "Am not interested in theoretical discussions.",
+      "ko": "나는 이론적인 논의들에 관심이 없다.",
+      "key": "-",
+      "facet": "O5",
+      "domain": "O",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 263 of the table (EN shown on page: \"Am not interested in theoretical discussions.\")"
+    },
+    {
+      "id": "ipip120.a5.4",
+      "order": 114,
+      "en": "Boast about my virtues.",
+      "ko": "나는 나의 선행을 자랑한다.",
+      "key": "-",
+      "facet": "A5",
+      "domain": "A",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 264 of the table (EN shown on page: \"Boast about my virtues.\")"
+    },
+    {
+      "id": "ipip120.c5.4",
+      "order": 115,
+      "en": "Have difficulty starting tasks.",
+      "ko": "나는 일을 시작하는 데 어려움을 겪는다.",
+      "key": "-",
+      "facet": "C5",
+      "domain": "C",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 265 of the table (EN shown on page: \"Have difficulty starting tasks.\")"
+    },
+    {
+      "id": "ipip120.n6.4",
+      "order": 116,
+      "en": "Remain calm under pressure.",
+      "ko": "나는 압박이 느껴지는 상황에서도 침착함을 유지한다.",
+      "key": "-",
+      "facet": "N6",
+      "domain": "N",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 176 of the table (EN shown on page: \"Remain calm under pressure.\")"
+    },
+    {
+      "id": "ipip120.e6.4",
+      "order": 117,
+      "en": "Look at the bright side of life.",
+      "ko": "나는 인생을 긍정적으로 바라본다.",
+      "key": "+",
+      "facet": "E6",
+      "domain": "E",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 177 of the table (EN shown on page: \"Look at the bright side of life.\")"
+    },
+    {
+      "id": "ipip120.o6.4",
+      "order": 118,
+      "en": "Believe that we should be tough on crime.",
+      "ko": "나는 우리가 범죄에 대해 엄격해야 한다고 믿는다.",
+      "key": "-",
+      "facet": "O6",
+      "domain": "O",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 268 of the table (EN shown on page: \"Believe that we should be tough on crime.\")"
+    },
+    {
+      "id": "ipip120.a6.4",
+      "order": 119,
+      "en": "Try not to think about the needy.",
+      "ko": "나는 어려운 사람들에 대해 생각하지 않으려고 노력한다.",
+      "key": "-",
+      "facet": "A6",
+      "domain": "A",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 239 of the table (EN shown on page: \"Try not to think about the needy.\")"
+    },
+    {
+      "id": "ipip120.c6.4",
+      "order": 120,
+      "en": "Act without thinking.",
+      "ko": "나는 생각없이 행동하는 편이다.",
+      "key": "-",
+      "facet": "C6",
+      "domain": "C",
+      "ko_source": "KoreanIPIP-NEO-300",
+      "ko_match": "exact_en_match",
+      "ko_source_ref": "row 270 of the table (EN shown on page: \"Act without thinking.\")"
+    }
+  ],
+  "scoring": {
+    "item": "'+' keyed: x; '-' keyed: 6-x (min+max-x)",
+    "facet": "sum of 4 items after reversing '-' keyed items; range 4-20",
+    "domain": "sum of 6 facets (24 items); range 24-120",
+    "total": null,
+    "note": "IPIP scoring instructions: assign 1-5 (Very Inaccurate..Very Accurate) to '+' items and 5-1 to '-' items, then sum. Mean scores (sum/number of items) are an equivalent alternative."
+  },
+  "verification": {
+    "item_count": 120,
+    "per_facet_counts_ok": true,
+    "notes": [
+      "Parsed 30 facets x 4 items = 120 from 30FacetNEO-PI-RItems.htm; 51 key blocks (26 '+' keyed, 25 '- keyed') as on the page.",
+      "Every item's facet and +/- key matches the IPIP-NEO-300 key (newNEOKey.htm).",
+      "Korean: 119 items matched by exact normalized English text shown next to the Korean on KoreanIPIP-NEO-300.htm; 1 matched manually (O6 'Believe that there is no absolute right and wrong.' - page has 'right or wrong').",
+      "The Korean page lists the 300 items in the IPIP-NEO-300 round-robin facet order (checked: every row's facet follows N1,E1,O1,A1,C1,N2,... repeating), so row number = IPIP-NEO-300 item position.",
+      "English kept exactly as on the 120-item page, including 'right and wrong' for the O6 item.",
+      "Administration order: round robin over N1,E1,O1,A1,C1,...,N6,E6,O6,A6,C6, 4 passes, items in listed order within facet (order = pass*30 + facet position + 1).",
+      "9 items have ko_note/ko_alt because the official Korean drifts in meaning; 'ko' always holds the official source text, 'ko_alt' is a suggested replacement (self_translated_unverified unless ko_alt_source says otherwise).",
+      "Facet Korean names are chosen by the builder (based on usual Korean NEO-PI-R naming); IPIP facet labels differ from NEO-PI-R in places (e.g., N5 Immoderation vs Impulsiveness)."
+    ]
+  }
+}

@@ -1,0 +1,193 @@
+{
+  "instrument": "swls",
+  "version": 1,
+  "title_en": "Satisfaction With Life Scale (SWLS)",
+  "title_ko": "삶의 만족도 척도 (SWLS)",
+  "citation": "Diener, E., Emmons, R. A., Larsen, R. J., & Griffin, S. (1985). The Satisfaction With Life Scale. Journal of Personality Assessment, 49(1), 71-75. https://doi.org/10.1207/s15327752jpa4901_13",
+  "sources": [
+    {
+      "what": "items_en",
+      "url": "https://eddiener.com/wp-content/uploads/2025/02/SWLS_English.pdf"
+    },
+    {
+      "what": "items_en_and_score_bands (older lab page .doc)",
+      "url": "https://labs.psychology.illinois.edu/~ediener/Documents/SWLS_English.doc"
+    },
+    {
+      "what": "usage_terms",
+      "url": "https://eddiener.com/satisfaction-with-life-scale-swls/"
+    },
+    {
+      "what": "usage_terms (older lab page)",
+      "url": "https://labs.psychology.illinois.edu/~ediener/SWLS.html"
+    },
+    {
+      "what": "items_ko",
+      "url": "https://eddiener.com/wp-content/uploads/2025/02/SWLS_Korean.pdf"
+    },
+    {
+      "what": "items_ko (same text, older lab page .doc)",
+      "url": "https://labs.psychology.illinois.edu/~ediener/Documents/SWLS_Korean.doc"
+    },
+    {
+      "what": "ko_translator_credit",
+      "url": "https://labs.psychology.illinois.edu/~ediener/Documents/SWLS_Translators.pdf"
+    }
+  ],
+  "ko_translation_credit": "Hyung Joong Won (listed as Korean translator in Diener's SWLS_Translators.pdf).",
+  "license_note": "eddiener.com (current): \"The scale is copyrighted but is free to use without permission or charge by researchers as long as credit is given to the authors of the scale: Diener, E. D., Emmons, R. A., Larsen, R. J., & Griffin, S. (1985). The satisfaction with life scale. Journal of Personality Assessment, 49(1), 71-75.\" and \"The use of this scale is permitted for non-commercial purposes only.\" (https://eddiener.com/satisfaction-with-life-scale-swls/). Older Illinois lab page: \"The scale is copyrighted but you are free to use it without permission or charge by all professionals (researchers and practitioners) as long as you give credit to the authors of the scale: Ed Diener, Robert A. Emmons, Randy J. Larsen and Sharon Griffin as noted in the 1985 article in the Journal of Personality Assessment.\" and \"Feel free to translate the SWLS into other languages.\" (https://labs.psychology.illinois.edu/~ediener/SWLS.html)",
+  "usage_ok_for_personal_noncommercial": true,
+  "usage_note": "Free, no permission needed, non-commercial only, must credit Diener, Emmons, Larsen & Griffin (1985) - show the citation in the app. The wording names researchers/professionals rather than private individuals; personal non-commercial self-use with credit fits the stated non-commercial condition but is not literally named. Commercial use is not allowed.",
+  "time_frame_ko": null,
+  "instructions_en": "Below are five statements that you may agree or disagree with. Using the 1 - 7 scale below, indicate your agreement with each item by placing the appropriate number on the line preceding that item. Please be open and honest in your responding.",
+  "instructions_ko": "아래에는 귀하가 동의 혹은 부정 할 수 있는 5개의 문장이 있습니다. 아래의 1부터 7까지의 척도를 사용하여 각 문장에 대한 귀하의 동의여부를 나타내십시오.",
+  "scale": {
+    "min": 1,
+    "max": 7,
+    "labels_en": [
+      "Strongly disagree",
+      "Disagree",
+      "Slightly disagree",
+      "Neither agree nor disagree",
+      "Slightly agree",
+      "Agree",
+      "Strongly agree"
+    ],
+    "labels_ko": [
+      "강한 부정",
+      "부정",
+      "약한 부정",
+      "부정도 동의도 아님",
+      "약한 동의",
+      "동의",
+      "강한 동의"
+    ]
+  },
+  "reverse_formula": "min+max-x",
+  "domains": {},
+  "facets": {},
+  "items": [
+    {
+      "id": "swls.1",
+      "order": 1,
+      "en": "In most ways my life is close to my ideal.",
+      "ko": "전반적으로 볼 때, 나의 삶은 나의 이상에 가깝다.",
+      "key": "+",
+      "facet": null,
+      "domain": null,
+      "ko_source": "Diener SWLS_Korean (Hyung Joong Won)",
+      "ko_match": "order_match",
+      "ko_source_ref": "statement 1 of 5 (printed as '4.' in the source because of a Word list-numbering artifact)"
+    },
+    {
+      "id": "swls.2",
+      "order": 2,
+      "en": "The conditions of my life are excellent.",
+      "ko": "내 삶의 상황들은 아주 좋다.",
+      "key": "+",
+      "facet": null,
+      "domain": null,
+      "ko_source": "Diener SWLS_Korean (Hyung Joong Won)",
+      "ko_match": "order_match",
+      "ko_source_ref": "statement 2 of 5 (printed as '5.' in the source because of a Word list-numbering artifact)"
+    },
+    {
+      "id": "swls.3",
+      "order": 3,
+      "en": "I am satisfied with my life.",
+      "ko": "나는 내 삶에 만족한다.",
+      "key": "+",
+      "facet": null,
+      "domain": null,
+      "ko_source": "Diener SWLS_Korean (Hyung Joong Won)",
+      "ko_match": "order_match",
+      "ko_source_ref": "statement 3 of 5 (printed as '6.' in the source because of a Word list-numbering artifact)"
+    },
+    {
+      "id": "swls.4",
+      "order": 4,
+      "en": "So far I have gotten the important things I want in life.",
+      "ko": "지금까지 내 삶에서 내가 원하는 중요한 것들을 이루어 냈다.",
+      "key": "+",
+      "facet": null,
+      "domain": null,
+      "ko_source": "Diener SWLS_Korean (Hyung Joong Won)",
+      "ko_match": "order_match",
+      "ko_source_ref": "statement 4 of 5 (printed as '7.' in the source because of a Word list-numbering artifact)"
+    },
+    {
+      "id": "swls.5",
+      "order": 5,
+      "en": "If I could live my life over, I would change almost nothing.",
+      "ko": "만약 내 삶을 다시 살 수 있더라도, 나는 거의 아무것도 바꾸지 않을 것이다.",
+      "key": "+",
+      "facet": null,
+      "domain": null,
+      "ko_source": "Diener SWLS_Korean (Hyung Joong Won)",
+      "ko_match": "order_match",
+      "ko_source_ref": "statement 5 of 5 (printed as '8.' in the source because of a Word list-numbering artifact)"
+    }
+  ],
+  "scoring": {
+    "item": "x (no reversed items)",
+    "facet": null,
+    "domain": null,
+    "total": "sum of 5 items; range 5-35",
+    "bands": [
+      {
+        "min": 31,
+        "max": 35,
+        "en": "Extremely satisfied",
+        "ko": "매우 만족"
+      },
+      {
+        "min": 26,
+        "max": 30,
+        "en": "Satisfied",
+        "ko": "만족"
+      },
+      {
+        "min": 21,
+        "max": 25,
+        "en": "Slightly satisfied",
+        "ko": "약간 만족"
+      },
+      {
+        "min": 20,
+        "max": 20,
+        "en": "Neutral",
+        "ko": "중립"
+      },
+      {
+        "min": 15,
+        "max": 19,
+        "en": "Slightly dissatisfied",
+        "ko": "약간 불만족"
+      },
+      {
+        "min": 10,
+        "max": 14,
+        "en": "Dissatisfied",
+        "ko": "불만족"
+      },
+      {
+        "min": 5,
+        "max": 9,
+        "en": "Extremely dissatisfied",
+        "ko": "매우 불만족"
+      }
+    ],
+    "note": "Bands (English) from Diener's SWLS_English document; Korean band labels are self-translated."
+  },
+  "verification": {
+    "item_count": 5,
+    "per_facet_counts_ok": true,
+    "notes": [
+      "English identical in the eddiener.com PDF and the Illinois lab .doc.",
+      "Korean text read from the Illinois .doc and checked against the eddiener.com SWLS_Korean.pdf (same wording; 7 Korean anchors from the source).",
+      "The Korean source has no English, so items were matched by position (5 statements in the same order) and checked by meaning.",
+      "Other published Korean versions exist in the literature (e.g., Cho 1998; Lim 2012) - not used; wording not checked.",
+      "Korean instructions from the source refer to a numeric scale only; the source's second English sentence about writing numbers on a line is paper-specific."
+    ]
+  }
+}

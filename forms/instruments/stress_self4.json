@@ -1,0 +1,92 @@
+{
+  "instrument": "stress_self4",
+  "version": 1,
+  "title_en": "Self-made stress check (4 items, unvalidated)",
+  "title_ko": "스트레스 자체 점검 (4문항, 참고용)",
+  "citation": "이 시스템이 직접 만든 문항 (2026-09-27). 공인 척도가 아니며 타당화되지 않았다.",
+  "sources": [],
+  "license_note": "자체 제작. 공인 척도(PSS-10 등)의 문항을 옮기거나 바꿔 쓰지 않았다.",
+  "usage_ok_for_personal_noncommercial": true,
+  "usage_note": "PSS-10 사용 허가를 받기 전까지 쓰는 참고용 점검. 점수 기준(규준, 절단점)이 없으므로 해마다 나의 변화만 본다. 허가를 받으면 PSS-10 과 함께 한 해 겹쳐 쓴 뒤 1월 점검에서 계속 쓸지 정한다.",
+  "time_frame_ko": "지난 한 달 동안",
+  "instructions_en": "For each statement, choose how often it applied to you during the last month.",
+  "instructions_ko": "지난 한 달 동안 각 문장이 얼마나 자주 해당됐는지 고르세요.",
+  "instructions_ko_source": "original",
+  "scale": {
+    "min": 0,
+    "max": 3,
+    "labels_en": [
+      "Never",
+      "Sometimes",
+      "Often",
+      "Almost every day"
+    ],
+    "labels_ko": [
+      "전혀 없었다",
+      "가끔 있었다",
+      "자주 있었다",
+      "거의 매일 있었다"
+    ],
+    "labels_ko_source": "original"
+  },
+  "reverse_formula": "min+max-x",
+  "domains": {},
+  "facets": {},
+  "scoring": {
+    "item": "x (0-3). 4번은 뒤집어 채점",
+    "facet": null,
+    "domain": null,
+    "total": "4문항 합 0-12. 높을수록 스트레스 신호가 많음. 기준점 없음 — 나의 해마다 변화만 본다.",
+    "cutoff": null
+  },
+  "verification": {
+    "item_count": 4,
+    "per_facet_counts_ok": true,
+    "notes": [
+      "공인 척도가 아닌 자체 문항. 잠, 몸의 긴장, 쉬는 시간의 반추, 하루 끝의 여유 네 가지 신호를 묻는다.",
+      "진단이나 선별 도구로 쓰지 않는다."
+    ]
+  },
+  "items": [
+    {
+      "id": "stress_self4.1",
+      "order": 1,
+      "en": "Worries made it hard to fall asleep or woke me up at night",
+      "ko": "걱정거리로 잠들기 어렵거나 자다가 깬 날이 있었다.",
+      "key": "+",
+      "facet": null,
+      "domain": null,
+      "ko_source": "original"
+    },
+    {
+      "id": "stress_self4.2",
+      "order": 2,
+      "en": "I noticed tension in my body, such as tight shoulders or a clenched jaw",
+      "ko": "어깨나 턱에 힘이 들어가는 등 몸이 긴장돼 있음을 느꼈다.",
+      "key": "+",
+      "facet": null,
+      "domain": null,
+      "ko_source": "original"
+    },
+    {
+      "id": "stress_self4.3",
+      "order": 3,
+      "en": "Work or to-dos stayed on my mind even during time off",
+      "ko": "쉬는 시간에도 일이나 해야 할 일이 머릿속을 떠나지 않았다.",
+      "key": "+",
+      "facet": null,
+      "domain": null,
+      "ko_source": "original"
+    },
+    {
+      "id": "stress_self4.4",
+      "order": 4,
+      "en": "At the end of the day I felt I had some room to breathe",
+      "ko": "하루를 마칠 때 마음에 여유가 있다고 느꼈다.",
+      "key": "-",
+      "facet": null,
+      "domain": null,
+      "ko_source": "original"
+    }
+  ]
+}
