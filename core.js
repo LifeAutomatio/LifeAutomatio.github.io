@@ -318,35 +318,55 @@ LA.core = (function () {
     return weeks;
   }
   function escapeRe(s) { return String(s).replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
-  /* 말로 적은 당직을 날짜별 역할로 바꾼다. 예: "20 정, 22 부", "20일(정) 22일(부)", "정 20 28 부 22 30", "10/20 정".
-   * 날짜 뒤에 온 역할은 앞의 날짜들에 붙고, 날짜 앞에 온 역할은 다음 역할이 나올 때까지 뒤의 날짜들에 붙는다.
-   * 모르는 낱말(당직, 넣어줘 등)은 건너뛴다. 돌려주는 것: {items: [{date, role}], errors: [..]} */
+  /* 말로 적은 당직을 날짜별 역할로 바꾼다. 두 가지 순서 중 처음 나온 쪽을 따른다.
+   *   날짜 뒤에 역할: "20 정, 22 부", "20일(정) 22일(부)", "20, 28 정 22 부", "10/20 정", "10.20 정"
+   *   역할 뒤에 날짜: "정 20 28 부 22 30"
+   * 섞어 쓰거나, 역할이 빠진 날짜, 날짜가 없는 역할, 범위(20~22), 시각처럼 모르는 숫자가 있으면 오류로 알린다.
+   * 오류가 하나라도 있으면 화면은 아무것도 채우지 않는다. 돌려주는 것: {items: [{date, role}], errors: [..]} */
   function parseDutyText(text, month, codes) {
-    var mm = +month.slice(5, 7), n = daysInMonth(month), items = {}, errors = [], pending = [], cur = null;
+    var mm = +month.slice(5, 7), n = daysInMonth(month), items = {}, errors = [], pending = [], cur = null, curUsed = false, mode = null;
     var alt = codes.slice().sort(function (a, b) { return b.length - a.length; }).map(escapeRe).join('|');
     var glued = alt ? new RegExp('^(\\d{1,2})일?(' + alt + ')$') : null;
-    var words = String(text || '').replace(/[()（）\[\]]/g, ' ').split(/[\s,，、.;:·~]+/);
-    function addDay(d, mo) {
-      if (mo && mo !== mm) { errors.push(mo + '월 날짜는 ' + mm + '월 당직에 넣을 수 없습니다'); return; }
-      if (d < 1 || d > n) { errors.push(d + '일은 ' + mm + '월에 없습니다'); return; }
-      var ds = month + '-' + pad(d);
-      if (cur) items[ds] = cur; else pending.push(ds);
+    var words = String(text || '').replace(/[()（）\[\]]/g, ' ').split(/[\s,，、;·]+/);
+    function dayOf(d, mo) {
+      if (mo && mo !== mm) { errors.push(mo + '월 날짜는 ' + mm + '월 당직에 넣을 수 없습니다'); return null; }
+      if (d < 1 || d > n) { errors.push(d + '일은 ' + mm + '월에 없습니다'); return null; }
+      return month + '-' + pad(d);
+    }
+    /* ds 가 null 이면 잘못된 날짜다 (오류는 이미 적었다). 자리는 차지해서 뒤에 오는 역할이 또 오류를 내지 않게 한다. */
+    function addDay(ds) {
+      if (mode === null) mode = 'pair';
+      if (mode === 'pair') pending.push(ds);
+      else { if (ds) items[ds] = cur; curUsed = true; }
     }
     function setRole(r) {
-      if (pending.length) { for (var i = 0; i < pending.length; i++) items[pending[i]] = r; pending = []; cur = null; }
-      else cur = r;
+      if (mode === null) mode = 'group';
+      if (mode === 'pair') {
+        if (!pending.length) { errors.push("'" + r + "' 앞에 날짜가 없습니다"); return; }
+        for (var i = 0; i < pending.length; i++) if (pending[i]) items[pending[i]] = r;
+        pending = [];
+      } else {
+        if (cur && !curUsed) errors.push("'" + cur + "' 뒤에 날짜가 없습니다");
+        cur = r; curUsed = false;
+      }
     }
     for (var i = 0; i < words.length; i++) {
-      var w = words[i], m;
+      var w = words[i].replace(/^[.:]+|[.:]+$/g, ''), m;
       if (!w) continue;
       if ((m = /^(\d{1,2})월$/.exec(w))) { if (+m[1] !== mm) errors.push(m[1] + '월이라고 적었지만 ' + mm + '월 당직을 넣는 중입니다'); continue; }
-      if ((m = /^(\d{1,2})(?:\/|월)(\d{1,2})일?$/.exec(w))) { addDay(+m[2], +m[1]); continue; }
-      if ((m = /^(\d{1,2})일?$/.exec(w))) { addDay(+m[1], null); continue; }
-      if (glued && (m = glued.exec(w))) { addDay(+m[1], null); setRole(m[2]); continue; }
+      if ((m = /^(\d{1,2})(?:\/|\.|월)(\d{1,2})일?$/.exec(w))) { addDay(dayOf(+m[2], +m[1])); continue; }
+      if ((m = /^(\d{1,2})일?$/.exec(w))) { addDay(dayOf(+m[1], null)); continue; }
+      if (glued && (m = glued.exec(w))) {
+        var ds = dayOf(+m[1], null);
+        if (mode === 'group') { if (ds) items[ds] = m[2]; continue; }
+        mode = 'pair'; pending.push(ds); setRole(m[2]); continue;
+      }
       if (codes.indexOf(w) >= 0) { setRole(w); continue; }
-      if (/\d/.test(w)) errors.push('알아듣지 못한 부분: ' + w);
+      if (/\d/.test(w)) errors.push('알아듣지 못한 부분: ' + w + (/[~\-–]/.test(w) ? ' (날짜를 하나씩 적어 주세요)' : ''));
     }
-    if (pending.length) errors.push(pending.map(function (d) { return +d.slice(8); }).join(', ') + '일의 역할(' + codes.join('/') + ')을 모르겠습니다');
+    var left = pending.filter(function (d) { return d; });
+    if (left.length) errors.push(left.map(function (d) { return +d.slice(8); }).join(', ') + '일의 역할(' + codes.join('/') + ')을 모르겠습니다');
+    if (mode === 'group' && cur && !curUsed) errors.push("'" + cur + "' 뒤에 날짜가 없습니다");
     var out = Object.keys(items).sort().map(function (d) { return { date: d, role: items[d] }; });
     return { items: out, errors: errors };
   }

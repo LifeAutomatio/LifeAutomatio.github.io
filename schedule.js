@@ -12,6 +12,8 @@ LA.schedule = (function () {
   var TZS = [['America/New_York', '뉴욕'], ['America/Toronto', '토론토'], ['Asia/Seoul', '서울']];
   var REMIND = [['default', '기본'], ['0', '시작할 때'], ['10', '10분 전'], ['60', '1시간 전'], ['day', '하루 전'], ['none', '없음']];
   var WEEK = 7 * 86400000;
+  /* 일정은 캘린더 날짜로 다룬다. 체크인의 하루 경계(새벽 4시)를 쓰면 자정~4시에 넣은 오늘 일정이 어제가 되어 들어가지 않는다. */
+  function today() { return C.ymd(new Date()); }
 
   // ------------------------------------------------------------ 읽기
   function cfg() {
@@ -21,7 +23,8 @@ LA.schedule = (function () {
   }
   function cal() {
     var s = S.calState || A.store.get('cache.calstate', null) || {};
-    return { items: s.items || {}, months: s.months || {}, bridge: s.bridge || {}, updated: s.updated_at ? Date.parse(s.updated_at) : 0 };
+    return { items: s.items || {}, months: s.months || {}, bridge: s.bridge || {}, problems: s.problems || [],
+             updated: s.updated_at ? Date.parse(s.updated_at) : 0 };
   }
   /* 이 기기에서 저장했지만 자동 실행이 아직 반영하지 않은 것. 반영됐거나 일주일이 지나면 지운다. */
   function local() {
@@ -54,11 +57,12 @@ LA.schedule = (function () {
 
   /* 앞으로 days 일의 일정: 자동 실행이 반영한 것에 이 기기에서 방금 저장한 것을 덮어 보여 준다. */
   function upcoming(days) {
-    var s = cal(), l = local(), today = A.todayLocal(), until = C.addDays(today, days), rows = [];
+    var s = cal(), l = local(), t = today(), until = C.addDays(t, days), rows = [];
     var dutyTitle = (cfg().duty && cfg().duty.title) || '당직';
-    function inRange(d) { return d && d >= today && d <= until; }
+    function inRange(d) { return d && d >= t && d <= until; }
     Object.keys(s.items).forEach(function (k) {
       var it = s.items[k];
+      if (it.status === 'removing' || it.status === 'removed') return;
       if (!inRange(it.date) || (it.kind === 'duty' && l.months[it.month]) || (it.kind === 'event' && l.events[it.item_id])) return;
       rows.push({ kind: it.kind, date: it.date, time: it.time, label: it.label, status: it.status, error: it.error, item: it });
     });
@@ -71,7 +75,8 @@ LA.schedule = (function () {
       var p = l.events[id].payload;
       if (p.cancelled || !inRange(p.date)) return;
       rows.push({ kind: 'event', date: p.date, time: p.start ? (p.end ? p.start + '–' + p.end : p.start) : null, label: p.title, status: 'pending',
-                  item: { item_id: id, date: p.date, title: p.title, start: p.start, end: p.end, note: p.note, remind_min: p.remind_min, tz: p.tz, record_id: l.events[id].record_id } });
+                  item: { item_id: id, date: p.date, title: p.title, start: p.start, end: p.end, note: p.note, location: p.location,
+                          remind_min: p.remind_min, tz: p.tz, record_id: l.events[id].record_id } });
     });
     rows.sort(function (a, b) { var x = a.date + (a.time || ''), y = b.date + (b.time || ''); return x < y ? -1 : (x > y ? 1 : 0); });
     return rows;
@@ -82,17 +87,17 @@ LA.schedule = (function () {
   function promptCard() {
     var dc = cfg().duty;
     if (!dc || !dc.prompt || V.view === 'duty') return null;
-    var today = A.todayLocal();
-    var m = C.dutyPromptMonth(today, dc.prompt.from_day || 25, dc.prompt.until_day || 7, knownMonths());
+    var t = today();
+    var m = C.dutyPromptMonth(t, dc.prompt.from_day || 25, dc.prompt.until_day || 7, knownMonths());
     var snooze = A.store.get('sched.snooze', null);
-    if (!m || (snooze && snooze.month === m && today < snooze.until)) return null;
+    if (!m || (snooze && snooze.month === m && t < snooze.until)) return null;
     return h('div', { class: 'card' }, [
       h('p', { text: C.monthLabel(m) + ' 당직을 아직 넣지 않았어요.' }),
       h('p', { class: 'small', text: '당직표를 받았으면 달력에서 날짜를 누르거나 "20 정, 22 부"처럼 적으면 구글 캘린더에 들어갑니다.' }),
       h('button', { type: 'button', class: 'primary', text: C.monthLabel(m) + ' 당직 넣기', onclick: function () { openDuty(m); } }),
       h('div', { class: 'row' }, [
         h('button', { type: 'button', class: 'link', text: C.monthLabel(m) + '은 당직 없음', onclick: function () { saveDuty(m, {}, monthItems(m).record_id); } }),
-        h('button', { type: 'button', class: 'link', text: '사흘 뒤에 다시', onclick: function () { A.store.set('sched.snooze', { month: m, until: C.addDays(today, 3) }); A.renderTab(); } })
+        h('button', { type: 'button', class: 'link', text: '사흘 뒤에 다시', onclick: function () { A.store.set('sched.snooze', { month: m, until: C.addDays(t, 3) }); A.renderTab(); } })
       ])
     ]);
   }
@@ -104,6 +109,8 @@ LA.schedule = (function () {
     if (b.error) card.appendChild(h('div', { class: 'notice', text: '구글 캘린더에 넣지 못하고 있습니다: ' + b.error }));
     else if (!b.configured) card.appendChild(h('p', { class: 'small', text: '구글 캘린더 연결 전입니다. 넣은 일정은 저장해 두었다가, 맥에서 캘린더를 한 번 연결하면 바로 들어갑니다.' }));
     else card.appendChild(h('p', { class: 'small', text: '넣은 일정은 한 시간 안에 구글 캘린더에 들어갑니다. 고치거나 지울 때도 여기서 하세요.' }));
+    if (cal().problems.length) card.appendChild(h('div', { class: 'notice', text: '기한 목록에 고칠 곳이 있어 기한 ' + cal().problems.length +
+      '건을 캘린더에 반영하지 못했습니다. Claude 에게 "캘린더 문제 봐 줘"라고 말하세요.' }));
     if (V.msg) card.appendChild(h('div', { class: 'notice ok', text: V.msg }));
     var rows = upcoming(30);
     rows.slice(0, 12).forEach(function (r) { card.appendChild(row(r)); });
@@ -138,8 +145,8 @@ LA.schedule = (function () {
 
   // ------------------------------------------------------------ 당직 (한 달 치)
   function openDuty(month) {
-    var today = A.todayLocal();
-    var m = month || (+today.slice(8, 10) >= 20 ? C.addMonths(today.slice(0, 7), 1) : today.slice(0, 7));
+    var t = today();
+    var m = month || (+t.slice(8, 10) >= 20 ? C.addMonths(t.slice(0, 7), 1) : t.slice(0, 7));
     loadDraft(m);
     V.view = 'duty'; V.open = true; V.msg = null; V.qmsg = null; V.quick = '';
     A.renderTab();
@@ -167,7 +174,7 @@ LA.schedule = (function () {
   }
 
   function dutyEditor() {
-    var dc = cfg().duty, dr = V.draft, today = A.todayLocal(), m = dr.month, thisMonth = today.slice(0, 7);
+    var dc = cfg().duty, dr = V.draft, t = today(), m = dr.month, thisMonth = t.slice(0, 7);
     var card = h('div', { class: 'card' }, [h('h2', { text: C.monthLabel(m) + ' 당직' })]);
     var mrow = h('div', { class: 'opts c3' });
     [thisMonth, C.addMonths(thisMonth, 1), C.addMonths(thisMonth, 2)].forEach(function (mm) {
@@ -193,7 +200,7 @@ LA.schedule = (function () {
         if (!ds) { grid.appendChild(h('div', {})); return; }
         var it = dr.items[ds];
         grid.appendChild(h('button', { type: 'button', class: 'cal-d' + (it ? ' on' : '') + (i === 0 || i === 6 ? ' we' : ''),
-          disabled: ds < today ? true : null, 'aria-pressed': it ? 'true' : 'false', 'aria-label': C.koDateLabel(ds) + (it ? ' ' + it.role : ''),
+          disabled: ds < t ? true : null, 'aria-pressed': it ? 'true' : 'false', 'aria-label': C.koDateLabel(ds) + (it ? ' ' + it.role : ''),
           onclick: function () { tap(ds); } }, [h('span', { text: String(+ds.slice(8)) }), h('b', { text: it ? it.role : '' })]));
       });
     });
@@ -204,12 +211,16 @@ LA.schedule = (function () {
     quick.addEventListener('input', function () { V.quick = quick.value; });
     var apply = function () {
       var res = C.parseDutyText(quick.value, m, dc.roles.map(function (r) { return r.code; }));
-      var used = res.items.filter(function (x) { return x.date >= today; });
+      if (res.errors.length) {       // 하나라도 애매하면 아무것도 채우지 않는다 (틀린 날에 당직이 들어가지 않게)
+        V.qmsg = '채우지 않았습니다: ' + res.errors.join(' · ');
+        A.renderTab();
+        return;
+      }
+      var used = res.items.filter(function (x) { return x.date >= t; });
       used.forEach(function (x) { setDay(x.date, x.role); });
       var skipped = res.items.length - used.length;
-      V.qmsg = (used.length ? used.length + '일을 채웠습니다.' : '채운 날이 없습니다.') + (skipped ? ' 지난 날 ' + skipped + '일은 뺐습니다.' : '') +
-               (res.errors.length ? ' ' + res.errors.join(' · ') : '');
-      if (!res.errors.length) V.quick = '';
+      V.qmsg = (used.length ? used.length + '일을 채웠습니다. 달력에서 맞는지 보세요.' : '채운 날이 없습니다.') + (skipped ? ' 지난 날 ' + skipped + '일은 뺐습니다.' : '');
+      V.quick = '';
       A.renderTab();
     };
     quick.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); apply(); } });
@@ -218,7 +229,7 @@ LA.schedule = (function () {
 
     var dates = Object.keys(dr.items).sort();
     dates.forEach(function (ds) {
-      var it = dr.items[ds], past = ds < today;
+      var it = dr.items[ds], past = ds < t;
       var s = h('input', { type: 'time', value: it.start, disabled: past ? true : null, 'aria-label': '시작' });
       var e = h('input', { type: 'time', value: it.end, disabled: past ? true : null, 'aria-label': '끝' });
       var note = h('input', { type: 'text', maxlength: 60, placeholder: '메모 (선택, 예: 컴퓨터 가져가기)', disabled: past ? true : null });
@@ -269,12 +280,17 @@ LA.schedule = (function () {
   function remindKey(list, timed) {
     var keys = REMIND.map(function (o) { return o[0]; });
     for (var i = 0; i < keys.length; i++) if (JSON.stringify(remindList(keys[i], timed)) === JSON.stringify(list || [])) return keys[i];
-    return 'default';
+    return 'keep';                   // Claude 가 넣은 다른 알림(예: 15분 전)은 그대로 둔다
+  }
+  function remindLabel(list) {
+    return (list || []).map(function (m) { return m >= 1440 && m % 1440 === 0 ? (m / 1440) + '일 전' : (m >= 60 && m % 60 === 0 ? (m / 60) + '시간 전' : m + '분 전'); }).join(', ') || '없음';
   }
   function openEvent(item) {
     V.form = item ? { itemId: item.item_id, title: item.title || item.label || '', date: item.date, start: item.start || '', end: item.end || '', note: item.note || '',
-                      tz: item.tz || cfg().event.tz, remind: remindKey(item.remind_min, !!item.start), base: item.record_id, editing: true }
-                  : { itemId: C.newItemId(), title: '', date: A.todayLocal(), start: '', end: '', note: '', tz: cfg().event.tz, remind: 'default', base: null, editing: false };
+                      location: item.location || null, tz: item.tz || cfg().event.tz, remind: remindKey(item.remind_min, !!item.start),
+                      keepRemind: item.remind_min || [], base: item.record_id, editing: true }
+                  : { itemId: C.newItemId(), title: '', date: today(), start: '', end: '', note: '', location: null, tz: cfg().event.tz,
+                      remind: 'default', keepRemind: null, base: null, editing: false };
     V.view = 'event'; V.open = true; V.msg = null;
     A.renderTab();
   }
@@ -282,8 +298,12 @@ LA.schedule = (function () {
     var f = V.form;
     var title = h('input', { type: 'text', maxlength: 100, placeholder: '예: 치과' });
     var date = h('input', { type: 'date' }), start = h('input', { type: 'time' }), end = h('input', { type: 'time' });
-    var remind = h('select', {}, REMIND.map(function (o) { return h('option', { value: o[0], text: o[1], selected: f.remind === o[0] ? true : null }); }));
-    var tzSel = h('select', {}, TZS.map(function (o) { return h('option', { value: o[0], text: o[1] + ' 시각', selected: f.tz === o[0] ? true : null }); }));
+    var ropts = REMIND.slice();
+    if (f.remind === 'keep') ropts.unshift(['keep', '그대로 (' + remindLabel(f.keepRemind) + ')']);
+    var remind = h('select', {}, ropts.map(function (o) { return h('option', { value: o[0], text: o[1], selected: f.remind === o[0] ? true : null }); }));
+    var tzs = TZS.slice();
+    if (!tzs.some(function (o) { return o[0] === f.tz; })) tzs.unshift([f.tz, f.tz]);      // 목록에 없는 시간대도 그대로 지킨다
+    var tzSel = h('select', {}, tzs.map(function (o) { return h('option', { value: o[0], text: o[1] + ' 시각', selected: f.tz === o[0] ? true : null }); }));
     var note = h('textarea', { maxlength: 500, placeholder: '메모 (선택)' });
     title.value = f.title; date.value = f.date; start.value = f.start; end.value = f.end; note.value = f.note;
     var read = function () { f.title = title.value; f.date = date.value; f.start = start.value; f.end = end.value; f.note = note.value; f.remind = remind.value; f.tz = tzSel.value; };
@@ -307,17 +327,18 @@ LA.schedule = (function () {
     ]);
   }
   function saveEvent(cancel, msg) {
-    var f = V.form, today = A.todayLocal();
+    var f = V.form, t = today();
     if (!cancel) {
       if (!f.title.replace(/\s/g, '')) { msg.textContent = '제목을 적어 주세요.'; return; }
       if (!/^\d{4}-\d{2}-\d{2}$/.test(f.date)) { msg.textContent = '날짜를 골라 주세요.'; return; }
-      if (f.date < today) { msg.textContent = '지난 날짜는 캘린더에 넣지 않습니다.'; return; }
+      if (f.date < t) { msg.textContent = '지난 날짜는 캘린더에 넣지 않습니다.'; return; }
       if (f.end && !f.start) { msg.textContent = '끝 시각만 있으면 안 됩니다. 시작도 넣거나 둘 다 비우세요.'; return; }
       if (f.start && f.end && f.end <= f.start) { msg.textContent = '끝 시각이 시작보다 늦어야 합니다.'; return; }
     }
     var timed = !!f.start;
     var payload = C.eventPayload({ itemId: f.itemId, tz: f.tz, date: f.date, title: f.title, start: f.start, end: f.end, note: f.note,
-                                   remindMin: remindList(f.remind, timed), busy: timed, cancelled: cancel });
+                                   location: f.location, remindMin: f.remind === 'keep' ? f.keepRemind : remindList(f.remind, timed),
+                                   busy: timed, cancelled: cancel });
     var rec = A.enqueueRecord('schedule', payload, { supersedes: f.base || null, label: false });
     saveLocal(function (l) { l.events[f.itemId] = { record_id: rec.id, payload: payload, saved_at: Date.now() }; });
     V.view = null; V.form = null; V.open = true;
