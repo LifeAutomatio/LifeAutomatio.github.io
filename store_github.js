@@ -41,7 +41,7 @@ LA.github = function (cfg) {
     probe: function (forbiddenRepo) {
       return req('GET', repoPath).then(function (r) {
         if (r.status === 401) return { ok: false, reason: '접근 키가 틀렸거나 만료됐습니다.' };
-        if (r.status === 404) return { ok: false, reason: '기록 저장소를 찾을 수 없습니다. 키에 이 저장소 하나를 골랐는지 확인하세요.' };
+        if (r.status === 404) return { ok: false, reason: '기록 저장소를 찾을 수 없습니다. 두 가지를 확인하세요. ① 사용자 이름이 조직 이름이 아니라 개인 GitHub 아이디이고, 저장소 이름이 맞는지. ② 키의 Permissions 에 Contents(Read and write)가 들어 있는지. 키 설정을 고쳐도 키 문자열은 그대로 씁니다.' };
         if (!r.ok) return { ok: false, reason: '연결 실패 (' + (r.status || '네트워크') + ')' };
         if (!r.data || r.data.private !== true) return { ok: false, reason: '기록 저장소가 비공개가 아닙니다. 바로 비공개로 바꾸세요.' };
         if (r.data.permissions && r.data.permissions.push === false) return { ok: false, reason: '이 키에는 쓰기 권한이 없습니다. Contents 를 Read and write 로 주세요.' };

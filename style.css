@@ -105,6 +105,8 @@ nav.tabs { position: fixed; left: 0; right: 0; bottom: 0; display: flex; justify
            padding: 6px 8px calc(6px + env(safe-area-inset-bottom)); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
 nav.tabs button { flex: 1; max-width: 120px; min-height: 48px; background: none; border: none; color: var(--text-3); font-size: 13px; }
 nav.tabs button[aria-current="page"] { color: var(--accent); font-weight: 650; }
+nav.tabs a.navlink { flex: 1; max-width: 120px; min-height: 48px; display: flex; align-items: center; justify-content: center;
+                     color: var(--text-3); font-size: 13px; text-decoration: none; }
 
 .opts.c3 { grid-template-columns: repeat(3, 1fr); }
 .opt.small { min-height: 40px; padding: 6px 10px; flex: 1; }

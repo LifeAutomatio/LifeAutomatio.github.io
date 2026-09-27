@@ -46,6 +46,7 @@ LA.me = (function () {
         h('button', { type: 'button', text: '확인', onclick: function () { A.store.set('mbtiSeen', true); rerender(); } })]));
     }
     var grid = h('div', { class: 'grid2' });
+    grid.appendChild(deadlinesCard());
     grid.appendChild(factsCard());
     grid.appendChild(valuesCard());
     grid.appendChild(sourcesCard());
@@ -62,6 +63,7 @@ LA.me = (function () {
     M.refreshing = true;
     Promise.all([
       A.cacheJSON('state/assessments.json', 'assessments'), A.cacheJSON('state/profile.json', 'profile'),
+      A.cacheJSON('registry/deadlines.json', 'registry'),
       A.cacheJSON('state/values.json', 'values'), A.cacheJSON('state/sources.json', 'sources'),
       A.cacheJSON('state/questions.json', 'questions'), A.cacheJSON('state/reviews.json', 'reviews'),
       S.gh.getText('self/facts.jsonl').then(function (r) {
@@ -74,6 +76,46 @@ LA.me = (function () {
       M.refreshing = false;
       if (S.tab === 'me' && M.view === 'home' && !M.refreshed) { M.refreshed = true; rerender(); }
     }, function () { M.refreshing = false; });
+  }
+
+  /* 다가오는 기한: 기록 저장소의 registry/deadlines.json (비자, 세금, 자격증). 날짜가 있는 비자 항목은 구글 캘린더에도 있다. */
+  function deadlinesCard() {
+    var reg = A.store.get('cache.registry', null), today = A.todayLocal();
+    var card = h('div', { class: 'card' }, [h('h2', { text: '다가오는 기한' })]);
+    if (!reg) { card.appendChild(h('p', { class: 'small', text: '불러오는 중…' })); return card; }
+    var STATUS = { to_verify: '확인 필요', to_decide: '결정 필요' };
+    function safeLink(u) { return /^https:\/\//.test(String(u || '')) ? u : null; }
+    function row(d) {
+      var left = d.date ? C.daysBetween(today, d.date) : null;
+      var when = d.date ? d.date + ' · ' + (left === 0 ? '오늘' : left + '일 남음') : '날짜 없음';
+      var extra = [];
+      if (d.note) extra.push(h('p', { class: 'small', text: d.note }));
+      if (safeLink(d.source_url)) extra.push(h('a', { class: 'small', href: d.source_url, target: '_blank', rel: 'noopener noreferrer', text: '출처' }));
+      return h('div', { class: 'item' }, [
+        h('div', { text: d.title }),
+        h('div', { class: 'small', text: when + (STATUS[d.status] ? ' · ' + STATUS[d.status] : '') + (d.calendar ? ' · 캘린더에 있음' : '') }),
+        extra.length ? h('details', {}, [h('summary', { class: 'small', text: '자세히' })].concat(extra)) : null
+      ]);
+    }
+    var upcoming = (reg.deadlines || []).filter(function (d) { return d.date && d.date >= today; })
+      .sort(function (a, b) { return a.date < b.date ? -1 : 1; });
+    upcoming.slice(0, 5).forEach(function (d) { card.appendChild(row(d)); });
+    if (!upcoming.length) card.appendChild(h('p', { class: 'small', text: '앞으로 남은 기한이 없습니다.' }));
+    var rest = upcoming.slice(5).concat((reg.deadlines || []).filter(function (d) { return !d.date; }));
+    var rules = reg.standing_rules || [];
+    if (rest.length || rules.length) {
+      var more = h('div', {});
+      rest.forEach(function (d) { more.appendChild(row(d)); });
+      if (rules.length) {
+        var ul = h('ul', {});
+        rules.forEach(function (r) { ul.appendChild(h('li', { class: 'small', text: r.title })); });
+        more.appendChild(h('h3', { text: '늘 지킬 규칙' }));
+        more.appendChild(ul);
+      }
+      card.appendChild(h('details', {}, [h('summary', { text: '전체 보기 · 기한 ' + rest.length + '개 더, 규칙 ' + rules.length + '개' }), more]));
+    }
+    card.appendChild(h('p', { class: 'small', text: '확인 항목일 뿐 법률·세무 조언이 아닙니다. 날짜가 바뀌면 Claude 에게 말하면 목록과 캘린더를 함께 고칩니다.' }));
+    return card;
   }
 
   /* 나에 대한 사실: 확인, 가설(사실 후보), 재확인 필요. 사실 후보와 재확인은 한 번 눌러 답한다. */
@@ -394,6 +436,20 @@ LA.me = (function () {
     return parts.join(' ') || mod.title_ko;
   }
 
+  /* 구글맵 링크: 붙여 넣은 공유 링크 > 저장한 위치 > 이름과 동네로 검색. API 키가 필요 없는 공식 지도 주소 형식만 쓴다. */
+  var MAPS_OK = /^https:\/\/(maps\.app\.goo\.gl|goo\.gl\/maps|(www\.)?google\.[a-z.]+\/maps)\//;
+  function mapsSearch(q) { return 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(q); }
+  function mapLink(map, attrs) {
+    var url = String(attrs[map.url] || '').trim();
+    if (MAPS_OK.test(url)) return url;
+    var geo = String(attrs[map.geo] || '');
+    if (/^-?\d+(\.\d+)?,-?\d+(\.\d+)?$/.test(geo)) return mapsSearch(geo);
+    var name = String(attrs[map.name] || '').trim();
+    if (!name) return null;
+    var area = (map.area || []).map(function (k) { return attrs[k]; }).filter(Boolean)[0] || '';
+    return mapsSearch(name + (area ? ' ' + area : ''));
+  }
+
   function fieldVisible(f, attrs) {
     if (!f.show_if) return true;
     return Object.keys(f.show_if).every(function (k) { return f.show_if[k].indexOf(attrs[k]) >= 0; });
@@ -410,7 +466,13 @@ LA.me = (function () {
     M.profile.evidence.forEach(function (e) { EV[e.value] = e.label; });
     cards.forEach(function (c) {
       var p = c.payload, attrs = p.attributes || {}, lines = [];
-      mod.fields.forEach(function (f) { var v = attrs[f.key]; if (v && (!Array.isArray(v) || v.length) && fieldVisible(f, attrs)) lines.push(f.label + ': ' + (Array.isArray(v) ? v.join(', ') : v)); });
+      mod.fields.forEach(function (f) {
+        var v = attrs[f.key];
+        if (!v || (Array.isArray(v) && !v.length) || !fieldVisible(f, attrs)) return;
+        if (f.type === 'location' || (mod.map && f.key === mod.map.url)) return;   // 지도 링크로 보여 준다
+        lines.push(f.label + ': ' + (Array.isArray(v) ? v.join(', ') : v));
+      });
+      var mapHref = mod.map ? mapLink(mod.map, attrs) : null;
       if (p.liked) lines.push('좋아함 ' + p.liked + '/5');
       if (p.suits) lines.push('어울림 ' + p.suits + '/5');
       if (p.confidence) lines.push(CONF[p.confidence]);
@@ -419,7 +481,9 @@ LA.me = (function () {
       box.appendChild(h('div', { class: 'card' }, [h('h2', { text: p.title }),
         ai ? h('span', { class: 'pill warn', text: 'AI 분석 포함 · 참고용' }) : null,
         h('p', { class: 'small', text: lines.join(' · ') }), p.notes ? h('p', { class: 'small', text: p.notes }) : null,
-        h('button', { type: 'button', class: 'link', text: '고치기', onclick: function () { M.editing = c; rerender(); } })]));
+        h('div', { class: 'row' }, [
+          mapHref ? h('a', { class: 'small', href: mapHref, target: '_blank', rel: 'noopener noreferrer', text: '구글맵에서 보기' }) : null,
+          h('button', { type: 'button', class: 'link', text: '고치기', onclick: function () { M.editing = c; rerender(); } })])]));
     });
     if (!cards.length) box.appendChild(h('p', { class: 'muted', text: '아직 카드가 없습니다.' }));
     if (!(mod.single && cards.length)) box.appendChild(h('button', { type: 'button', class: 'primary', text: '카드 추가', onclick: function () { M.editing = false; rerender(); } }));
@@ -453,6 +517,22 @@ LA.me = (function () {
       } else if (f.type === 'date') {
         el = h('input', { type: 'date' });
         el.value = attrs[f.key] || '';
+      } else if (f.type === 'location') {
+        // 폰의 위치를 한 번 읽어 '위도,경도' 글자로 저장한다. 사진처럼 계속 추적하지 않는다
+        var geoVal = attrs[f.key] || '';
+        var geoText = h('span', { class: 'small', text: geoVal ? '위치 저장됨' : '저장 안 됨' });
+        var geoBtn = h('button', { type: 'button', text: '지금 위치 저장', onclick: function () {
+          if (!navigator.geolocation) { geoText.textContent = '이 브라우저는 위치를 알려 주지 않습니다'; return; }
+          geoText.textContent = '위치 확인 중…';
+          navigator.geolocation.getCurrentPosition(function (pos) {
+            geoVal = pos.coords.latitude.toFixed(5) + ',' + pos.coords.longitude.toFixed(5);
+            geoText.textContent = '위치 저장됨 (정확도 약 ' + Math.round(pos.coords.accuracy) + 'm)';
+          }, function () { geoText.textContent = '위치를 읽지 못했습니다. 위치 권한을 확인하세요'; },
+          { enableHighAccuracy: true, timeout: 15000, maximumAge: 60000 });
+        } });
+        var geoClear = h('button', { type: 'button', class: 'link small', text: '지우기', onclick: function () { geoVal = ''; geoText.textContent = '저장 안 됨'; } });
+        el = h('div', { class: 'row' }, [geoBtn, geoText, geoClear]);
+        el.getValue = function () { return geoVal; };
       } else {
         el = h('input', { type: 'text', maxlength: 200, placeholder: f.placeholder || '' });
         el.value = attrs[f.key] || '';
@@ -462,6 +542,15 @@ LA.me = (function () {
       form.appendChild(wraps[f.key]);
     });
     refresh();
+    if (mod.map) {
+      form.appendChild(h('button', { type: 'button', class: 'link small', text: '구글맵에서 찾기', onclick: function () {
+        var cur = {};
+        mod.fields.forEach(function (f) { if (inputs[f.key] && !inputs[f.key].getValue) cur[f.key] = inputs[f.key].value.trim(); });
+        var link = mapLink(mod.map, cur);
+        if (link) window.open(link, '_blank', 'noopener');
+      } }));
+      form.appendChild(h('p', { class: 'small', text: '찾은 가게의 공유 링크를 복사해 구글맵 링크 칸에 붙여 넣으면 다음부터 바로 그 가게가 열립니다.' }));
+    }
     function scaleSel(label, cur) {
       return h('select', { 'aria-label': label }, [h('option', { value: '', text: label + ' —' })].concat([1, 2, 3, 4, 5].map(function (v) { return h('option', { value: v, text: label + ' ' + v, selected: cur === v ? true : null }); })));
     }
@@ -484,7 +573,7 @@ LA.me = (function () {
     function save(status) {
       var a = {};
       mod.fields.forEach(function (f) {
-        var v = f.type === 'multi' ? inputs[f.key].getValue() : inputs[f.key].value.trim();
+        var v = inputs[f.key].getValue ? inputs[f.key].getValue() : inputs[f.key].value.trim();
         if (v && (!Array.isArray(v) || v.length) && fieldVisible(f, attrs)) a[f.key] = v;
       });
       if (!Object.keys(a).length && !notes.value.trim()) { msg.textContent = '한 칸 이상 채워 주세요.'; return; }

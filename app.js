@@ -258,6 +258,8 @@
     cacheJSON('state/qotd.json', 'qotd').then(function (d) { S.qotd = d; if (S.tab === 'checkin') renderTab(); });
     cacheJSON('state/heartbeat.json', 'heartbeat').then(function (d) { S.heartbeat = d; if (S.tab === 'status') renderTab(); });
     cacheJSON('state/reviews.json', 'reviews').then(function (d) { S.reviews = d; if (S.tab === 'checkin' || S.tab === 'status') renderTab(); });
+    S.links = store.get('cache.links', null);
+    cacheJSON('self/links.json', 'links').then(function (d) { S.links = d; renderNavLinks(); if (S.tab === 'status') renderTab(); });
     syncRemoteCheckins();
   }
 
@@ -831,6 +833,20 @@
         h('button', { type: 'button', text: '새로 고침', onclick: function () { startSync(); renderTab(); } })
       ])]));
 
+    var links = ((S.links && S.links.links) || []);
+    if (links.length) {
+      var lc = h('div', { class: 'card' }, [h('h2', { text: '바로 가기' })]);
+      links.forEach(function (l) {
+        var u = linkFor(l);
+        lc.appendChild(h('div', { class: 'item' }, [
+          u ? h('a', { href: u, target: '_blank', rel: 'noopener noreferrer', text: l.title_ko || l.label_ko }) : h('div', { text: l.title_ko || l.label_ko }),
+          l.note_ko ? h('div', { class: 'small', text: l.note_ko }) : null,
+          u ? null : h('div', { class: 'small', text: '이 기기에서는 열 수 있는 주소가 없습니다.' })
+        ]));
+      });
+      box.appendChild(lc);
+    }
+
     var tzSel = h('select', {}, [['auto', '자동 (기기 시간대)'], ['America/New_York', '뉴욕'], ['America/Toronto', '토론토'], ['Asia/Seoul', '서울']].map(function (o) {
       return h('option', { value: o[0], text: o[1], selected: store.get('scheduleTz', 'America/New_York') === o[0] ? true : null });
     }));
@@ -885,7 +901,27 @@
     });
     root.appendChild(h('main', { id: 'tab-body', class: 'tab-' + S.tab }));
     root.appendChild(nav);
+    renderNavLinks();
     renderTab();
+  }
+
+  /* 바로 가기 (예: 자산 관리). 개인 주소는 공개 페이지에 넣지 않으려고 기록 저장소의 self/links.json 에서 읽는다.
+   * 폰에서는 url, 컴퓨터에서는 mac_url(없으면 url)을 연다. 열 주소가 없으면 탭에 보이지 않는다. */
+  var LINK_OK = /^(https:\/\/|http:\/\/(localhost|127\.0\.0\.1)(:\d+)?(\/|$))/;
+  function linkFor(l) {
+    var mobile = /iPhone|iPad|Android/.test(navigator.userAgent);
+    var u = mobile ? l.url : (l.mac_url || l.url);
+    return LINK_OK.test(String(u || '')) ? u : null;
+  }
+  function renderNavLinks() {
+    var nav = document.querySelector('nav.tabs');
+    if (!nav) return;
+    Array.prototype.slice.call(nav.querySelectorAll('a.navlink')).forEach(function (a) { nav.removeChild(a); });
+    ((S.links && S.links.links) || []).forEach(function (l) {
+      var u = linkFor(l);
+      if (!u || l.nav === false) return;
+      nav.appendChild(h('a', { class: 'navlink', href: u, target: '_blank', rel: 'noopener noreferrer', text: (l.label_ko || '링크') + ' ↗' }));
+    });
   }
 
   function renderTab() {
