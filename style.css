@@ -123,6 +123,24 @@ ul.stages { padding-left: 18px; }
 ul.stages li.reached { color: var(--accent); }
 .grid2 { display: grid; grid-template-columns: 1fr; gap: 0 12px; align-items: start; }
 
+/* 일정 · 구글 캘린더: 당직 달력 */
+input[type=time] { font: inherit; color: var(--text); background: var(--card-2); border: 1px solid var(--line); border-radius: 10px;
+                   padding: 8px 10px; min-height: 44px; flex: 1; min-width: 0; }
+.row > input[type=text] { flex: 1; width: auto; min-width: 0; }
+.grow { flex: 1; min-width: 0; }
+label.field.half { flex: 1; min-width: 130px; margin-bottom: 6px; }
+.cal { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; margin: 10px 0 12px; }
+.cal-h { text-align: center; font-size: 12px; color: var(--text-3); padding: 2px 0; }
+.cal-d { min-height: 46px; padding: 2px 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+         gap: 0; line-height: 1.1; border-radius: 10px; }
+.cal-d span { font-size: 14px; }
+.cal-d b { font-size: 13px; min-height: 15px; color: var(--accent); }
+.cal-d.we span { color: var(--text-3); }
+.cal-d.on { background: var(--accent-soft); border-color: var(--accent); }
+.cal-d:disabled { opacity: .35; cursor: default; }
+.duty-row { padding: 8px 0; border-top: 1px solid var(--line); }
+.duty-row .row { margin: 4px 0; flex-wrap: nowrap; }
+
 /* 넓은 화면 (노트북, PC): 탭을 위로 올리고 카드를 둘씩 나란히 둔다 */
 @media (min-width: 900px) {
   .app { max-width: 1080px; padding-top: 72px; }

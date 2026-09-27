@@ -6,7 +6,7 @@ var LA = (typeof LA !== 'undefined') ? LA : {};
 LA.core = (function () {
   'use strict';
 
-  var APP_VERSION = '1.1.0';
+  var APP_VERSION = '1.2.0';
   var MAX_QUESTIONS = 3;   // 하루 질문은 주 질문 하나와 '질문 하나 더' 둘
   var KO_WEEKDAYS = ['일', '월', '화', '수', '목', '금', '토'];
 
@@ -296,6 +296,91 @@ LA.core = (function () {
     return out;
   }
 
+  // ------------------------------------------------------------ 일정 (당직 한 달 치, 일정 하나)
+  var HHMM_RE = /^([01]\d|2[0-3]):[0-5]\d$/;
+  function isHHMM(s) { return HHMM_RE.test(String(s || '')); }
+  function addMonths(month, n) {
+    var y = +month.slice(0, 4), m = +month.slice(5, 7) - 1 + n;
+    y += Math.floor(m / 12); m = ((m % 12) + 12) % 12;
+    return y + '-' + pad(m + 1);
+  }
+  function daysInMonth(month) { return new Date(Date.UTC(+month.slice(0, 4), +month.slice(5, 7), 0)).getUTCDate(); }
+  function monthLabel(month) { return (+month.slice(5, 7)) + '월'; }
+  /* 일요일부터 시작하는 주 단위 칸. 그달이 아닌 칸은 null. */
+  function monthGrid(month) {
+    var lead = new Date(ymdToUTC(month + '-01')).getUTCDay(), n = daysInMonth(month), weeks = [], week = [], i;
+    for (i = 0; i < lead; i++) week.push(null);
+    for (i = 1; i <= n; i++) {
+      week.push(month + '-' + pad(i));
+      if (week.length === 7) { weeks.push(week); week = []; }
+    }
+    if (week.length) { while (week.length < 7) week.push(null); weeks.push(week); }
+    return weeks;
+  }
+  function escapeRe(s) { return String(s).replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+  /* 말로 적은 당직을 날짜별 역할로 바꾼다. 예: "20 정, 22 부", "20일(정) 22일(부)", "정 20 28 부 22 30", "10/20 정".
+   * 날짜 뒤에 온 역할은 앞의 날짜들에 붙고, 날짜 앞에 온 역할은 다음 역할이 나올 때까지 뒤의 날짜들에 붙는다.
+   * 모르는 낱말(당직, 넣어줘 등)은 건너뛴다. 돌려주는 것: {items: [{date, role}], errors: [..]} */
+  function parseDutyText(text, month, codes) {
+    var mm = +month.slice(5, 7), n = daysInMonth(month), items = {}, errors = [], pending = [], cur = null;
+    var alt = codes.slice().sort(function (a, b) { return b.length - a.length; }).map(escapeRe).join('|');
+    var glued = alt ? new RegExp('^(\\d{1,2})일?(' + alt + ')$') : null;
+    var words = String(text || '').replace(/[()（）\[\]]/g, ' ').split(/[\s,，、.;:·~]+/);
+    function addDay(d, mo) {
+      if (mo && mo !== mm) { errors.push(mo + '월 날짜는 ' + mm + '월 당직에 넣을 수 없습니다'); return; }
+      if (d < 1 || d > n) { errors.push(d + '일은 ' + mm + '월에 없습니다'); return; }
+      var ds = month + '-' + pad(d);
+      if (cur) items[ds] = cur; else pending.push(ds);
+    }
+    function setRole(r) {
+      if (pending.length) { for (var i = 0; i < pending.length; i++) items[pending[i]] = r; pending = []; cur = null; }
+      else cur = r;
+    }
+    for (var i = 0; i < words.length; i++) {
+      var w = words[i], m;
+      if (!w) continue;
+      if ((m = /^(\d{1,2})월$/.exec(w))) { if (+m[1] !== mm) errors.push(m[1] + '월이라고 적었지만 ' + mm + '월 당직을 넣는 중입니다'); continue; }
+      if ((m = /^(\d{1,2})(?:\/|월)(\d{1,2})일?$/.exec(w))) { addDay(+m[2], +m[1]); continue; }
+      if ((m = /^(\d{1,2})일?$/.exec(w))) { addDay(+m[1], null); continue; }
+      if (glued && (m = glued.exec(w))) { addDay(+m[1], null); setRole(m[2]); continue; }
+      if (codes.indexOf(w) >= 0) { setRole(w); continue; }
+      if (/\d/.test(w)) errors.push('알아듣지 못한 부분: ' + w);
+    }
+    if (pending.length) errors.push(pending.map(function (d) { return +d.slice(8); }).join(', ') + '일의 역할(' + codes.join('/') + ')을 모르겠습니다');
+    var out = Object.keys(items).sort().map(function (d) { return { date: d, role: items[d] }; });
+    return { items: out, errors: errors };
+  }
+  /* 캘린더 제목. lifeauto/calsync.py 의 duty_title 과 같아야 한다. 예: 당직(정), 당직(부, 메모). 제목 앞부분은 기록 저장소의 self/schedule.json */
+  function dutyTitle(title, role, note) { return title + '(' + role + (note ? ', ' + note : '') + ')'; }
+  function clip(s, n) { var t = String(s || '').replace(/^\s+|\s+$/g, ''); return t ? t.slice(0, n) : null; }
+  /* o: {month, tz, title, remindMin, busy, items: [{date, role, start, end, note}]} → contracts/schedule.v1 의 당직 */
+  function dutyPayload(o) {
+    var items = (o.items || []).slice().sort(function (a, b) { return a.date < b.date ? -1 : 1; }).map(function (it) {
+      return { date: it.date, role: it.role, start: it.start, end: it.end, note: clip(it.note, 60) };
+    });
+    return { kind: 'duty', tz: o.tz, month: o.month, title: o.title, remind_min: (o.remindMin || [0]).slice(0, 3), busy: !!o.busy, items: items };
+  }
+  /* o: {itemId, tz, date, title, start, end, note, location, remindMin, busy, cancelled} → 일정 하나 */
+  function eventPayload(o) {
+    var p = { kind: 'event', tz: o.tz, item_id: o.itemId, date: o.date };
+    if (o.cancelled) { p.cancelled = true; return p; }
+    p.title = clip(o.title, 100);
+    p.start = isHHMM(o.start) ? o.start : null;
+    p.end = p.start && isHHMM(o.end) ? o.end : null;
+    p.location = clip(o.location, 200);
+    p.note = clip(o.note, 500);
+    p.remind_min = (o.remindMin || []).slice(0, 3);
+    p.busy = !!o.busy;
+    return p;
+  }
+  function newItemId(rnd) { return 'ev-' + randHex(12, rnd); }
+  /* 달이 바뀔 무렵 당직을 넣으라고 알려 줄 달. fromDay 일부터는 다음 달, untilDay 일까지는 이번 달. 이미 넣은 달이면 null. */
+  function dutyPromptMonth(today, fromDay, untilDay, known) {
+    var day = +today.slice(8, 10), m = today.slice(0, 7);
+    var target = day >= fromDay ? addMonths(m, 1) : (day <= untilDay ? m : null);
+    return target && known.indexOf(target) < 0 ? target : null;
+  }
+
   return {
     APP_VERSION: APP_VERSION, pad: pad, ymd: ymd, isoLocal: isoLocal, compactStamp: compactStamp, hhmm: hhmm,
     logicalDate: logicalDate, addDays: addDays, daysBetween: daysBetween, weekdayMon0: weekdayMon0, koDateLabel: koDateLabel,
@@ -306,6 +391,9 @@ LA.core = (function () {
     utf8ToBase64: utf8ToBase64, base64ToUtf8: base64ToUtf8,
     questionView: questionView, fallbackQid: fallbackQid, questionsFor: questionsFor,
     scoreInstrument: scoreInstrument, tokenAgeDays: tokenAgeDays, yesterdayAllowed: yesterdayAllowed,
-    valueSwap: valueSwap, retractionPayload: retractionPayload, checkinCandidates: checkinCandidates, MAX_QUESTIONS: MAX_QUESTIONS
+    valueSwap: valueSwap, retractionPayload: retractionPayload, checkinCandidates: checkinCandidates, MAX_QUESTIONS: MAX_QUESTIONS,
+    isHHMM: isHHMM, addMonths: addMonths, daysInMonth: daysInMonth, monthLabel: monthLabel, monthGrid: monthGrid,
+    parseDutyText: parseDutyText, dutyTitle: dutyTitle, dutyPayload: dutyPayload, eventPayload: eventPayload,
+    newItemId: newItemId, dutyPromptMonth: dutyPromptMonth
   };
 })();

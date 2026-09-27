@@ -85,6 +85,7 @@ LA.me = (function () {
     if (!reg) { card.appendChild(h('p', { class: 'small', text: '불러오는 중…' })); return card; }
     var STATUS = { to_verify: '확인 필요', to_decide: '결정 필요' };
     function safeLink(u) { return /^https:\/\//.test(String(u || '')) ? u : null; }
+    function calText(d) { var st = LA.schedule && LA.schedule.deadlineStatus(d.id); return st || '캘린더'; }
     function row(d) {
       var left = d.date ? C.daysBetween(today, d.date) : null;
       var when = d.date ? d.date + ' · ' + (left === 0 ? '오늘' : left + '일 남음') : '날짜 없음';
@@ -93,7 +94,7 @@ LA.me = (function () {
       if (safeLink(d.source_url)) extra.push(h('a', { class: 'small', href: d.source_url, target: '_blank', rel: 'noopener noreferrer', text: '출처' }));
       return h('div', { class: 'item' }, [
         h('div', { text: d.title }),
-        h('div', { class: 'small', text: when + (STATUS[d.status] ? ' · ' + STATUS[d.status] : '') + (d.calendar ? ' · 캘린더에 있음' : '') }),
+        h('div', { class: 'small', text: when + (STATUS[d.status] ? ' · ' + STATUS[d.status] : '') + (d.calendar ? ' · ' + calText(d) : '') }),
         extra.length ? h('details', {}, [h('summary', { class: 'small', text: '자세히' })].concat(extra)) : null
       ]);
     }
@@ -114,7 +115,7 @@ LA.me = (function () {
       }
       card.appendChild(h('details', {}, [h('summary', { text: '전체 보기 · 기한 ' + rest.length + '개 더, 규칙 ' + rules.length + '개' }), more]));
     }
-    card.appendChild(h('p', { class: 'small', text: '확인 항목일 뿐 법률·세무 조언이 아닙니다. 날짜가 바뀌면 Claude 에게 말하면 목록과 캘린더를 함께 고칩니다.' }));
+    card.appendChild(h('p', { class: 'small', text: '확인 항목일 뿐 법률·세무 조언이 아닙니다. 날짜가 바뀌면 Claude 에게 말하면 목록을 고치고, 캘린더는 한 시간 안에 따라 바뀝니다.' }));
     return card;
   }
 

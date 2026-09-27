@@ -260,6 +260,10 @@
     cacheJSON('state/reviews.json', 'reviews').then(function (d) { S.reviews = d; if (S.tab === 'checkin' || S.tab === 'status') renderTab(); });
     S.links = store.get('cache.links', null);
     cacheJSON('self/links.json', 'links').then(function (d) { S.links = d; renderNavLinks(); if (S.tab === 'status') renderTab(); });
+    S.calState = store.get('cache.calstate', null);
+    S.schedCfg = store.get('cache.schedcfg', null);
+    cacheJSON('state/calendar.json', 'calstate').then(function (d) { S.calState = d; if (S.tab === 'checkin' || S.tab === 'status') renderTab(); });
+    cacheJSON('self/schedule.json', 'schedcfg').then(function (d) { S.schedCfg = d; if (S.tab === 'checkin') renderTab(); });
     syncRemoteCheckins();
   }
 
@@ -552,6 +556,11 @@
     var reviewCard = renderDecisionReviews();
     if (reviewCard) box.appendChild(reviewCard);
     renderChecklists().forEach(function (c) { box.appendChild(c); });
+    if (LA.schedule && !yesterdayMode) {
+      var sp = LA.schedule.promptCard();
+      if (sp) box.appendChild(sp);
+      box.appendChild(LA.schedule.section());
+    }
     box.appendChild(renderExtras());
     updateStatusPill();
   }
@@ -825,6 +834,7 @@
       kv('기록한 날', (hb.checkins ? hb.checkins.days_recorded : 0) + '일');
       kv('마지막 브리핑', (hb.briefing && hb.briefing.last_date) || '없음');
     } else kv('밤 점검', '아직 결과 없음');
+    if (LA.schedule) kv('구글 캘린더', LA.schedule.statusText());
     kv('기기 시간대', tz());
     kv('화면 버전', C.APP_VERSION);
     box.appendChild(h('div', { class: 'card' }, [h('h2', { text: '연결' }), dl,
