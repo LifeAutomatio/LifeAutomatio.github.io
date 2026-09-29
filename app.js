@@ -264,6 +264,10 @@
     S.schedCfg = store.get('cache.schedcfg', null);
     cacheJSON('state/calendar.json', 'calstate').then(function (d) { S.calState = d; if (S.tab === 'checkin' || S.tab === 'status') renderTab(); });
     cacheJSON('self/schedule.json', 'schedcfg').then(function (d) { S.schedCfg = d; if (S.tab === 'checkin') renderTab(); });
+    S.notifyCfg = store.get('cache.notifycfg', null);
+    S.notifyState = store.get('cache.notifystate', null);
+    cacheJSON('self/notify.json', 'notifycfg').then(function (d) { S.notifyCfg = d; if (S.tab === 'status') renderTab(); });
+    cacheJSON('state/notify.json', 'notifystate').then(function (d) { S.notifyState = d; if (S.tab === 'status') renderTab(); });
     syncRemoteCheckins();
   }
 
@@ -843,6 +847,8 @@
         h('button', { type: 'button', text: '새로 고침', onclick: function () { startSync(); renderTab(); } })
       ])]));
 
+    box.appendChild(renderNotifyCard());
+
     var links = ((S.links && S.links.links) || []);
     if (links.length) {
       var lc = h('div', { class: 'card' }, [h('h2', { text: '바로 가기' })]);
@@ -889,6 +895,11 @@
         h('button', { type: 'button', class: 'danger', text: '이 기기 연결 끊기', onclick: function () {
           if (!confirm('이 기기에서 접근 키를 지울까요? 보내지 못한 기록 ' + store.get('queue', []).length + '건도 함께 지워집니다.')) return;
           store.del('token'); store.del('queue');
+          try {   // 저장소에서 읽어 둔 것(메일 요약, 알림 주제 등)도 지운다
+            var b = store.ephemeral() ? sessionStorage : localStorage, ks = [];
+            for (var i = 0; i < b.length; i++) { var k = b.key(i); if (k && k.indexOf('la.cache.') === 0) ks.push(k); }
+            ks.forEach(function (k) { b.removeItem(k); });
+          } catch (e) { /* 무시 */ }
           try { if (store.ephemeral()) { sessionStorage.clear(); } } catch (e) { /* 무시 */ }
           location.hash = 'setup'; location.reload();
         } })
@@ -897,8 +908,67 @@
     updateStatusPill();
   }
 
+  /* 폰 알림: ntfy 앱 구독 도우미, 시험 알림, 받을 알림 고르기. 주제 이름은 기록 저장소의 self/notify.json 에서 읽는다.
+   * 알림 끄기는 setting 기록 notify_prefs 로 남고 자동 실행이 따른다 (lifeauto/notify.py 의 PREF_KINDS 와 같아야 한다). */
+  var NOTIFY_KINDS = [['news', '아침 브리핑 (뉴스·메일 건수)'], ['mail_urgent', '급한 메일'], ['checkin', '체크인 안 했을 때'], ['weekly', '주간 리포트']];
+  function renderNotifyCard() {
+    var cfg = S.notifyCfg, st = S.notifyState || {};
+    // 켜고 끈 상태: 이 기기에서 방금 바꾼 것(3시간 안)이 먼저, 아니면 자동 실행이 적용 중인 값(state/notify.json)
+    var local = store.get('notifyPrefs', null), localAt = store.get('notifyPrefsAt', 0) || 0;
+    var prefs = (local && Date.now() - localAt < 3 * 3600000) ? local : (st.prefs || local || {});
+    var card = h('div', { class: 'card' }, [h('h2', { text: '폰 알림' })]);
+    if (!cfg || !/^[-_A-Za-z0-9]{1,64}$/.test(String(cfg.topic || '').trim())) {
+      card.appendChild(h('p', { class: 'small', text: '알림 주제는 자동 실행이 한 번 돈 뒤에 여기 나타납니다. 조금 뒤 새로 고침을 눌러 보세요.' }));
+      return card;
+    }
+    var msg = h('p', { class: 'small' });
+    var topicBox = h('input', { type: 'text', readonly: true, value: cfg.topic, 'aria-label': '알림 주제 이름', class: 'mono' });
+    topicBox.addEventListener('focus', function () { topicBox.select(); });
+    card.appendChild(h('p', { class: 'small', text: 'iPhone 의 ntfy 앱에서 이 주제를 한 번 구독하면 아침 브리핑, 급한 메일, 체크인 알림이 옵니다.' }));
+    var ol = h('ol', { class: 'small steps' });
+    ['ntfy 앱을 열고 오른쪽 위 + 를 누릅니다', '아래 [주제 이름 복사]를 누르고 Topic 칸에 붙여 넣습니다',
+     '서버는 기본값(ntfy.sh) 그대로 두고 Subscribe 를 누릅니다', '알림 허용을 물으면 허용합니다'].forEach(function (t) { ol.appendChild(h('li', { text: t })); });
+    card.appendChild(ol);
+    card.appendChild(topicBox);
+    card.appendChild(h('div', { class: 'row' }, [
+      h('button', { type: 'button', text: '주제 이름 복사', onclick: function () {
+        var done = function () { msg.textContent = '복사했습니다. ntfy 앱의 Topic 칸에 붙여 넣으세요.'; };
+        try {
+          if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(cfg.topic).then(done, function () { topicBox.focus(); msg.textContent = '위 칸을 길게 눌러 복사하세요.'; });
+          else { topicBox.focus(); msg.textContent = '위 칸을 길게 눌러 복사하세요.'; }
+        } catch (e) { topicBox.focus(); }
+      } }),
+      h('button', { type: 'button', text: '시험 알림 보내기', onclick: function () {
+        enqueueRecord('setting', { key: 'notify_test', value: { at: C.isoLocal(new Date()) } });
+        store.set('notifyTestAt', Date.now());
+        var clock = ((S.calState || {}).bridge || {}).clock || {};
+        msg.textContent = clock.installed ? '요청했습니다. 다음 자동 실행 때(보통 1시간 안) 시험 알림이 옵니다.'
+                                          : '요청했습니다. 구글 연결 전이라 자동 실행이 드물어 몇 시간 걸릴 수 있습니다.';
+      } })
+    ]));
+    card.appendChild(msg);
+    if (st.last_test_at) card.appendChild(h('p', { class: 'small', text: '마지막 시험 알림: ' + new Date(st.last_test_at).toLocaleString('ko-KR') + (st.last_test_ok ? ' · 보냄' : ' · 보내지 못함') }));
+    card.appendChild(h('h3', { text: '받을 알림' }));
+    NOTIFY_KINDS.forEach(function (k) {
+      var box = h('input', { type: 'checkbox', checked: prefs[k[0]] === false ? null : true });
+      box.addEventListener('change', function () {
+        var v = {};
+        NOTIFY_KINDS.forEach(function (x) { v[x[0]] = x[0] === k[0] ? box.checked : prefs[x[0]] !== false; });
+        prefs = v;
+        store.set('notifyPrefs', v); store.set('notifyPrefsAt', Date.now());
+        // 빠르게 여러 번 눌러도 기록은 마지막 상태 하나만 (같은 초에 둘이면 순서가 바뀔 수 있어서)
+        clearTimeout(S.prefsTimer);
+        S.prefsTimer = setTimeout(function () { enqueueRecord('setting', { key: 'notify_prefs', value: store.get('notifyPrefs', v) }); }, 1500);
+        msg.textContent = '바꿨습니다. 다음 자동 실행부터 적용됩니다.';
+      });
+      card.appendChild(h('label', { class: 'check' }, [box, h('span', { text: k[1] })]));
+    });
+    card.appendChild(h('p', { class: 'small', text: '고장·경고 알림은 끌 수 없습니다. 알림에는 개인 내용 없이 뉴스 제목, 건수, 고정 문구만 담깁니다 (ntfy.sh 는 공개 서버).' }));
+    return card;
+  }
+
   // ------------------------------------------------------------ 탭
-  var TABS = [['checkin', '기록'], ['news', '뉴스'], ['report', '리포트'], ['me', '나'], ['status', '상태']];
+  var TABS = [['checkin', '기록'], ['news', '브리핑'], ['report', '리포트'], ['me', '나'], ['status', '상태']];
 
   function render() {
     clear(root);

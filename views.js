@@ -14,9 +14,85 @@ LA.views = (function () {
     });
   }
 
+  // ------------------------------------------------------------ 메일 요약 (브리핑 탭 맨 위)
+  /* 자동 실행(lifeauto/mail.py)이 만든 briefings/mail/ 의 아침 요약과 state/mail.json 의 급한 메일. AI 요약이라 원문 링크를 함께 둔다. */
+  var MAIL_LINK = /^https:\/\/mail\.google\.com\//;
+  var LVL = { must: '꼭 볼 것', know: '알아둘 것', skip: '넘겨도 됨' };
+  function renderMail(box) {
+    var wrap = h('div', {});
+    box.appendChild(wrap);
+    var dg = A.store.get('cache.maildigest', null), st = A.store.get('cache.mailstate', null);
+    drawMail(wrap, dg, st);
+    var dirs = A.monthDirs(A.todayLocal(), 1).map(function (m) { return 'briefings/mail/' + m; });
+    Promise.all([
+      latestFile(dirs, '.json').then(function (path) {
+        if (!path) return null;
+        return S.gh.getJSON(path).then(function (r) { if (r.ok && r.data) { A.store.set('cache.maildigest', r.data); dg = r.data; } });
+      }),
+      A.cacheJSON('state/mail.json', 'mailstate').then(function (d) { st = d; })
+    ]).then(function () { if (S.tab === 'news') drawMail(A.clear(wrap), dg, st); });
+  }
+
+  /* 보낸 사람: 이름만 보여 주면 가짜 이름(예: 'USCIS <x@수상한곳>')에 속을 수 있어 도메인을 늘 붙인다 */
+  function sender(x) {
+    var addr = String(x.from_addr || ''), dom = addr.indexOf('@') > 0 ? addr.split('@').pop() : '';
+    if (x.sender_ok === false) return (x.from_name || '') + ' · 보낸 사람 확인 필요';
+    var name = x.from_name || addr;
+    return dom && name.toLowerCase().indexOf(dom) < 0 ? name + ' · ' + dom : name;
+  }
+
+  function mailRow(x, extra) {
+    var link = MAIL_LINK.test(String(x.link || '')) ? x.link : null;
+    var when = x.received_at ? new Date(x.received_at) : null;
+    return h('div', { class: 'mail-item' }, [
+      h('div', {}, [h('span', { class: 'lvl ' + x.level, text: LVL[x.level] || '' }), h('span', { class: 't', text: x.subject || '(제목 없음)' })]),
+      h('div', { class: 'small', text: sender(x) + (when ? ' · ' + (when.getMonth() + 1) + '/' + when.getDate() + ' ' + C.hhmm(when) : '') + (extra || '') }),
+      x.summary ? h('div', { text: x.summary }) : null,
+      (x.action || x.due) ? h('div', { class: 'small', text: '→ ' + [x.action, x.due ? x.due + '까지' : null].filter(Boolean).join(' · ') }) : null,
+      link ? h('a', { class: 'small', href: link, target: '_blank', rel: 'noopener noreferrer', text: '메일 열기 ↗' }) : null
+    ]);
+  }
+
+  function drawMail(wrap, dg, st) {
+    // 급한 메일: 아침 요약에 들어 있지 않은 것만, 이틀 안에 알린 것만 (요약에 빠졌거나 요약 뒤에 온 것)
+    var inDigest = {}, recent = new Date(Date.now() - 2 * 86400000).toISOString();
+    ((dg && dg.items) || []).forEach(function (x) { inDigest[x.id] = true; });
+    var urgent = ((st && st.urgent) || []).filter(function (u) { return !inDigest[u.id] && String(u.alerted_at || '') > recent; });
+    if (!dg && !urgent.length && !(st && st.error)) {
+      wrap.appendChild(h('p', { class: 'small', text: '메일 요약은 구글 연결 뒤 매일 아침 뉴스와 함께 나옵니다. 급한 메일은 한 시간 안에 알림이 옵니다.' }));
+      return;
+    }
+    var card = h('div', { class: 'card' }, [h('h2', { text: '메일' })]);
+    if (urgent.length) {
+      card.appendChild(h('h3', { text: '새로 온 급한 메일 ' + urgent.length + '건' }));
+      urgent.slice(-5).reverse().forEach(function (u) { card.appendChild(mailRow(u)); });
+      if (urgent.length > 5) card.appendChild(h('p', { class: 'small', text: '그 밖에 ' + (urgent.length - 5) + '건 더' }));
+    }
+    if (dg) {
+      var c = dg.counts || {}, gen = dg.generated_at ? new Date(dg.generated_at) : null;
+      card.appendChild(h('p', { class: 'small', text: C.koDateLabel(dg.date) + (gen ? ' ' + C.hhmm(gen) + ' 정리' : '') + ' · 꼭 볼 것 ' + (c.must || 0) +
+        ' · 알아둘 것 ' + (c.know || 0) + ' · 넘겨도 됨 ' + (c.skip || 0) }));
+      (dg.items || []).forEach(function (x) { card.appendChild(mailRow(x)); });
+      if (!(dg.items || []).length) card.appendChild(h('p', { class: 'small', text: '볼 메일이 없습니다.' }));
+      if ((dg.skipped || []).length) {
+        var ul = h('ul', {});
+        dg.skipped.forEach(function (x) { ul.appendChild(h('li', { class: 'small', text: sender(x) + ' · ' + (x.subject || '') })); });
+        card.appendChild(h('details', {}, [h('summary', { text: '넘겨도 되는 메일 ' + dg.skipped.length + '건' }), ul]));
+      }
+      if (dg.status === 'rules') card.appendChild(h('div', { class: 'notice', text: '오늘은 AI 요약을 만들지 못해 보낸 곳과 제목으로만 나눴습니다.' }));
+      if (dg.truncated) card.appendChild(h('p', { class: 'small', text: '메일이 많아 최근 것부터 일부만 정리했습니다. 나머지는 Gmail 에서 보세요.' }));
+    }
+    if (st && st.error) {
+      card.appendChild(h('div', { class: 'notice', text: '지금 메일을 읽지 못하고 있습니다. 맥에서 구글 연결을 확인하세요.' }));
+    }
+    card.appendChild(h('p', { class: 'small', text: 'AI 요약이라 틀릴 수 있습니다. 중요한 내용은 메일 원문을 확인하세요. 메일은 읽기만 합니다.' }));
+    wrap.appendChild(card);
+  }
+
   // ------------------------------------------------------------ 뉴스
   function renderNews(box) {
     box.appendChild(h('div', { class: 'top' }, [h('h1', { text: '아침 브리핑' }), h('span', { id: 'sync-pill', class: 'pill', text: '…' })]));
+    renderMail(box);
     var body = h('div', {});
     box.appendChild(body);
     var cached = A.store.get('cache.briefing', null);

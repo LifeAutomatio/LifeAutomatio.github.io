@@ -141,6 +141,16 @@ label.field.half { flex: 1; min-width: 130px; margin-bottom: 6px; }
 .duty-row { padding: 8px 0; border-top: 1px solid var(--line); }
 .duty-row .row { margin: 4px 0; flex-wrap: nowrap; }
 
+/* 폰 알림과 메일 요약 */
+.mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 14px; margin-bottom: 8px; }
+ol.steps { padding-left: 20px; margin: 4px 0 10px; }
+.mail-item { padding: 10px 0; border-top: 1px solid var(--line); overflow-wrap: anywhere; word-break: break-word; }
+.card li { overflow-wrap: anywhere; }
+.mail-item .t { font-weight: 600; }
+.lvl { display: inline-block; font-size: 12px; padding: 1px 8px; border-radius: 999px; margin-right: 6px; background: var(--card-2); color: var(--text-2); }
+.lvl.must { color: var(--bad); }
+.lvl.know { color: var(--accent); }
+
 /* 넓은 화면 (노트북, PC): 탭을 위로 올리고 카드를 둘씩 나란히 둔다 */
 @media (min-width: 900px) {
   .app { max-width: 1080px; padding-top: 72px; }
