@@ -91,7 +91,7 @@ LA.views = (function () {
 
   // ------------------------------------------------------------ 뉴스
   function renderNews(box) {
-    box.appendChild(h('div', { class: 'top' }, [h('h1', { text: '브리핑' }), h('span', { id: 'sync-pill', class: 'pill', text: '…' })]));
+    box.appendChild(h('div', { class: 'top' }, [h('h1', { text: '아침 브리핑' }), h('span', { id: 'sync-pill', class: 'pill', text: '…' })]));
     renderMail(box);
     var body = h('div', {});
     box.appendChild(body);
@@ -101,7 +101,7 @@ LA.views = (function () {
     var today = A.todayLocal();
     var dirs = A.monthDirs(today, 1).map(function (m) { return 'briefings/' + m; });
     latestFile(dirs, '.json').then(function (path) {
-      if (!path) { A.clear(body).appendChild(h('div', { class: 'card' }, [h('p', { text: '아직 브리핑이 없습니다.' }), h('p', { class: 'small', text: '매일 아침 6시 전후에 만들어져 알림으로 옵니다.' })])); return; }
+      if (!path) { A.clear(body).appendChild(h('div', { class: 'card' }, [h('p', { text: '아직 브리핑이 없습니다.' }), h('p', { class: 'small', text: '매일 아침 7시 20분에 알림으로 옵니다 (6시 15분부터 만들어 둠).' })])); return; }
       return S.gh.getJSON(path).then(function (r) {
         if (!r.ok || !r.data) return;
         A.store.set('cache.briefing', r.data);
