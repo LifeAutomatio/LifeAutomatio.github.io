@@ -6,7 +6,7 @@ var LA = (typeof LA !== 'undefined') ? LA : {};
 LA.core = (function () {
   'use strict';
 
-  var APP_VERSION = '1.3.0';
+  var APP_VERSION = '1.3.1';
   var MAX_QUESTIONS = 3;   // 하루 질문은 주 질문 하나와 '질문 하나 더' 둘
   var KO_WEEKDAYS = ['일', '월', '화', '수', '목', '금', '토'];
 

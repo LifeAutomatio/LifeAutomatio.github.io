@@ -910,7 +910,7 @@
 
   /* 폰 알림: ntfy 앱 구독 도우미, 시험 알림, 받을 알림 고르기. 주제 이름은 기록 저장소의 self/notify.json 에서 읽는다.
    * 알림 끄기는 setting 기록 notify_prefs 로 남고 자동 실행이 따른다 (lifeauto/notify.py 의 PREF_KINDS 와 같아야 한다). */
-  var NOTIFY_KINDS = [['news', '아침 브리핑 (뉴스·메일 건수)'], ['mail_urgent', '급한 메일'], ['checkin', '체크인 안 했을 때'], ['weekly', '주간 리포트']];
+  var NOTIFY_KINDS = [['news', '브리핑 (뉴스·메일 건수)'], ['mail_urgent', '급한 메일'], ['checkin', '체크인 안 했을 때'], ['weekly', '주간 리포트']];
   function renderNotifyCard() {
     var cfg = S.notifyCfg, st = S.notifyState || {};
     // 켜고 끈 상태: 이 기기에서 방금 바꾼 것(3시간 안)이 먼저, 아니면 자동 실행이 적용 중인 값(state/notify.json)
@@ -924,7 +924,7 @@
     var msg = h('p', { class: 'small' });
     var topicBox = h('input', { type: 'text', readonly: true, value: cfg.topic, 'aria-label': '알림 주제 이름', class: 'mono' });
     topicBox.addEventListener('focus', function () { topicBox.select(); });
-    card.appendChild(h('p', { class: 'small', text: 'iPhone 의 ntfy 앱에서 이 주제를 한 번 구독하면 아침 브리핑, 급한 메일, 체크인 알림이 옵니다.' }));
+    card.appendChild(h('p', { class: 'small', text: 'iPhone 의 ntfy 앱에서 이 주제를 한 번 구독하면 브리핑(매일 19:20), 급한 메일, 체크인 알림이 옵니다.' }));
     var ol = h('ol', { class: 'small steps' });
     ['ntfy 앱을 열고 오른쪽 위 + 를 누릅니다', '아래 [주제 이름 복사]를 누르고 Topic 칸에 붙여 넣습니다',
      '서버는 기본값(ntfy.sh) 그대로 두고 Subscribe 를 누릅니다', '알림 허용을 물으면 허용합니다'].forEach(function (t) { ol.appendChild(h('li', { text: t })); });

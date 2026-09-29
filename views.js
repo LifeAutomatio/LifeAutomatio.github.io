@@ -91,7 +91,7 @@ LA.views = (function () {
 
   // ------------------------------------------------------------ 뉴스
   function renderNews(box) {
-    box.appendChild(h('div', { class: 'top' }, [h('h1', { text: '아침 브리핑' }), h('span', { id: 'sync-pill', class: 'pill', text: '…' })]));
+    box.appendChild(h('div', { class: 'top' }, [h('h1', { text: '브리핑' }), h('span', { id: 'sync-pill', class: 'pill', text: '…' })]));
     renderMail(box);
     var body = h('div', {});
     box.appendChild(body);
